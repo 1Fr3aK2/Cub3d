@@ -17,6 +17,8 @@ void	ft_bzero(void *str, size_t n)
 	unsigned char	*mem;
 	size_t			counter;
 
+	if (!str)
+		return ;
 	mem = str;
 	counter = 0;
 	while (counter < n)

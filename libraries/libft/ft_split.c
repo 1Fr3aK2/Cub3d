@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 14:05:02 by raamorim          #+#    #+#             */
-/*   Updated: 2024/04/29 11:37:35 by raamorim         ###   ########.fr       */
+/*   Created: 2025/02/05 11:51:05 by raamorim          #+#    #+#             */
+/*   Updated: 2025/02/05 11:51:05 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static char	*word_aloc(const char *str, char c)
 
 static void	*free_str(char **dest, int i)
 {
-	while (i >= 0)
+	while (i > 0)
 		free(dest[i--]);
 	free(dest);
 	return (NULL);

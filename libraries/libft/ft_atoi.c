@@ -17,6 +17,8 @@ int	ft_atoi(const char *str)
 	int	number;
 	int	counter;
 
+	if (!str)
+		return (0);
 	number = 0;
 	counter = 1;
 	while ((*str >= 9 && *str <= 13) || *str == 32)

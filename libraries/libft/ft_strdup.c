@@ -22,7 +22,7 @@ char	*ft_strdup(const char *s)
 	j = 0;
 	if (!s)
 		return (NULL);
-	dest = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
+	dest = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (dest == NULL)
 		return (NULL);
 	while (s[i])
@@ -30,6 +30,7 @@ char	*ft_strdup(const char *s)
 	dest[j] = '\0';
 	return (dest);
 }
+
 /* int main()
 {
 	const char *src = "Hello world!";

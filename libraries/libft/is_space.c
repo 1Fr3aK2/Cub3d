@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   is_space.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 13:38:15 by raamorim          #+#    #+#             */
-/*   Updated: 2024/05/27 13:52:13 by raamorim         ###   ########.fr       */
+/*   Created: 2025/05/14 17:11:23 by raamorim          #+#    #+#             */
+/*   Updated: 2025/05/14 17:13:22 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
-# endif
-
-# include <fcntl.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-
-char	*ft_strjoin_line(char *s1, char *s2);
-size_t	ft_strlen_line(char *s);
-int		check_and_clear(char *line);
-char	*free_gnl(char *gnl);
-char	*get_next_line(int fd);
-
-#endif
+bool	is_space(char c)
+{
+	return ((c >= 9 && c <= 13) || c == 32);
+}
