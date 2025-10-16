@@ -1,7 +1,11 @@
 # -------------------
 # ARQUIVOS E EXECUTÁVEL
 # -------------------
-SRCS = src/main.c          # Adicione aqui todos os seus arquivos .c
+SRCS = src/main.c # Adicione aqui todos os seus arquivos .c
+		src/parsing/
+
+
+		
 NAME = Cub3d
 
 # -------------------
