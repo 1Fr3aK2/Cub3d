@@ -8,7 +8,7 @@ NAME = Cub3d
 # COMPILADOR E FLAGS
 # -------------------
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -I./includes
 RM = rm -f
 
 OBJ_DIR = obj
