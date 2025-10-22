@@ -1,7 +1,14 @@
-#include <unistd.h>
-#include <stdio.h>
+#include <Cub3d.h>
 
-int main()
+int main(int argc, char *argv[])
 {
-    printf("olaa\n");
+    t_data data;
+    if (argc != 2)
+    {
+        //msgs de erro
+        return (-1);
+    }
+    init_struct(&data);
+    if (init_map(argv[1], &data) == -1)
+        return (-1);
 }

@@ -1,11 +1,14 @@
 # -------------------
 # ARQUIVOS E EXECUTÁVEL
 # -------------------
-SRCS = src/main.c # Adicione aqui todos os seus arquivos .c
-		src/parsing/
+SRCS = src/errors/errors.c\
+		src/init/init.c\
+		src/parsing/file/check_file.c\
+		src/parsing/map/get_map/get_map.c\
+		src/parsing/map/init_map.c\
+		src/utils/utils.c\
+		src/main.c
 
-
-		
 NAME = Cub3d
 
 # -------------------
@@ -33,6 +36,9 @@ RED     = \033[31m
 LIBFT_DIR = ./libraries/libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
+GNL_DIR = ./libraries/libft/get_next_line
+GNL = $(GNL_DIR)/get_next_line.a
+
 MLX_DIR = ./libraries/minilibx-linux
 MLX = $(MLX_DIR)/libmlx.a
 MLX_LINKS = -L$(MLX_DIR) -lmlx -lm -lXext -lX11
@@ -42,9 +48,9 @@ MLX_LINKS = -L$(MLX_DIR) -lmlx -lm -lXext -lX11
 # -------------------
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT) $(MLX)
+$(NAME): $(OBJS) $(LIBFT) $(GNL) $(MLX)
 	@echo "$(YELLOW)Compiling $(NAME)...$(RESET)"
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(MLX) $(MLX_LINKS)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(GNL) $(MLX) $(MLX_LINKS)
 	@echo "$(GREEN)$(NAME) ready!$(RESET)"
 
 # -------------------
@@ -66,6 +72,13 @@ $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR) --no-print-directory >/dev/null 2>&1
 
 # -------------------
+# GET_NEXT_LINE
+# -------------------
+$(GNL):
+	@echo "$(YELLOW)Compiling GNL...$(RESET)"
+	@$(MAKE) -C $(GNL_DIR) --no-print-directory >/dev/null 2>&1
+
+# -------------------
 # MINILIBX
 # -------------------
 $(MLX):
@@ -78,12 +91,14 @@ $(MLX):
 clean:
 	@$(RM) -r $(OBJ_DIR)
 	@$(MAKE) -C $(LIBFT_DIR) clean --no-print-directory >/dev/null 2>&1
+	@$(MAKE) -C $(GNL_DIR) clean --no-print-directory >/dev/null 2>&1
 	@$(MAKE) -C $(MLX_DIR) clean >/dev/null 2>&1
 	@echo "$(RED)Objects and libraries cleaned!$(RESET)"
 
 fclean: clean
 	@$(RM) $(NAME)
 	@$(MAKE) -C $(LIBFT_DIR) fclean --no-print-directory >/dev/null 2>&1
+	@$(MAKE) -C $(GNL_DIR) fclean --no-print-directory >/dev/null 2>&1
 	@$(MAKE) -C $(MLX_DIR) clean >/dev/null 2>&1
 	@echo "$(RED)$(NAME) removed!$(RESET)"
 
