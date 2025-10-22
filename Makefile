@@ -37,7 +37,7 @@ LIBFT_DIR = ./libraries/libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 GNL_DIR = ./libraries/libft/get_next_line
-GNL = $(GNL_DIR)/get_next_line.a
+GNL = $(GNL_DIR)/get_next_line
 
 MLX_DIR = ./libraries/minilibx-linux
 MLX = $(MLX_DIR)/libmlx.a
