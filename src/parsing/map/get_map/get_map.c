@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:13:21 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/23 05:17:06 by rafael           ###   ########.fr       */
+/*   Updated: 2025/10/23 05:59:34 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ bool	set_map(t_map *map, int i)
 		temp++;
 	if (!map->buffer[i + len + temp])
 		return (ft_putendl_fd("Error validating the map", 2), false);
-	while (map->buffer[i + len] + temp)
+	while (map->buffer[i + len + temp])
 		len++;
 	int t = ft_stralen(map->buffer) - len;
 	if (alloc_map(map, &t) == false)
