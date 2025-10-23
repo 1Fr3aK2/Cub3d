@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:13:21 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/23 05:59:34 by rafael           ###   ########.fr       */
+/*   Updated: 2025/10/23 17:19:45 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,31 +52,32 @@ void	start_buffer(t_data *data)
 int	alloc_buffer(t_data *data, int *i)
 {
 	char	*file;
+	char	*trimmed;
 
 	if (!data)
 		return (-1);
 	file = get_next_line(data->file.fd);
 	if (!file)
-		exit_error(data,
-			"ERROR:\nALLOC_BUFFER: Failed to read first line or empty file\n");
+		exit_error(data, "ERROR:\nALLOC_BUFFER: Failed to read first line or empty file\n");
 	while (file)
 	{
 		if (*i < data->map.height)
 		{
-			data->map.buffer[*i] = ft_strdup(file);
-			if (!data->map.buffer[*i])
-			{
-				free(file);
-				exit_error(data,
-					"ERROR:\nALLOC_BUFFER: Memory allocation error in strdup\n");
-			}
+			trimmed = ft_strtrim(file, "\n");
 			free(file);
+			if (!trimmed)
+				exit_error(data, "ERROR:\nALLOC_BUFFER: strtrim malloc error\n");
+			data->map.buffer[*i] = trimmed;
+			if (!data->map.buffer[*i])
+				exit_error(data, "ERROR:\nALLOC_BUFFER: strdup/alloc error\n");
 			file = get_next_line(data->file.fd);
 		}
 		(*i)++;
 	}
 	return (1);
 }
+
+
 
 void	get_map(char *file_name, t_data *data)
 {
@@ -162,7 +163,6 @@ bool	alloc_map(t_map *map, int *i)
 			free_arr(map->map, index);
 			return (false);
 		}
-		printf("%s", map->map[index]);
 		(*i)++;
 	    index++;
 	}
