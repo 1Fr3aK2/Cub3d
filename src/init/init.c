@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:22:33 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/22 16:13:52 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/10/23 02:04:44 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ void init_struct(t_data *data)
 {
     if (!data)
         return ;
-    ft_bzero(data, sizeof(data));
+    ft_bzero(data, sizeof(t_data));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:12:02 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/22 16:12:32 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/10/22 20:06:23 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	check_map_name(char *file_name)
 	if (file.fd < 0)
 		exit_error(NULL, "ERROR:\nCHECK_MAP : Error opening the file\n");
 	len = ft_strlen(file_name);
-	if (len < 4 || ft_strncmp(&file_name[len - 4], ".ber", 4) != 0)
-		exit_error(NULL, "ERROR:\n: Invalid map name, should be .ber\n");
+	if (len < 4 || ft_strncmp(&file_name[len - 4], ".cub", 4) != 0)
+		exit_error(NULL, "ERROR:\n: Invalid map name, should be .cub\n");
 	close(file.fd);
 }

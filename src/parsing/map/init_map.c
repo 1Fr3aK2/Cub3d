@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:11:03 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/22 20:00:28 by rafael           ###   ########.fr       */
+/*   Updated: 2025/10/22 21:59:12 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	init_map(char *file, t_data *data)
 		return (-1);
 	check_map_name(file);
 	get_lines(data, file);
-	get_map(file, data);/* 
-	if (check_valid_map(&data->map, data) != 1)
+	get_map(file, data);
+	/* if (check_valid_map(&data->map, data) != 1)
 		exit_error(data, "ERROR:\nINIT_MAP: ERROR CHECKING THE MAP\n");
 	if (get_positions(&data->map, data) != 1)
 		exit_error(data, "ERROR:\nINIT_MAP: ERROR GETTING POSITIONS\n");

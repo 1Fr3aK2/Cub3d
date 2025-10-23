@@ -3,22 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:41:25 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/22 16:42:21 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/10/23 02:32:11 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
 
-int check_format(t_map *map)
-{
-    int i;
-    int line_len;
-    
-    if (!map)
-        return (-1);
-    i = 0;
-    
-}

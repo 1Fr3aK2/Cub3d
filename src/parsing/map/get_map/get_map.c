@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:13:21 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/22 16:13:55 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/10/23 05:17:06 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	get_lines(t_data *data, char *file_name)
 	close(data->file.fd);
 }
 
-void	start_map(t_data *data)
+void	start_buffer(t_data *data)
 {
 	int	i;
 
@@ -44,12 +44,12 @@ void	start_map(t_data *data)
 		return ;
 	while (i < data->map.height + 1)
 	{
-		data->map.map[i] = NULL;
+		data->map.buffer[i] = NULL;
 		i++;
 	}
 }
 
-int	alloc_map(t_data *data, int *i)
+int	alloc_buffer(t_data *data, int *i)
 {
 	char	*file;
 
@@ -58,17 +58,17 @@ int	alloc_map(t_data *data, int *i)
 	file = get_next_line(data->file.fd);
 	if (!file)
 		exit_error(data,
-			"ERROR:\nALLOC_MAP: Failed to read first line or empty file\n");
+			"ERROR:\nALLOC_BUFFER: Failed to read first line or empty file\n");
 	while (file)
 	{
 		if (*i < data->map.height)
 		{
-			data->map.map[*i] = ft_strdup(file);
-			if (!data->map.map[*i])
+			data->map.buffer[*i] = ft_strdup(file);
+			if (!data->map.buffer[*i])
 			{
 				free(file);
 				exit_error(data,
-					"ERROR:\nALLOC_MAP: Memory allocation error in strdup\n");
+					"ERROR:\nALLOC_BUFFER: Memory allocation error in strdup\n");
 			}
 			free(file);
 			file = get_next_line(data->file.fd);
@@ -88,13 +88,84 @@ void	get_map(char *file_name, t_data *data)
 	data->file.fd = open(file_name, O_RDONLY);
 	if (data->file.fd < 0)
 		exit_error(NULL, "ERROR:\nGET_MAP : Error opening the file\n");
-	data->map.map = malloc(sizeof(char *) * (data->map.height + 1));
-	if (!data->map.map)
+	data->map.buffer = malloc(sizeof(char *) * (data->map.height + 1));
+	if (!data->map.buffer)
 		exit_error(NULL, "ERROR:\nGET_MAP : Memory allocation error\n");
-	start_map(data);
-	if (alloc_map(data, &i) != 1)
+	start_buffer(data);
+	if (alloc_buffer(data, &i) != 1)
 		exit_error(data, "ERROR:\n GET_MAP ERROR W/ALLOC MAP\n");
+	parse_map(data);
 	close(data->file.fd);
-	if (i != data->map.height)
-		exit_error(data, "ERROR:\nGET_MAP : expected != real lines\n");
+	/* if (i != data->map.height)
+		exit_error(data, "ERROR:\nGET_MAP : expected != real lines\n"); */
+}
+
+void	parse_map(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	if (!data)
+		return ;
+	while (!check_load_textures(&data->map))
+	{
+		if (!data->map.buffer[i])
+			exit_error(data, "Error reading texture!");
+		if (data->map.buffer[i][0] == '\0')
+		{
+			i++;
+			continue ;
+		}
+		if (!set_texture(replace_tabs(data->map.buffer[i]), &data->map))
+			exit_error(data, "ERROR reading textures!");
+		i++;
+	}
+	if (set_map(&data->map, i) == false)
+	{
+		return ;
+	}
+}
+
+bool	set_map(t_map *map, int i)
+{
+	int	len;
+	int temp = 0;
+	if (!map || i < 0)
+		return (false);
+	len = 0;
+	while (map->buffer[i + len + temp] && map->buffer[i + len + temp][0] == '\0')
+		temp++;
+	if (!map->buffer[i + len + temp])
+		return (ft_putendl_fd("Error validating the map", 2), false);
+	while (map->buffer[i + len] + temp)
+		len++;
+	int t = ft_stralen(map->buffer) - len;
+	if (alloc_map(map, &t) == false)
+		return (false);
+	return (true);
+}
+
+bool	alloc_map(t_map *map, int *i)
+{
+	int index = 0;
+	if (!map || !map->buffer || !i || *i < 0)
+		return (false);
+	map->map = ft_calloc(*i + 1, sizeof(char *));
+	if (!map->map)
+		return (ft_putendl_fd("Error allocating map", 2), false);
+	while (map->buffer[*i])
+	{
+		map->map[index] = ft_strdup(map->buffer[*i]);
+		if (!map->map[index])
+		{
+			ft_putendl_fd("Error setting the map", 2);
+			free_arr(map->map, index);
+			return (false);
+		}
+		printf("%s", map->map[index]);
+		(*i)++;
+	    index++;
+	}
+	free_arr(map->buffer, ft_stralen(map->buffer));
+	return (true);
 }

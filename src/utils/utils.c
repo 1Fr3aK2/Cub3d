@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:42:01 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/22 16:28:41 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/10/23 02:34:10 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@ void	close_fds(int i)
 		i++;
 	}
 }
+
+int ft_stralen(char **arr)
+{
+	int i;
+
+	i = 0;
+	while(arr[i])
+		i++;
+	return (i);
+}
+
 
 void	free_arr(char **arr, int height)
 {
@@ -37,4 +48,20 @@ void	free_arr(char **arr, int height)
 	}
 	free(arr);
 	arr = NULL;
+}
+
+char *replace_tabs(char *line)
+{
+	int i;
+	
+	if (!line)
+		return (NULL);
+	i = -1;
+	while (line[++i])
+	{
+		if (line[i] == '\t')
+			line[i] = ' ';
+	}
+	return (line);
+	
 }
