@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:54:45 by rafael            #+#    #+#             */
-/*   Updated: 2025/10/23 18:05:25 by rafael           ###   ########.fr       */
+/*   Updated: 2025/10/23 22:42:54 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,30 +33,29 @@ bool	parse_map(t_data *data)
 		i++;
 	}
 	if (set_map(&data->map, i) == false)
-	{
 		return (exit_error(data, "ERROR:\n parse_map, error setting map!"), false);
-	}
+	data->map.height = ft_stralen(data->map.map);
+	return (true);
 }
 
 bool	set_map(t_map *map, int i)
 {
 	int	len;
-	int	temp;
-	int	t;
+	int	mapp;
+	int temp;
 
-	temp = 0;
 	if (!map || i < 0)
 		return (false);
 	len = 0;
-	while (map->buffer[i + len + temp] && map->buffer[i + len
-		+ temp][0] == '\0')
+	temp = 0;
+	while (map->buffer[i + temp] && map->buffer[i + temp][0] == '\0')
 		temp++;
 	if (!map->buffer[i + len + temp])
 		return (false);
 	while (map->buffer[i + len + temp])
 		len++;
-	t = ft_stralen(map->buffer) - len;
-	if (alloc_map(map, &t) == false)
+	mapp = (i + temp);
+	if (alloc_map(map, &mapp) == false)
 		return (false);
 	return (true);
 }
@@ -68,7 +67,7 @@ bool	alloc_map(t_map *map, int *i)
 	index = 0;
 	if (!map || !map->buffer || !i || *i < 0)
 		return (false);
-	map->map = ft_calloc(*i + 1, sizeof(char *));
+	map->map = ft_calloc(ft_stralen(map->buffer) - *i + 1, sizeof(char *));
 	if (!map->map)
 		return (false);
 	while (map->buffer[*i])

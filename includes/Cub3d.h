@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/23 18:06:50 by rafael           ###   ########.fr       */
+/*   Updated: 2025/10/23 22:45:46 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-# define VALID_CHARS "01NSEW"
+# define VALID_CHARS "01NSEW "
 # define WALL '1'
 # define SPACE '0'
 # define ORIENTATION "NSEW"
@@ -77,6 +77,10 @@ void		free_all(t_data *data);
 // src/parsing/file/check_file.c
 void		check_map_name(char *file_name);
 
+//src//parsing/map/check_map/check_map.c
+bool check_map(t_map *map);
+bool check_valid_chars(t_map *map);
+
 // src/parsing/map/get_map/get_map.c
 void		get_lines(t_data *data, char *file_name);
 void		start_buffer(t_data *data);
@@ -87,7 +91,7 @@ void		get_map(char *file_name, t_data *data);
 bool		parse_map(t_data *data);
 bool		set_map(t_map *map, int i);
 bool		alloc_map(t_map *map, int *i);
-
+/* bool	alloc_map(t_map *map, int start, int count); */
 // src/parsing/map/init_map.c
 int			init_map(char *file, t_data *data);
 

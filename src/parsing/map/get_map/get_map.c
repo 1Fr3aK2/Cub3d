@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:13:21 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/23 18:06:20 by rafael           ###   ########.fr       */
+/*   Updated: 2025/10/23 20:28:15 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	get_map(char *file_name, t_data *data)
 	start_buffer(data);
 	if (alloc_buffer(data, &i) != 1)
 		exit_error(data, "ERROR:\n GET_MAP ERROR W/ALLOC BUFFER\n");
-	if (parse_map(data) == false);
+	if (parse_map(data) == false)
 		exit_error(data, "ERROR:\n GET_MAP ERROR W/PARSE_MAP\n");
 	close(data->file.fd);
 	/* if (i != data->map.height)

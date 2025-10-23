@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:11:03 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/23 17:32:42 by rafael           ###   ########.fr       */
+/*   Updated: 2025/10/23 22:42:08 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	init_map(char *file, t_data *data)
 	check_map_name(file);
 	get_lines(data, file);
 	get_map(file, data);
+	if (check_map(&data->map) == false)
+		exit_error(data, "ERROR:\ncheck_map\n");
 	free_all(data);
 	/* if (check_valid_map(&data->map, data) != 1)
 		exit_error(data, "ERROR:\nINIT_MAP: ERROR CHECKING THE MAP\n");
