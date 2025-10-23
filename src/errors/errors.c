@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:15:03 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/23 01:47:29 by rafael           ###   ########.fr       */
+/*   Updated: 2025/10/23 17:29:46 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	exit_error(t_data *data, char *str)
 	if (data)
 	{
 		free_all(data);
-		if (data->map.map)
-			free_arr(data->map.map, data->map.height);
+		/* if (data->map.map)
+			free_arr(data->map.map, data->map.height); */
 		// if (data->window_ptr)
 		// 	mlx_destroy_window(data->mlx_ptr, data->window_ptr);
 		// if (data->mlx_ptr)
@@ -39,6 +39,8 @@ void	free_all(t_data *data)
 {
 	if (!data)
 		return ;
+	free_map(&data->map);
+	free_file(&data->file);
 	// free_animations(data);
 	// free_images(data);
 	// free_player(data);

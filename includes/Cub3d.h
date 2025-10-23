@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/23 04:36:31 by rafael           ###   ########.fr       */
+/*   Updated: 2025/10/23 18:06:50 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,16 @@ typedef struct s_data
 	t_file	file;
 }			t_data;
 
-//src/textures/set_textures.c
-bool check_load_textures(t_map *map);
-bool	set_texture(char *line, t_map *map);
-bool alloc_map(t_map *map, int *i);
-bool set_map(t_map *map, int i);
+// src/textures/set_textures.c
+bool		check_load_textures(t_map *map);
+bool		set_texture(char *line, t_map *map);
 
 // src/init/init.c
 void		init_struct(t_data *data);
 
 // src/erros/errors.c
 void		exit_error(t_data *data, char *str);
-void	free_all(t_data *data);
+void		free_all(t_data *data);
 
 // src/parsing/file/check_file.c
 void		check_map_name(char *file_name);
@@ -84,16 +82,21 @@ void		get_lines(t_data *data, char *file_name);
 void		start_buffer(t_data *data);
 int			alloc_buffer(t_data *data, int *i);
 void		get_map(char *file_name, t_data *data);
-void parse_map(t_data *data);
+
+// src/parsing/get_map/parse_map.c
+bool		parse_map(t_data *data);
+bool		set_map(t_map *map, int i);
+bool		alloc_map(t_map *map, int *i);
 
 // src/parsing/map/init_map.c
 int			init_map(char *file, t_data *data);
 
 // src/utils/utils.c
 void		close_fds(int i);
-int ft_stralen(char **arr);
-void	free_arr(char **arr, int height);
-char *replace_tabs(char *line);
-
+int			ft_stralen(char **arr);
+void		free_arr(char **arr, int height);
+char		*replace_tabs(char *line);
+void		free_map(t_map *map);
+void		free_file(t_file *file);
 
 #endif

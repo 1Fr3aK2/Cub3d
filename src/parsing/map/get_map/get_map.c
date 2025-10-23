@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:13:21 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/23 17:19:45 by rafael           ###   ########.fr       */
+/*   Updated: 2025/10/23 18:06:20 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ int	alloc_buffer(t_data *data, int *i)
 		return (-1);
 	file = get_next_line(data->file.fd);
 	if (!file)
-		exit_error(data, "ERROR:\nALLOC_BUFFER: Failed to read first line or empty file\n");
+		exit_error(data,
+			"ERROR:\nALLOC_BUFFER: Failed to read first line or empty file\n");
 	while (file)
 	{
 		if (*i < data->map.height)
@@ -66,7 +67,8 @@ int	alloc_buffer(t_data *data, int *i)
 			trimmed = ft_strtrim(file, "\n");
 			free(file);
 			if (!trimmed)
-				exit_error(data, "ERROR:\nALLOC_BUFFER: strtrim malloc error\n");
+				exit_error(data,
+					"ERROR:\nALLOC_BUFFER: strtrim malloc error\n");
 			data->map.buffer[*i] = trimmed;
 			if (!data->map.buffer[*i])
 				exit_error(data, "ERROR:\nALLOC_BUFFER: strdup/alloc error\n");
@@ -76,8 +78,6 @@ int	alloc_buffer(t_data *data, int *i)
 	}
 	return (1);
 }
-
-
 
 void	get_map(char *file_name, t_data *data)
 {
@@ -94,78 +94,11 @@ void	get_map(char *file_name, t_data *data)
 		exit_error(NULL, "ERROR:\nGET_MAP : Memory allocation error\n");
 	start_buffer(data);
 	if (alloc_buffer(data, &i) != 1)
-		exit_error(data, "ERROR:\n GET_MAP ERROR W/ALLOC MAP\n");
-	parse_map(data);
+		exit_error(data, "ERROR:\n GET_MAP ERROR W/ALLOC BUFFER\n");
+	if (parse_map(data) == false);
+		exit_error(data, "ERROR:\n GET_MAP ERROR W/PARSE_MAP\n");
 	close(data->file.fd);
 	/* if (i != data->map.height)
 		exit_error(data, "ERROR:\nGET_MAP : expected != real lines\n"); */
 }
 
-void	parse_map(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	if (!data)
-		return ;
-	while (!check_load_textures(&data->map))
-	{
-		if (!data->map.buffer[i])
-			exit_error(data, "Error reading texture!");
-		if (data->map.buffer[i][0] == '\0')
-		{
-			i++;
-			continue ;
-		}
-		if (!set_texture(replace_tabs(data->map.buffer[i]), &data->map))
-			exit_error(data, "ERROR reading textures!");
-		i++;
-	}
-	if (set_map(&data->map, i) == false)
-	{
-		return ;
-	}
-}
-
-bool	set_map(t_map *map, int i)
-{
-	int	len;
-	int temp = 0;
-	if (!map || i < 0)
-		return (false);
-	len = 0;
-	while (map->buffer[i + len + temp] && map->buffer[i + len + temp][0] == '\0')
-		temp++;
-	if (!map->buffer[i + len + temp])
-		return (ft_putendl_fd("Error validating the map", 2), false);
-	while (map->buffer[i + len + temp])
-		len++;
-	int t = ft_stralen(map->buffer) - len;
-	if (alloc_map(map, &t) == false)
-		return (false);
-	return (true);
-}
-
-bool	alloc_map(t_map *map, int *i)
-{
-	int index = 0;
-	if (!map || !map->buffer || !i || *i < 0)
-		return (false);
-	map->map = ft_calloc(*i + 1, sizeof(char *));
-	if (!map->map)
-		return (ft_putendl_fd("Error allocating map", 2), false);
-	while (map->buffer[*i])
-	{
-		map->map[index] = ft_strdup(map->buffer[*i]);
-		if (!map->map[index])
-		{
-			ft_putendl_fd("Error setting the map", 2);
-			free_arr(map->map, index);
-			return (false);
-		}
-		(*i)++;
-	    index++;
-	}
-	free_arr(map->buffer, ft_stralen(map->buffer));
-	return (true);
-}
