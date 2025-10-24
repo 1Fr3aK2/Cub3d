@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/24 18:08:29 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/10/24 20:42:25 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_map
 {
 	char	**buffer;
 	char	**map;
+	char	**temp_map;
 	char	*north;
 	char	*south;
 	char	*west;
@@ -82,6 +83,8 @@ void		check_map_name(char *file_name);
 bool check_map(t_map *map);
 bool check_valid_chars(t_map *map);
 bool check_player(t_map *map);
+void set_bool(t_map *map);
+bool alloc_temp_map(t_map *map);
 
 // src/parsing/map/get_map/get_map.c
 void		get_lines(t_data *data, char *file_name);

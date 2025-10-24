@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:39:30 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/24 18:44:56 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/10/24 20:45:26 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ bool	check_map(t_map *map)
 		return (false);
 	if (check_player(map) == false)
 		return (false);
+	if (alloc_temp_map(map) == false)
+		return (false);
 	return (true);
 }
 
@@ -28,11 +30,9 @@ bool	check_valid_chars(t_map *map)
 	int	i;
 	int	j;
 	int	k;
-	int	player;
 
 	if (!map || !map->map)
 		return (false);
-	player = 0;
 	i = 0;
 	while (map->map[i] && i < map->height)
 	{
@@ -86,4 +86,52 @@ bool	check_player(t_map *map)
 	if (player <= 0)
 		return (false);
 	return (true);
+}
+
+bool alloc_temp_map(t_map *map)
+{
+	int i;
+	int j;
+	
+	if (!map)
+		return (false);
+	i = 0;
+	while(map->map[i])
+		i++;
+	map->temp_map = ft_calloc(sizeof(bool *), i + 1);
+	if (!map->temp_map)
+		return (false);
+	i--;
+	while(i >= 0)
+	{
+		j = 0;
+		while(map->map[i][j])
+			j++;
+		map->temp_map[i] = malloc(j * sizeof(bool));
+		if (!map->temp_map[i])
+			return (false);
+		i--;
+	}
+	set_bool(map);
+	return (true);
+}
+
+void set_bool(t_map *map)
+{
+	int i;
+	int j;
+	
+	if (!map)
+		return ;
+	i = 0;
+	while (map->map[i])
+	{
+		j = 0;
+		while(map->map[i][j])
+		{
+			map->temp_map[i][j] = false;
+			j++;
+		}
+		i++;
+	}
 }

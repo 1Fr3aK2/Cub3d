@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:42:01 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/23 17:58:48 by rafael           ###   ########.fr       */
+/*   Updated: 2025/10/24 20:46:47 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,11 @@ void free_map(t_map *map)
 	{
 		free(map->ceiling);
 		map->ceiling = NULL;
+	}
+	if (map->temp_map)
+	{
+		free_arr(map->temp_map, ft_stralen(map->temp_map));
+		map->temp_map = NULL;
 	}
 }
 
