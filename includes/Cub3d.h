@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/23 22:45:46 by rafael           ###   ########.fr       */
+/*   Updated: 2025/10/24 18:08:29 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define SOUTH 'S'
 # define WEST 'W'
 # define EAST 'E'
+#define PLAYER "NSWE"
 
 typedef struct s_file
 {
@@ -80,6 +81,7 @@ void		check_map_name(char *file_name);
 //src//parsing/map/check_map/check_map.c
 bool check_map(t_map *map);
 bool check_valid_chars(t_map *map);
+bool check_player(t_map *map);
 
 // src/parsing/map/get_map/get_map.c
 void		get_lines(t_data *data, char *file_name);
