@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:39:30 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/24 18:25:47 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/10/24 18:44:56 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 bool	check_map(t_map *map)
 {
-	int	i;
-
 	if (!map)
 		return (false);
-	i = 0;
 	if (check_valid_chars(map) == false)
 		return (false);
 	if (check_player(map) == false)
