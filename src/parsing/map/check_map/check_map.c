@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:39:30 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/24 20:45:26 by rafael           ###   ########.fr       */
+/*   Updated: 2025/10/25 03:55:44 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ bool	check_map(t_map *map)
 	if (check_player(map) == false)
 		return (false);
 	if (alloc_temp_map(map) == false)
+		return (false);
+	if (check_surroundings(map) == false)
 		return (false);
 	return (true);
 }

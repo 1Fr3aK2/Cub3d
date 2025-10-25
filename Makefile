@@ -5,6 +5,7 @@ SRCS = src/errors/errors.c\
 		src/init/init.c\
 		src/parsing/file/check_file.c\
 		src/parsing/map/check_map/check_map.c\
+		src/parsing/map/check_map/check_map_utils.c\
 		src/parsing/map/get_map/get_map.c\
 		src/parsing/map/get_map/parse_map.c\
 		src/parsing/map/init_map.c\

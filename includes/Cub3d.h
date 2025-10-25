@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/24 20:42:25 by rafael           ###   ########.fr       */
+/*   Updated: 2025/10/25 03:58:43 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define SOUTH 'S'
 # define WEST 'W'
 # define EAST 'E'
-#define PLAYER "NSWE"
+# define PLAYER "NSWE"
 
 typedef struct s_file
 {
@@ -79,12 +79,16 @@ void		free_all(t_data *data);
 // src/parsing/file/check_file.c
 void		check_map_name(char *file_name);
 
-//src//parsing/map/check_map/check_map.c
-bool check_map(t_map *map);
-bool check_valid_chars(t_map *map);
-bool check_player(t_map *map);
-void set_bool(t_map *map);
-bool alloc_temp_map(t_map *map);
+// src//parsing/map/check_map/check_map.c
+bool		check_map(t_map *map);
+bool		check_valid_chars(t_map *map);
+bool		check_player(t_map *map);
+void		set_bool(t_map *map);
+bool		alloc_temp_map(t_map *map);
+
+// src//parsing/map/check_map/check_map_utils.c
+bool		check_surroundings(t_map *map);
+bool		flood_fill_map(t_map *map, int i, int j);
 
 // src/parsing/map/get_map/get_map.c
 void		get_lines(t_data *data, char *file_name);
@@ -96,7 +100,7 @@ void		get_map(char *file_name, t_data *data);
 bool		parse_map(t_data *data);
 bool		set_map(t_map *map, int i);
 bool		alloc_map(t_map *map, int *i);
-/* bool	alloc_map(t_map *map, int start, int count); */
+
 // src/parsing/map/init_map.c
 int			init_map(char *file, t_data *data);
 
