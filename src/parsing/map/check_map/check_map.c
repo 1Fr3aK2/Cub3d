@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:39:30 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/25 03:55:44 by rafael           ###   ########.fr       */
+/*   Updated: 2025/10/30 16:24:37 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 bool	check_map(t_map *map)
 {
+	// int i = 0;
+	// while(map->map[i])
+	// {
+	// 	printf("%s\n", map->map[i]);
+	// 	i++;
+	// }
 	if (!map)
 		return (false);
 	if (check_valid_chars(map) == false)

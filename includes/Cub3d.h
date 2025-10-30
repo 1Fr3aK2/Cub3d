@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/25 03:58:43 by rafael           ###   ########.fr       */
+/*   Updated: 2025/10/30 16:54:09 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ bool		alloc_temp_map(t_map *map);
 // src//parsing/map/check_map/check_map_utils.c
 bool		check_surroundings(t_map *map);
 bool		flood_fill_map(t_map *map, int i, int j);
+bool		is_valid(char *arr, char c);
 
 // src/parsing/map/get_map/get_map.c
 void		get_lines(t_data *data, char *file_name);

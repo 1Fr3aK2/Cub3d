@@ -4,6 +4,8 @@
         "x.h": "c",
         "libft.h": "c",
         "get_next_line_bonus.h": "c",
-        "keysym.h": "c"
+        "keysym.h": "c",
+        "stdlib.h": "c",
+        "unistd.h": "c"
     }
 }

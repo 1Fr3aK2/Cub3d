@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:41:25 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/25 03:59:58 by rafael           ###   ########.fr       */
+/*   Updated: 2025/10/30 16:51:31 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,21 @@ bool	flood_fill_map(t_map *map, int i, int j)
     return (true);
 }
 
+
+bool	is_valid(char *arr, char c)
+{
+    int i;
+
+    i = 0;
+	while (arr[i])
+	{
+		if (c == arr[i])
+			return (true);
+		i++;
+	}
+	return (false);
+}
+
 bool check_surroundings(t_map *map)
 {
     if (!map)
@@ -44,7 +59,7 @@ bool check_surroundings(t_map *map)
         j = 0;
         while(map->map[i][j])
         {
-            if ((map->map[i][j] == '0' || check_player(map)) && map->temp_map[i][j] == false)
+            if ((map->map[i][j] == '0' || is_valid(PLAYER, map->map[i][j])) && map->temp_map[i][j] == false)
             {
                 if (!flood_fill_map(map, i, j))
                     return (ft_putendl_fd("check_surroundings", 2), false);
