@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/30 16:54:09 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/10/30 17:28:43 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ bool		alloc_temp_map(t_map *map);
 bool		check_surroundings(t_map *map);
 bool		flood_fill_map(t_map *map, int i, int j);
 bool		is_valid(char *arr, char c);
+bool		verify_texture(char *path);
+bool		check_textures(t_map *map);
 
 // src/parsing/map/get_map/get_map.c
 void		get_lines(t_data *data, char *file_name);

@@ -6,11 +6,25 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:41:25 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/30 16:51:31 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/10/30 17:28:14 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
+
+bool	is_valid(char *arr, char c)
+{
+    int i;
+
+    i = 0;
+    while (arr[i])
+    {
+        if (c == arr[i])
+            return (true);
+        i++;
+    }
+    return (false);
+}
 
 bool	flood_fill_map(t_map *map, int i, int j)
 {
@@ -29,21 +43,6 @@ bool	flood_fill_map(t_map *map, int i, int j)
     if (!flood_fill_map(map, i, j - 1))
         return (false);
     return (true);
-}
-
-
-bool	is_valid(char *arr, char c)
-{
-    int i;
-
-    i = 0;
-	while (arr[i])
-	{
-		if (c == arr[i])
-			return (true);
-		i++;
-	}
-	return (false);
 }
 
 bool check_surroundings(t_map *map)
@@ -69,4 +68,31 @@ bool check_surroundings(t_map *map)
         i++;
     }
     return (true);
+}
+
+bool verify_texture(char *path)
+{
+    int fd;
+    
+    if (!path)
+        return (false);
+    fd = open(path, O_RDONLY);
+    if (fd < 0)
+        return (false);
+    close(fd);
+    return (true);
+}
+
+bool check_textures(t_map *map)
+{
+    if (!verify_texture(map->east))
+        return (false);
+    if (!verify_texture(map->north))
+        return (false);
+    if (!verify_texture(map->south))
+        return (false);
+    if (!verify_texture(map->west))
+        return (false);
+    return (true);
+	
 }

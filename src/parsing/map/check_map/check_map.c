@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:39:30 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/30 16:24:37 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/10/30 17:30:53 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ bool	check_map(t_map *map)
 	if (alloc_temp_map(map) == false)
 		return (false);
 	if (check_surroundings(map) == false)
+		return (false);
+	if (check_textures(map) == false)
 		return (false);
 	return (true);
 }
