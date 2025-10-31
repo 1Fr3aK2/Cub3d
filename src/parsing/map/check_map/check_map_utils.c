@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:41:25 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/30 17:28:14 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/10/31 02:23:59 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,41 @@ bool check_textures(t_map *map)
         return (false);
     if (!verify_texture(map->west))
         return (false);
+    if (!check_rgb(map->ceiling))
+        return (false);
+    if (!check_rgb(map->floor))
+        return (false);
     return (true);
-	
+}
+
+bool check_rgb(char *rgb)
+{
+    char **arr;
+    
+    if (!rgb)
+        return (false);
+    arr = ft_split(rgb, ',');
+    if (!arr)
+        return (false);
+    if (ft_stralen(arr) != 3)
+    {
+        free_arr(arr, ft_stralen(arr));
+        return (false);
+    }
+    if (!ft_isnumber(arr[0]) || !ft_isnumber(arr[1]) || !ft_isnumber(arr[2]))
+        return (false);
+    if (!check_range(ft_atoi(arr[0])) || !check_range(ft_atoi(arr[1])) || !check_range(ft_atoi(arr[2])))
+    {
+        free_arr(arr, ft_stralen(arr));
+        return (false);
+    }
+    free_arr(arr, ft_stralen(arr));
+    return (true);
+}
+
+bool check_range(int nb)
+{
+    if (nb < 0 || nb > 255)
+        return (false);
+    return (true);   
 }

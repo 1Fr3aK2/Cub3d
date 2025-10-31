@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/30 17:28:43 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/10/31 02:19:55 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ bool		flood_fill_map(t_map *map, int i, int j);
 bool		is_valid(char *arr, char c);
 bool		verify_texture(char *path);
 bool		check_textures(t_map *map);
+bool check_rgb(char *rgb);
+bool check_range(int nb);
 
 // src/parsing/map/get_map/get_map.c
 void		get_lines(t_data *data, char *file_name);
