@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/31 02:19:55 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/03 17:25:34 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@
 typedef struct s_file
 {
 	int		fd;
-	char	*file_name;
 }			t_file;
 
 typedef struct s_map
@@ -53,10 +52,6 @@ typedef struct s_map
 	char	*floor;
 	char	*ceiling;
 	int		height;
-	int		width;
-	int		start_pos;
-	int		startpos_x;
-	int		startpos_y;
 }			t_map;
 
 typedef struct s_data
@@ -92,8 +87,8 @@ bool		flood_fill_map(t_map *map, int i, int j);
 bool		is_valid(char *arr, char c);
 bool		verify_texture(char *path);
 bool		check_textures(t_map *map);
-bool check_rgb(char *rgb);
-bool check_range(int nb);
+bool		check_rgb(char *rgb);
+bool		check_range(int nb);
 
 // src/parsing/map/get_map/get_map.c
 void		get_lines(t_data *data, char *file_name);

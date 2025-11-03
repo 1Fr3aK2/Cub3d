@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:13:21 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/23 20:28:15 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/03 18:32:30 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	get_lines(t_data *data, char *file_name)
 	while (line)
 	{
 		++(data->map.height);
-		if (data->map.height == 1)
-			data->map.width = (ft_strlen(line) - 1);
 		free(line);
 		line = get_next_line(data->file.fd);
 	}
@@ -98,7 +96,5 @@ void	get_map(char *file_name, t_data *data)
 	if (parse_map(data) == false)
 		exit_error(data, "ERROR:\n GET_MAP ERROR W/PARSE_MAP\n");
 	close(data->file.fd);
-	/* if (i != data->map.height)
-		exit_error(data, "ERROR:\nGET_MAP : expected != real lines\n"); */
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 02:32:49 by rafael            #+#    #+#             */
-/*   Updated: 2025/10/23 02:33:41 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/03 18:44:29 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool check_load_textures(t_map *map)
 		return (false);
 	if (!map->north || !map->south || !map->east || !map->east)
 		return (false);
-	if (!map->ceiling || !map->ceiling)
+	if (!map->ceiling || !map->floor)
 		return (false);
 	return (true);
 }

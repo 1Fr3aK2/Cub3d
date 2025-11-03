@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:39:30 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/30 17:30:53 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/03 19:27:22 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 
 bool	check_map(t_map *map)
 {
-	// int i = 0;
-	// while(map->map[i])
-	// {
-	// 	printf("%s\n", map->map[i]);
-	// 	i++;
-	// }
 	if (!map)
 		return (false);
 	if (check_valid_chars(map) == false)

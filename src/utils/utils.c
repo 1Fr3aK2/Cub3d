@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:42:01 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/24 20:46:47 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/03 17:04:58 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,11 +122,6 @@ void free_file(t_file *file)
 {
 	if (!file)
 		return ;
-	if (file->file_name)
-	{
-		free(file->file_name);
-		file->file_name = NULL;
-	}
 	if (file->fd >= 0)
 		close(file->fd);
 	file->fd = -1;

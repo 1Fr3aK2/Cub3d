@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:11:03 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/30 17:30:38 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/03 18:07:20 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,6 @@ int	init_map(char *file, t_data *data)
 	if (check_map(&data->map) == false)
 		exit_error(data, "ERROR:\ncheck_map\n");
 	free_all(data);
-	/* if (check_valid_map(&data->map, data) != 1)
-		exit_error(data, "ERROR:\nINIT_MAP: ERROR CHECKING THE MAP\n");
-	if (get_positions(&data->map, data) != 1)
-		exit_error(data, "ERROR:\nINIT_MAP: ERROR GETTING POSITIONS\n");
-	if (get_enemy_pos(&data->map, data) != 1)
-		exit_error(data, "ERROR:\nINIT_MAP: ERROR GETTING ENEMY POS\n");
-	if (check_valid_path(&data->map, data) != 1)
-		exit_error(data, "ERROR:\nINIT_MAP: ERROR CHECKING VALID PATH\n");
-	close_fds(0); */
 	return (1);
 }
 
