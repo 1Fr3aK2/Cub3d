@@ -9,6 +9,7 @@ SRCS = src/errors/errors.c\
 		src/parsing/map/get_map/get_map.c\
 		src/parsing/map/get_map/parse_map.c\
 		src/parsing/map/init_map.c\
+		src/parsing/player/init_player.c\
 		src/utils/utils.c\
 		src/textures/set_textures.c\
 		src/main.c
