@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/04 02:57:57 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/04 22:16:23 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,21 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-# define WIN_W 1024
-# define WIN_H 768
+# ifndef WIN_W
+#  define WIN_W 800
+# endif
+# ifndef WIN_H
+#  define WIN_H 600
+# endif
+
+# ifndef MOVE_SPEED
+#  define MOVE_SPEED 0.1
+# endif
+
+# ifndef ROT_SPEED
+#  define ROT_SPEED 0.05
+# endif
+
 # define VALID_CHARS "01NSEW "
 # define WALL '1'
 # define SPACE '0'
@@ -96,8 +109,8 @@ bool			set_texture(char *line, t_map *map);
 // src/init/init.c
 void			init_struct(t_data *data);
 
-//src/mlx/init_mlx.c
-void init_mlx(t_data *data);
+// src/mlx/init_mlx.c
+void			init_mlx(t_data *data);
 
 // src/erros/errors.c
 void			exit_error(t_data *data, char *str);
@@ -143,6 +156,13 @@ int				init_map(char *file, t_data *data);
 // src/parsing/player/init_player.c
 void			init_player(t_data *data);
 void			set_player_direction(t_player *player, char dir);
+
+// src/player/move.c
+bool			is_wall(t_map *map, float y, float x);
+void			move_forward(t_data *data);
+void			move_backward(t_data *data);
+void			move_left(t_data *data);
+void			move_right(t_data *data);
 
 // src/utils/utils.c
 void			close_fds(int i);
