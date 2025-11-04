@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:42:01 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/03 17:04:58 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/04 03:14:27 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,4 +125,26 @@ void free_file(t_file *file)
 	if (file->fd >= 0)
 		close(file->fd);
 	file->fd = -1;
+}
+
+void free_mlx(t_mlx *mlx)
+{
+	if (!mlx)
+		return ;
+	if (mlx->img.img)
+	{
+		mlx_destroy_image(mlx->mlx, mlx->img.img);
+		mlx->img.img = NULL;	
+	}
+	if (mlx->win)
+	{
+		mlx_destroy_window(mlx->mlx, mlx->win);
+		mlx->win = NULL;
+	}
+	if (mlx->mlx)
+	{
+		mlx_destroy_display(mlx->mlx);
+		free(mlx->mlx);
+		mlx->mlx = NULL;
+	}
 }

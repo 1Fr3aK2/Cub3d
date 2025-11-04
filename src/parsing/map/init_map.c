@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:11:03 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/04 00:07:46 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/04 02:58:51 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ int	init_map(char *file, t_data *data)
 	if (check_map(&data->map) == false)
 		exit_error(data, "ERROR:\ncheck_map\n");
 	init_player(data);	
-	free_all(data);
 	return (1);
 }

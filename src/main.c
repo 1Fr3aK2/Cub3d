@@ -11,4 +11,6 @@ int main(int argc, char *argv[])
     init_struct(&data);
     if (init_map(argv[1], &data) == -1)
         return (-1);
+    init_mlx(&data);
+    free_all(&data);
 }

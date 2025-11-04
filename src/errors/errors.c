@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:15:03 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/03 18:32:35 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/04 02:44:04 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,6 @@ void	exit_error(t_data *data, char *str)
 	if (data)
 	{
 		free_all(data);
-		/* if (data->map.map)
-			free_arr(data->map.map, data->map.height); */
-		// if (data->window_ptr)
-		// 	mlx_destroy_window(data->mlx_ptr, data->window_ptr);
-		// if (data->mlx_ptr)
-		// {
-		// 	mlx_destroy_display(data->mlx_ptr);
-		// 	free(data->mlx_ptr);
-		// }
 		data = NULL;
 	}
 	close_fds(0);
@@ -41,6 +32,7 @@ void	free_all(t_data *data)
 		return ;
 	free_map(&data->map);
 	free_file(&data->file);
+	free_mlx(&data->mlx);
 	// free_animations(data);
 	// free_images(data);
 	// free_player(data);

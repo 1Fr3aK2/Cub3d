@@ -6,41 +6,41 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 00:07:28 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/04 00:07:56 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/04 02:58:19 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
 
-void	set_player_direction(t_player *p, char dir)
+void	set_player_direction(t_player *player, char dir)
 {
 	if (dir == 'N')
 	{
-		p->dir_x = 0;
-		p->dir_y = -1;
-		p->plane_x = 0.66;
-		p->plane_y = 0;
+		player->dir_x = 0;
+		player->dir_y = -1;
+		player->plane_x = 0.66;
+		player->plane_y = 0;
 	}
 	else if (dir == 'S')
 	{
-		p->dir_x = 0;
-		p->dir_y = 1;
-		p->plane_x = -0.66;
-		p->plane_y = 0;
+		player->dir_x = 0;
+		player->dir_y = 1;
+		player->plane_x = -0.66;
+		player->plane_y = 0;
 	}
 	else if (dir == 'E')
 	{
-		p->dir_x = 1;
-		p->dir_y = 0;
-		p->plane_x = 0;
-		p->plane_y = 0.66;
+		player->dir_x = 1;
+		player->dir_y = 0;
+		player->plane_x = 0;
+		player->plane_y = 0.66;
 	}
 	else if (dir == 'W')
 	{
-		p->dir_x = -1;
-		p->dir_y = 0;
-		p->plane_x = 0;
-		p->plane_y = -0.66;
+		player->dir_x = -1;
+		player->dir_y = 0;
+		player->plane_x = 0;
+		player->plane_y = -0.66;
 	}
 }
 

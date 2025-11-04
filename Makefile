@@ -12,6 +12,7 @@ SRCS = src/errors/errors.c\
 		src/parsing/player/init_player.c\
 		src/utils/utils.c\
 		src/textures/set_textures.c\
+		src/mlx/init_mlx.c\
 		src/main.c
 
 NAME = Cub3d

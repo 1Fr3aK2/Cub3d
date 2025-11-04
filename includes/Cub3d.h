@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/04 00:09:54 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/04 02:57:57 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include <sys/time.h>
 # include <unistd.h>
 
+# define WIN_W 1024
+# define WIN_H 768
 # define VALID_CHARS "01NSEW "
 # define WALL '1'
 # define SPACE '0'
@@ -39,6 +41,20 @@ typedef struct s_file
 {
 	int			fd;
 }				t_file;
+
+typedef struct s_img
+{
+	void		*img;
+	int			width;
+	int			height;
+}				t_img;
+
+typedef struct s_mlx
+{
+	void		*mlx;
+	void		*win;
+	t_img		img;
+}				t_mlx;
 
 typedef struct s_map
 {
@@ -66,13 +82,12 @@ typedef struct s_player
 
 typedef struct s_data
 {
+	t_img		img;
+	t_mlx		mlx;
 	t_player	player;
 	t_map		map;
 	t_file		file;
 }				t_data;
-
-void			init_player(t_data *data);
-void			set_player_direction(t_player *p, char dir);
 
 // src/textures/set_textures.c
 bool			check_load_textures(t_map *map);
@@ -80,6 +95,9 @@ bool			set_texture(char *line, t_map *map);
 
 // src/init/init.c
 void			init_struct(t_data *data);
+
+//src/mlx/init_mlx.c
+void init_mlx(t_data *data);
 
 // src/erros/errors.c
 void			exit_error(t_data *data, char *str);
@@ -122,6 +140,10 @@ void			set_player_direction(t_player *p, char dir);
 // src/parsing/map/init_map.c
 int				init_map(char *file, t_data *data);
 
+// src/parsing/player/init_player.c
+void			init_player(t_data *data);
+void			set_player_direction(t_player *player, char dir);
+
 // src/utils/utils.c
 void			close_fds(int i);
 int				ft_stralen(char **arr);
@@ -129,5 +151,6 @@ void			free_arr(char **arr, int height);
 char			*replace_tabs(char *line);
 void			free_map(t_map *map);
 void			free_file(t_file *file);
+void			free_mlx(t_mlx *mlx);
 
 #endif
