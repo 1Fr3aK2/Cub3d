@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/04 22:16:23 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/05 00:51:24 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "../libraries/libft/get_next_line/get_next_line_bonus.h"
 # include "../libraries/libft/libft.h"
 # include "../libraries/minilibx-linux/mlx.h"
-# include "X11/X.h"
-# include "X11/keysym.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
@@ -115,6 +115,10 @@ void			init_mlx(t_data *data);
 // src/erros/errors.c
 void			exit_error(t_data *data, char *str);
 void			free_all(t_data *data);
+
+// src//hooks/keys.c
+int				handle_keypress(int key, t_data *data);
+int				press_x(t_data *data);
 
 // src/parsing/file/check_file.c
 void			check_map_name(char *file_name);
