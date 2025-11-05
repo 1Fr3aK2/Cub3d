@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:42:01 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/04 03:14:27 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/05 16:31:36 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
+// #include <cstdint>
 
 void	close_fds(int i)
 {
@@ -71,11 +72,6 @@ void free_map(t_map *map)
 {
 	if (!map)
 		return ;
-	if (map->map)
-	{
-		free_arr(map->map, ft_stralen(map->map));
-		map->map = NULL;
-	}
 	if (map->buffer)
 	{
 		free_arr(map->buffer, ft_stralen(map->buffer));
@@ -148,3 +144,8 @@ void free_mlx(t_mlx *mlx)
 		mlx->mlx = NULL;
 	}
 }
+
+// uint32_t ft_rgb(uint8_t r, uint8_t g, uint8_t b)
+// {
+// 	return (r << 16 | g << 8 | b);
+// }

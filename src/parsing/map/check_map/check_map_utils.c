@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:41:25 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/31 02:23:59 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/05 15:32:51 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ bool	flood_fill_map(t_map *map, int i, int j)
     return (true);
 }
 
-bool check_surroundings(t_map *map)
+bool  check_surroundings(t_map *map)
 {
     if (!map)
         return (false);
