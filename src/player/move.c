@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 20:23:37 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/07 18:23:06 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:24:50 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ bool is_wall(t_map *map, float y, float x)
 
     if (!map)
         return (false);
-    map_y = (int)roundf(y);
-    map_x = (int)roundf(x);
+    map_y = (int)y;
+    map_x = (int)x;
     if (map_y < 0 || map_x < 0 || !map->map[map_y] || !map->map[map_y][map_x])
         return (false);
     if (map->map[map_y][map_x] == WALL)
