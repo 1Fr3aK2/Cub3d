@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:54:45 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/05 16:31:55 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:29:22 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool	parse_map(t_data *data)
 
 	i = 0;
 	if (!data)
-		return (exit_error(data, "ERROR:\n parse_map, invalid data pointer\n"), false);
+		return (exit_error(data, "ERROR:\n parse_map, invalid data pointer"), false);
 	while (!check_load_textures(&data->map))
 	{
 		if (!data->map.buffer[i])

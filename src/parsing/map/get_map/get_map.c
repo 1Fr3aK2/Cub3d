@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:13:21 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/03 18:32:30 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:29:13 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	get_lines(t_data *data, char *file_name)
 	static char	*line;
 
 	if (!data || !file_name)
-		exit_error(NULL, "ERROR:\nGET_LINES: Invalid pointer to file/struct\n");
+		exit_error(NULL, "ERROR:\nGET_LINES: Invalid pointer to file/struct");
 	data->file.fd = open(file_name, O_RDONLY);
 	if (data->file.fd < 0)
-		exit_error(NULL, "ERROR:\nGET_LINES : Error opening the file\n");
+		exit_error(NULL, "ERROR:\nGET_LINES : Error opening the file");
 	line = get_next_line(data->file.fd);
 	if (!line)
-		exit_error(data, "ERROR:\nGET_LINES: READING 1st LINE OF MAP\n");
+		exit_error(data, "ERROR:\nGET_LINES: READING 1st LINE OF MAP");
 	while (line)
 	{
 		++(data->map.height);
@@ -57,7 +57,7 @@ int	alloc_buffer(t_data *data, int *i)
 	file = get_next_line(data->file.fd);
 	if (!file)
 		exit_error(data,
-			"ERROR:\nALLOC_BUFFER: Failed to read first line or empty file\n");
+			"ERROR:\nALLOC_BUFFER: Failed to read first line or empty file");
 	while (file)
 	{
 		if (*i < data->map.height)
@@ -66,10 +66,10 @@ int	alloc_buffer(t_data *data, int *i)
 			free(file);
 			if (!trimmed)
 				exit_error(data,
-					"ERROR:\nALLOC_BUFFER: strtrim malloc error\n");
+					"ERROR:\nALLOC_BUFFER: strtrim malloc error");
 			data->map.buffer[*i] = trimmed;
 			if (!data->map.buffer[*i])
-				exit_error(data, "ERROR:\nALLOC_BUFFER: strdup/alloc error\n");
+				exit_error(data, "ERROR:\nALLOC_BUFFER: strdup/alloc error");
 			file = get_next_line(data->file.fd);
 		}
 		(*i)++;
@@ -83,18 +83,18 @@ void	get_map(char *file_name, t_data *data)
 
 	i = 0;
 	if (!file_name || !data || data->map.height <= 0)
-		exit_error(NULL, "ERROR:\nGET_MAP: Inv pointer file/struct\n");
+		exit_error(NULL, "ERROR:\nGET_MAP: Inv pointer file/struct");
 	data->file.fd = open(file_name, O_RDONLY);
 	if (data->file.fd < 0)
-		exit_error(NULL, "ERROR:\nGET_MAP : Error opening the file\n");
+		exit_error(NULL, "ERROR:\nGET_MAP : Error opening the file");
 	data->map.buffer = malloc(sizeof(char *) * (data->map.height + 1));
 	if (!data->map.buffer)
-		exit_error(NULL, "ERROR:\nGET_MAP : Memory allocation error\n");
+		exit_error(NULL, "ERROR:\nGET_MAP : Memory allocation error");
 	start_buffer(data);
 	if (alloc_buffer(data, &i) != 1)
-		exit_error(data, "ERROR:\n GET_MAP ERROR W/ALLOC BUFFER\n");
+		exit_error(data, "ERROR:\n GET_MAP ERROR W/ALLOC BUFFER");
 	if (parse_map(data) == false)
-		exit_error(data, "ERROR:\n GET_MAP ERROR W/PARSE_MAP\n");
+		exit_error(data, "ERROR:\n GET_MAP ERROR W/PARSE_MAP");
 	close(data->file.fd);
 }
 

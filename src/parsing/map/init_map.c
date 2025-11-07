@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:11:03 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/04 02:58:51 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/07 17:28:11 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	init_map(char *file, t_data *data)
 	get_lines(data, file);
 	get_map(file, data);
 	if (check_map(&data->map) == false)
-		exit_error(data, "ERROR:\ncheck_map\n");
+		exit_error(data, "ERROR:\ncheck_map");
 	init_player(data);	
 	return (1);
 }
