@@ -1,6 +1,7 @@
 # -------------------
 # ARQUIVOS E EXECUTÁVEL
 # -------------------
+#test
 SRCS = src/errors/errors.c\
 		src/init/init.c\
 		src/parsing/file/check_file.c\
