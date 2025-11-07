@@ -6,12 +6,11 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:42:01 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/05 16:31:36 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:51:07 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
-// #include <cstdint>
 
 void	close_fds(int i)
 {
@@ -145,7 +144,7 @@ void free_mlx(t_mlx *mlx)
 	}
 }
 
-// uint32_t ft_rgb(uint8_t r, uint8_t g, uint8_t b)
-// {
-// 	return (r << 16 | g << 8 | b);
-// }
+uint32_t ft_rgb(uint8_t r, uint8_t g, uint8_t b)
+{
+	return (r << 16 | g << 8 | b);
+}
