@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/07 16:50:59 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/08 03:55:11 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <X11/keysym.h>
 # include <fcntl.h>
 # include <math.h>
-# include <stdio.h>
 # include <stdint.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
@@ -171,8 +171,8 @@ void			move_right(t_data *data);
 
 // src/utils/utils.c
 void			close_fds(int i);
-int				ft_stralen(char **arr);
-void			free_arr(char **arr, int height);
+size_t			ft_stralen(char **arr);
+void			free_arr(char **arr);
 char			*replace_tabs(char *line);
 void			free_map(t_map *map);
 void			free_file(t_file *file);

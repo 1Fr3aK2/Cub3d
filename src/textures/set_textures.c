@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 02:32:49 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/03 18:44:29 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/08 03:53:49 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ bool	set_texture(char *line, t_map *map)
 	if (split[0])
 	{
 		if (split[1] == NULL || ft_stralen(split) != 2)
-			return (free_arr(split, ft_stralen(split)), false);
+			return (free_arr(split), false);
 		if (map->north == NULL && ft_strncmp(split[0], "NO", 3) == 0)
 			map->north = ft_strdup(split[1]);
 		else if (map->south == NULL && ft_strncmp(split[0], "SO", 3) == 0)
@@ -48,7 +48,7 @@ bool	set_texture(char *line, t_map *map)
 		else if (map->floor == NULL && ft_strncmp(split[0], "F", 2) == 0)
 			map->floor = ft_strdup(split[1]);
 		else
-			return (free_arr(split, ft_stralen(split)), false);
+			return (free_arr(split), false);
 	}
-	return (free_arr(split, ft_stralen(split)), true);
+	return (free_arr(split), true);
 }
