@@ -18,7 +18,7 @@ bool	parse_map(t_data *data)
 
 	i = 0;
 	if (!data)
-		return (exit_error(data, "ERROR:\n parse_map, invalid data pointer\n"), false);
+		return (exit_error(data, "ERROR:\n parse_map, invalid data pointer"), false);
 	while (!check_load_textures(&data->map))
 	{
 		if (!data->map.buffer[i])

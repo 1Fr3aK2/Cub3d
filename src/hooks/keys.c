@@ -26,12 +26,12 @@ int	handle_keypress(int key, t_data *data)
 	else if (key == XK_d)
 		move_right(data);
 	else if (key == XK_Escape)
-        exit_error(data, "GAME OVER!\n");
+        exit_error(data, "GAME OVER!");
 	return (0);
 }
 
 int	press_x(t_data *data)
 {
-	exit_error(data, "GAME OVER!\n");
+	exit_error(data, "GAME OVER!");
 	return (0);
 }
