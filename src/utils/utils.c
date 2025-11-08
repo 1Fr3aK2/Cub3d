@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:42:01 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/07 16:51:07 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/08 03:54:56 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	close_fds(int i)
 	}
 }
 
-int ft_stralen(char **arr)
+size_t ft_stralen(char **arr)
 {
-    int i;
+    size_t i;
     
 	if (!arr)
         return (0);
@@ -34,14 +34,14 @@ int ft_stralen(char **arr)
     return (i);
 }
 
-void	free_arr(char **arr, int height)
+void	free_arr(char **arr)
 {
 	int	i;
 
 	if (!arr)
 		return ;
 	i = 0;
-	while (i < height && arr[i])
+	while (arr[i])
 	{
 		free(arr[i]);
 		arr[i] = NULL;
@@ -73,7 +73,7 @@ void free_map(t_map *map)
 		return ;
 	if (map->buffer)
 	{
-		free_arr(map->buffer, ft_stralen(map->buffer));
+		free_arr(map->buffer);
 		map->buffer = NULL;
 	}
 	if (map->north)
@@ -108,7 +108,7 @@ void free_map(t_map *map)
 	}
 	if (map->temp_map)
 	{
-		free_arr(map->temp_map, ft_stralen(map->temp_map));
+		free_arr(map->temp_map);
 		map->temp_map = NULL;
 	}
 }

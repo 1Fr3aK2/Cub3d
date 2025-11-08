@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:54:45 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/07 18:11:58 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/08 03:41:41 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,6 @@ bool	set_map(t_map *map, int i)
 
 bool	alloc_map(t_map *map, int *i)
 {
-	int	index;
-
-	index = 0;
 	if (!map || !map->buffer || !i || *i < 0)
 		return (false);
 	map->map = &map->buffer[*i];
