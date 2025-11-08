@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:42:01 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/08 03:54:56 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/08 18:05:16 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,4 +147,29 @@ void free_mlx(t_mlx *mlx)
 uint32_t ft_rgb(uint8_t r, uint8_t g, uint8_t b)
 {
 	return (r << 16 | g << 8 | b);
+}
+
+uint8_t	ft_atob(char *str)
+{
+	uint8_t	n;
+	uint8_t	b;
+	size_t	i;
+	size_t	l;
+
+	n = 0;
+	i = 0;
+	l = 0;
+	while (str[i] && !ft_isdigit(str[i]))
+		i++;
+	while (ft_isdigit((int)str[i]) && l < 4)
+	{
+		l++;
+		b = n * 10 + (str[i] - '0');
+		if (b < n)
+			return (0);
+		n = b;
+	}
+	if (l > 3)
+		return (0);
+	return (n);
 }
