@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 20:23:37 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/04 21:21:46 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/07 18:24:50 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
 
 bool is_wall(t_map *map, float y, float x)
-{
+{    
     int map_x;
     int map_y;
-    
+
     if (!map)
         return (false);
     map_y = (int)y;
@@ -37,9 +37,9 @@ void move_forward(t_data *data)
 		return;
 	new_x = data->player.x + data->player.dir_x * MOVE_SPEED;
 	new_y = data->player.y + data->player.dir_y * MOVE_SPEED;
-	if (!is_wall(&data->map, new_x, data->player.y))
+	if (!is_wall(&data->map, data->player.y, new_x))
 		data->player.x = new_x;
-	if (!is_wall(&data->map, data->player.x, new_y))
+	if (!is_wall(&data->map, new_y, data->player.x))
 		data->player.y = new_y;
 }
 
@@ -50,11 +50,11 @@ void move_backward(t_data *data)
 	
     if (!data)
 		return;
-    new_x = data->player.x - data->player.dir_x * MOVE_SPEED;
-	new_y = data->player.y - data->player.dir_y * MOVE_SPEED;
-	if (!is_wall(&data->map, new_x, data->player.y))
+    new_x = data->player.x + data->player.dir_x * MOVE_SPEED;
+	new_y = data->player.y + data->player.dir_y * MOVE_SPEED;
+	if (!is_wall(&data->map, data->player.y, new_x))
 		data->player.x = new_x;
-	if (!is_wall(&data->map, data->player.x, new_y))
+	if (!is_wall(&data->map, new_y, data->player.x))
 		data->player.y = new_y;
 }
 
@@ -65,12 +65,12 @@ void move_left(t_data *data)
 
     if (!data)
         return ;
-    new_x = data->player.x - data->player.dir_x * MOVE_SPEED;
-    new_y = data->player.y + data->player.dir_x * MOVE_SPEED;
-    if (!is_wall(&data->map, new_x, data->player.y))
-        data->player.x = new_x;
-    if (!is_wall(&data->map, data->player.x, new_y))
-        data->player.y = new_y;
+    new_x = data->player.x + data->player.dir_x * MOVE_SPEED;
+	new_y = data->player.y + data->player.dir_y * MOVE_SPEED;
+	if (!is_wall(&data->map, data->player.y, new_x))
+		data->player.x = new_x;
+	if (!is_wall(&data->map, new_y, data->player.x))
+		data->player.y = new_y;
 }
 
 void move_right(t_data *data)
@@ -80,10 +80,10 @@ void move_right(t_data *data)
 
     if (!data)
         return ;
-    new_x = data->player.x + data->player.dir_y * MOVE_SPEED;
-    new_y = data->player.y - data->player.dir_x * MOVE_SPEED;
-    if (!is_wall(&data->map, new_x, data->player.y))
-        data->player.x = new_x;
-    if (!is_wall(&data->map, data->player.x, new_y))
-        data->player.y = new_y;
+    new_x = data->player.x + data->player.dir_x * MOVE_SPEED;
+	new_y = data->player.y + data->player.dir_y * MOVE_SPEED;
+	if (!is_wall(&data->map, data->player.y, new_x))
+		data->player.x = new_x;
+	if (!is_wall(&data->map, new_y, data->player.x))
+		data->player.y = new_y;
 }
