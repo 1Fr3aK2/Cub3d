@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 00:21:42 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/07 17:25:00 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:12:38 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	handle_keypress(int key, t_data *data)
 {
 	if (!data)
 		return (0);
-
+	
 	if (key == XK_w)
 		move_forward(data);
 	else if (key == XK_s)
