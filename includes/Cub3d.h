@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/08 03:55:11 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/10 10:36:08 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,21 @@
 # define EAST 'E'
 # define PLAYER "NSWE"
 
+typedef uint32_t	t_rgb;
+
 typedef struct s_file
 {
-	int			fd;
-}				t_file;
+	int	fd;
+}	t_file;
 
 typedef struct s_img
 {
-	void		*img;
-	int			width;
-	int			height;
-}				t_img;
+	void	*img;
+	char	*pixel_ptr;
+	int		bits_pixel;
+	int		end;
+	int		line_len;
+}	t_img;
 
 typedef struct s_mlx
 {
@@ -177,5 +181,13 @@ char			*replace_tabs(char *line);
 void			free_map(t_map *map);
 void			free_file(t_file *file);
 void			free_mlx(t_mlx *mlx);
+t_rgb			ft_rgb(uint8_t r, uint8_t g, uint8_t b);
+uint8_t			ft_atob(char *str);
+
+// src/render/color.c
+t_rgb			set_rgb(char *strrgb, t_data *data);
+
+// src/render/render.c
+int				render(t_data *data);
 
 #endif
