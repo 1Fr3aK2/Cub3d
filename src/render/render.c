@@ -6,7 +6,7 @@
 /*   By: htrindad <htrindad@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:38:38 by htrindad          #+#    #+#             */
-/*   Updated: 2025/11/08 19:09:46 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/10 09:59:25 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static void	set_fc(t_data *data)
 	paint_bg(floor, ceiling, img);
 }
 
-void	render(t_mlx *mlx)
+void	render(t_data *data)
 {
-
+	set_fc(data);
+	mlx_put_image_to_window(data->mlx->mlx, data->mlx->win, data->mlx->img->img, 0, 0);
 }

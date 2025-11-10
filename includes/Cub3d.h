@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/08 18:54:09 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/10 10:02:59 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,5 +181,11 @@ void			free_file(t_file *file);
 void			free_mlx(t_mlx *mlx);
 t_rgb			ft_rgb(uint8_t r, uint8_t g, uint8_t b);
 uint8_t			ft_atob(char *str);
+
+// src/render/color.c
+t_rgb			set_rgb(char *strrgb, t_data *data);
+
+// src/render/render.c
+void			render(t_data *data);
 
 #endif
