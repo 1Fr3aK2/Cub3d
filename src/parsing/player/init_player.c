@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 00:07:28 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/04 02:58:19 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/10 17:34:57 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,5 @@ void	init_player(t_data *data)
 		}
 		y++;
 	}
-	ft_putendl_fd("ERROR:\nplayer not found in map", 2);
-	exit(1);
+	exit_error(data, "ERROR:\nplayer not found in map");
 }

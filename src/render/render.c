@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htrindad <htrindad@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:38:38 by htrindad          #+#    #+#             */
-/*   Updated: 2025/11/10 10:45:47 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:32:16 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,11 @@ static inline void	paint_bg(t_rgb floor, t_rgb ceiling, t_img *img)
 
 static void	set_fc(t_data *data)
 {
-	t_rgb	floor;
-	t_rgb	ceiling;
 	t_img	*img;
-
-	floor = set_rgb(data->map.floor, data);
-	ceiling = set_rgb(data->map.ceiling, data);
+	
 	img = &data->mlx.img;
 	img->pixel_ptr = mlx_get_data_addr(img->img, &img->bits_pixel, &img->line_len, &img->end);
-	paint_bg(floor, ceiling, img);
+	paint_bg(data->map.rgb_floor, data->map.rgb_ceiling, img);
 }
 
 int	render(t_data *data)
