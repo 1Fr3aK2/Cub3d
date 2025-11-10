@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/10 10:02:59 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/10 10:36:08 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@
 # define WEST 'W'
 # define EAST 'E'
 # define PLAYER "NSWE"
+
+typedef uint32_t	t_rgb;
 
 typedef struct s_file
 {
@@ -186,6 +188,6 @@ uint8_t			ft_atob(char *str);
 t_rgb			set_rgb(char *strrgb, t_data *data);
 
 // src/render/render.c
-void			render(t_data *data);
+int				render(t_data *data);
 
 #endif

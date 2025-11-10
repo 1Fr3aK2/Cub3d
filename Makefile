@@ -15,8 +15,8 @@ SRCS = src/errors/errors.c\
 		src/mlx/init_mlx.c\
 		src/player/move.c\
 		src/hooks/keys.c\
-		src/render/color.c\
-		src/render/render.c
+		src/render/colors.c\
+		src/render/render.c\
 		src/main.c
 
 NAME = Cub3d

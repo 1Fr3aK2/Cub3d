@@ -6,7 +6,7 @@
 /*   By: htrindad <htrindad@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:50:04 by htrindad          #+#    #+#             */
-/*   Updated: 2025/11/10 10:01:56 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/10 10:37:49 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_rgb	set_rgb(char *strrgb, t_data *data)
 	size_t	i;
 
 	strrgb_bi = ft_split(strrgb, ',');
-	if (strrgb == NULL)
+	if (strrgb_bi == NULL)
 		exit_error(data, "ERROR: Malloc fail");
 	i = -1;
 	while (++i < 3)
