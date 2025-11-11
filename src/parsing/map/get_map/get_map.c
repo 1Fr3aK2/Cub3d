@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:13:21 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/11 13:48:25 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/11 15:51:17 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,17 +82,17 @@ void	get_map(char *file_name, char **floor, char **ceiling, t_data *data)
 
 	i = 0;
 	if (!file_name || !data || data->map.height <= 0)
-		exit_error(NULL, "ERROR:\nGET_MAP: Inv pointer file/struct");
+		return ;
 	data->file.fd = open(file_name, O_RDONLY);
 	if (data->file.fd < 0)
-		exit_error(NULL, "ERROR:\nGET_MAP : Error opening the file");
+		return ;
 	data->map.buffer = malloc(sizeof(char *) * (data->map.height + 1));
 	if (!data->map.buffer)
-		exit_error(NULL, "ERROR:\nGET_MAP : Memory allocation error");
+		return ;
 	start_buffer(data);
 	if (alloc_buffer(data, &i) != 1)
-		exit_error(data, "ERROR:\n GET_MAP ERROR W/ALLOC BUFFER");
+		return ;
 	if (!parse_map(data, floor, ceiling))
-		exit_error(data, "ERROR:\n GET_MAP ERROR W/PARSE_MAP");
+		return ;
 	close(data->file.fd);
 }
