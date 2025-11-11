@@ -6,15 +6,15 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:39:30 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/05 15:35:57 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:12:59 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
 
-bool	check_map(t_map *map)
+bool	check_map(char *floor, char *ceiling, t_map *map)
 {
-	if (!map)
+	if (!floor || !ceiling || !map)
 		return (false);
 	if (check_valid_chars(map) == false)
 		return (false);
@@ -24,7 +24,7 @@ bool	check_map(t_map *map)
 		return (false);
 	if (check_surroundings(map) == false)
 		return (false);
-	if (check_textures(map) == false)
+	if (check_textures(floor, ceiling, map) == false)
 		return (false);
 	return (true);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:41:25 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/08 03:53:26 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/11 12:11:14 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ bool verify_texture(char *path)
     return (true);
 }
 
-bool check_textures(t_map *map)
+bool check_textures(char *floor, char *ceiling, t_map *map)
 {
     if (!verify_texture(map->east))
         return (false);
@@ -93,9 +93,9 @@ bool check_textures(t_map *map)
         return (false);
     if (!verify_texture(map->west))
         return (false);
-    if (!check_rgb(map->ceiling))
+    if (!check_rgb(floor))
         return (false);
-    if (!check_rgb(map->floor))
+    if (!check_rgb(ceiling))
         return (false);
     return (true);
 }
@@ -108,11 +108,11 @@ bool check_rgb(char *rgb)
         return (false);
     arr = ft_split(rgb, ',');
     if (!arr)
-        return (false);
+        return (free(rgb), false);
     if (ft_stralen(arr) != 3)
     {
         free_arr(arr);
-        return (false);
+        return (free(rgb), false);
     }
     if (!ft_isnumber(arr[0]) || !ft_isnumber(arr[1]) || !ft_isnumber(arr[2]))
         return (false);
