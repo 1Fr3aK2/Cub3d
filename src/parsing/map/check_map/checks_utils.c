@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 13:37:35 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/11 13:39:35 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/11 15:19:32 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,18 @@ bool	check_range(int nb)
 	if (nb < 0 || nb > 255)
 		return (false);
 	return (true);
+}
+
+bool	is_player_char(char c)
+{
+	int	i;
+
+	i = 0;
+	while (PLAYER[i])
+	{
+		if (c == PLAYER[i])
+			return (true);
+		i++;
+	}
+	return (false);
 }

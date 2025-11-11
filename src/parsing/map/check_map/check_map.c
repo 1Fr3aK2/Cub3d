@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:39:30 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/11 13:41:52 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/11 15:19:49 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,26 +58,19 @@ bool	check_valid_chars(t_map *map)
 bool	check_player(t_map *map)
 {
 	int	i;
-	int	player;
 	int	j;
-	int	k;
+	int	player;
 
-	if (!map)
+	if (!map || !check_valid_chars(map))
 		return (false);
-	i = 0;
-	j = 0;
 	player = 0;
-	if (!check_valid_chars(map))
-		return (false);
+	i = 0;
 	while (map->map[i] && i < map->height)
 	{
 		j = 0;
 		while (map->map[i][j])
 		{
-			k = 0;
-			while (PLAYER[k] && map->map[i][j] != PLAYER[k])
-				k++;
-			if (PLAYER[k] == map->map[i][j])
+			if (is_player_char(map->map[i][j]))
 			{
 				player++;
 				if (player > 1)
@@ -87,9 +80,7 @@ bool	check_player(t_map *map)
 		}
 		i++;
 	}
-	if (player <= 0)
-		return (false);
-	return (true);
+	return (player == 1);
 }
 
 bool	alloc_temp_map(t_map *map)

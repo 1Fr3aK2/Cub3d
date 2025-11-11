@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/11 13:38:42 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/11 15:17:22 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ bool				verify_texture(char *path);
 bool				check_textures(char *floor, char *ceiling, t_map *map);
 bool				check_rgb(char *rgb);
 bool				check_range(int nb);
-
+bool				is_player_char(char c);
 // src/parsing/map/get_map/get_map.c
 void				get_lines(t_data *data, char *file_name);
 void				start_buffer(t_data *data);

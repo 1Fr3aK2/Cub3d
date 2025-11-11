@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 00:07:28 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/11 14:03:42 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/11 15:06:55 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,6 @@ void	set_player_direction(t_player *player, char dir)
 		player->plane_x = 0;
 		player->plane_y = -0.66;
 	}
-}
-
-void get_vectores_values(float dir_x, float dir_y, float plane_x, float plane_y)
-{
-	
-}
-
-
-void set_vectors_values(t_player *player)
-{
-	if (!player)
-		return ;
 }
 
 void	init_player(t_data *data)

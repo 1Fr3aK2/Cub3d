@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:11:03 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/11 13:51:14 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/11 15:26:08 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,13 @@ int	init_map(char *file, t_data *data)
 	get_lines(data, file);
 	get_map(file, &floor, &ceiling, data);
 	if (!check_map(floor, ceiling, &data->map))
+	{
+		if (floor)
+			free(floor);
+		if (ceiling)
+			free(ceiling);
 		exit_error(data, "ERROR:\ncheck_map");
+	}
 	if (!set_fc_rgb(floor, ceiling, data))
 		exit_error(data, "ERROR:\nset_fc_rgb");
 	init_player(data);
@@ -37,14 +43,14 @@ bool	set_fc_rgb(char *floor, char *ceiling, t_data *data)
 	if (!floor || !ceiling || !data)
 		return (false);
 	data->map.rgb_ceiling = set_rgb(ceiling, data);
-	if (!data->map.rgb_ceiling)
-		return (false);
 	if (ceiling)
 		free(ceiling);
-	data->map.rgb_floor = set_rgb(floor, data);
-	if (!data->map.rgb_floor)
+	if (!data->map.rgb_ceiling)
 		return (false);
+	data->map.rgb_floor = set_rgb(floor, data);
 	if (floor)
 		free(floor);
+	if (!data->map.rgb_floor)
+		return (false);
 	return (true);
 }
