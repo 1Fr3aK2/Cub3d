@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:54:45 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/08 03:41:41 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/11 12:17:47 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
 
-bool	parse_map(t_data *data)
+bool	parse_map(t_data *data, char **floor, char **ceiling)
 {
 	int	i;
 
 	i = 0;
 	if (!data)
 		return (exit_error(data, "ERROR:\n parse_map, invalid data pointer"), false);
-	while (!check_load_textures(&data->map))
+	while (!check_load_textures(*floor, *ceiling, &data->map))
 	{
 		if (!data->map.buffer[i])
 			exit_error(data, "ERROR:\n parse_map,reading texture!");
@@ -28,7 +28,7 @@ bool	parse_map(t_data *data)
 			i++;
 			continue ;
 		}
-		if (!set_texture(replace_tabs(data->map.buffer[i]), &data->map))
+		if (!set_texture(replace_tabs(data->map.buffer[i]), floor, ceiling, &data->map))
 			exit_error(data, "ERROR:\n parse_map,reading textures!");
 		i++;
 	}

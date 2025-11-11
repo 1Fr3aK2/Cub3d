@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   set_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 02:32:49 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/08 03:53:49 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/11 12:07:51 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
 
-bool check_load_textures(t_map *map)
+bool check_load_textures(char *floor, char *ceiling, t_map *map)
 {
-	if (!map)
+	if (!map || !floor || !ceiling)
 		return (false);
 	if (!map->north || !map->south || !map->east || !map->east)
 		return (false);
-	if (!map->ceiling || !map->floor)
+	if (!ceiling || !floor)
 		return (false);
 	return (true);
 }
 
 
-bool	set_texture(char *line, t_map *map)
+bool	set_texture(char *line, char **floor, char **ceiling, t_map *map)
 {
 	char **split;
 
@@ -43,10 +43,10 @@ bool	set_texture(char *line, t_map *map)
 			map->west = ft_strdup(split[1]);
 		else if (map->east == NULL && ft_strncmp(split[0], "EA", 3) == 0)
 			map->east = ft_strdup(split[1]);
-		else if (map->ceiling == NULL && ft_strncmp(split[0], "C", 2) == 0)
-			map->ceiling = ft_strdup(split[1]);
-		else if (map->floor == NULL && ft_strncmp(split[0], "F", 2) == 0)
-			map->floor = ft_strdup(split[1]);
+		else if (*floor == NULL && ft_strncmp(split[0], "F", 2) == 0)
+			*floor = ft_strdup(split[1]);
+		else if (*ceiling == NULL && ft_strncmp(split[0], "C", 2) == 0)
+			*ceiling = ft_strdup(split[1]);
 		else
 			return (free_arr(split), false);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:42:01 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/10 10:42:20 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/11 11:52:47 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,16 +95,6 @@ void free_map(t_map *map)
 	{
 		free(map->west);
 		map->west = NULL;
-	}
-	if (map->floor)
-	{
-		free(map->floor);
-		map->floor = NULL;
-	}
-	if (map->ceiling)
-	{
-		free(map->ceiling);
-		map->ceiling = NULL;
 	}
 	if (map->temp_map)
 	{

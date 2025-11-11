@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/10 17:33:13 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/11 12:21:23 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 # define WEST 'W'
 # define EAST 'E'
 # define PLAYER "NSWE"
+# define PI 3.1415926535
 
 typedef uint32_t	t_rgb;
 
@@ -83,8 +84,6 @@ typedef struct s_map
 	char			*south;
 	char			*west;
 	char			*east;
-	char			*floor;
-	char			*ceiling;
 	int				height;
 	t_rgb			rgb_floor;
 	t_rgb			rgb_ceiling;
@@ -110,8 +109,9 @@ typedef struct s_data
 }					t_data;
 
 // src/textures/set_textures.c
-bool				check_load_textures(t_map *map);
-bool				set_texture(char *line, t_map *map);
+bool				check_load_textures(char *floor, char *ceiling, t_map *map);
+bool				set_texture(char *line, char **floor, char **ceiling,
+						t_map *map);
 
 // src/init/init.c
 void				init_struct(t_data *data);
@@ -131,7 +131,7 @@ int					press_x(t_data *data);
 void				check_map_name(char *file_name);
 
 // src//parsing/map/check_map/check_map.c
-bool				check_map(t_map *map);
+bool				check_map(char *floor, char *ceiling, t_map *map);
 bool				check_valid_chars(t_map *map);
 bool				check_player(t_map *map);
 void				set_bool(t_map *map);
@@ -142,7 +142,7 @@ bool				check_surroundings(t_map *map);
 bool				flood_fill_map(t_map *map, int i, int j);
 bool				is_valid(char *arr, char c);
 bool				verify_texture(char *path);
-bool				check_textures(t_map *map);
+bool				check_textures(char *floor, char *ceiling, t_map *map);
 bool				check_rgb(char *rgb);
 bool				check_range(int nb);
 
@@ -150,10 +150,11 @@ bool				check_range(int nb);
 void				get_lines(t_data *data, char *file_name);
 void				start_buffer(t_data *data);
 int					alloc_buffer(t_data *data, int *i);
-void				get_map(char *file_name, t_data *data);
+void				get_map(char *file_name, char **floor, char **ceiling,
+						t_data *data);
 
 // src/parsing/get_map/parse_map.c
-bool				parse_map(t_data *data);
+bool				parse_map(t_data *data, char **floor, char **ceiling);
 bool				set_map(t_map *map, int i);
 bool				alloc_map(t_map *map, int *i);
 
@@ -163,7 +164,7 @@ void				set_player_direction(t_player *p, char dir);
 
 // src/parsing/map/init_map.c
 int					init_map(char *file, t_data *data);
-bool				set_fc_rgb(t_data *data);
+bool				set_fc_rgb(char *floor, char *ceiling, t_data *data);
 
 // src/parsing/player/init_player.c
 void				init_player(t_data *data);

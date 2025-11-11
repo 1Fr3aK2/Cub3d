@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:13:21 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/07 17:29:13 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:15:39 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	alloc_buffer(t_data *data, int *i)
 	return (1);
 }
 
-void	get_map(char *file_name, t_data *data)
+void	get_map(char *file_name, char **floor, char **ceiling, t_data *data)
 {
 	int	i;
 
@@ -93,7 +93,7 @@ void	get_map(char *file_name, t_data *data)
 	start_buffer(data);
 	if (alloc_buffer(data, &i) != 1)
 		exit_error(data, "ERROR:\n GET_MAP ERROR W/ALLOC BUFFER");
-	if (parse_map(data) == false)
+	if (parse_map(data, floor, ceiling) == false)
 		exit_error(data, "ERROR:\n GET_MAP ERROR W/PARSE_MAP");
 	close(data->file.fd);
 }
