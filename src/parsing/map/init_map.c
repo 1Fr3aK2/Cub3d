@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:11:03 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/11 12:14:33 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:51:14 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	init_map(char *file, t_data *data)
 {
-	char *floor;
-	char *ceiling;
+	char	*floor;
+	char	*ceiling;
 
 	if (!file || !data)
 		return (-1);
@@ -24,15 +24,15 @@ int	init_map(char *file, t_data *data)
 	check_map_name(file);
 	get_lines(data, file);
 	get_map(file, &floor, &ceiling, data);
-	if (check_map(floor, ceiling, &data->map) == false)
+	if (!check_map(floor, ceiling, &data->map))
 		exit_error(data, "ERROR:\ncheck_map");
-	if (set_fc_rgb(floor, ceiling, data) == false)
+	if (!set_fc_rgb(floor, ceiling, data))
 		exit_error(data, "ERROR:\nset_fc_rgb");
-	init_player(data);	
+	init_player(data);
 	return (1);
 }
 
-bool set_fc_rgb(char *floor, char *ceiling, t_data *data)
+bool	set_fc_rgb(char *floor, char *ceiling, t_data *data)
 {
 	if (!floor || !ceiling || !data)
 		return (false);

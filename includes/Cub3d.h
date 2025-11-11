@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/11 12:21:23 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:38:42 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ void				init_mlx(t_data *data);
 
 // src/erros/errors.c
 void				exit_error(t_data *data, char *str);
-void				free_all(t_data *data);
 
 // src//hooks/keys.c
 int					handle_keypress(int key, t_data *data);
@@ -142,6 +141,8 @@ bool				check_surroundings(t_map *map);
 bool				flood_fill_map(t_map *map, int i, int j);
 bool				is_valid(char *arr, char c);
 bool				verify_texture(char *path);
+
+// src//parsing/map/check_map/checks_utils.c
 bool				check_textures(char *floor, char *ceiling, t_map *map);
 bool				check_rgb(char *rgb);
 bool				check_range(int nb);
@@ -180,13 +181,16 @@ void				move_right(t_data *data);
 // src/utils/utils.c
 void				close_fds(int i);
 size_t				ft_stralen(char **arr);
-void				free_arr(char **arr);
 char				*replace_tabs(char *line);
+t_rgb				ft_rgb(uint8_t r, uint8_t g, uint8_t b);
+uint8_t				ft_atob(char *str);
+
+// src/utils/frees.c
+void				free_arr(char **arr);
 void				free_map(t_map *map);
 void				free_file(t_file *file);
 void				free_mlx(t_mlx *mlx);
-t_rgb				ft_rgb(uint8_t r, uint8_t g, uint8_t b);
-uint8_t				ft_atob(char *str);
+void				free_all(t_data *data);
 
 // src/render/color.c
 t_rgb				set_rgb(char *strrgb, t_data *data);

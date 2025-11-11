@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:54:45 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/11 12:17:47 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:48:44 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ bool	parse_map(t_data *data, char **floor, char **ceiling)
 
 	i = 0;
 	if (!data)
-		return (exit_error(data, "ERROR:\n parse_map, invalid data pointer"), false);
+		return (exit_error(data, "ERROR:\n parse_map, invalid data pointer"),
+			false);
 	while (!check_load_textures(*floor, *ceiling, &data->map))
 	{
 		if (!data->map.buffer[i])
@@ -28,12 +29,14 @@ bool	parse_map(t_data *data, char **floor, char **ceiling)
 			i++;
 			continue ;
 		}
-		if (!set_texture(replace_tabs(data->map.buffer[i]), floor, ceiling, &data->map))
+		if (!set_texture(replace_tabs(data->map.buffer[i]), floor, ceiling,
+				&data->map))
 			exit_error(data, "ERROR:\n parse_map,reading textures!");
 		i++;
 	}
-	if (set_map(&data->map, i) == false)
-		return (exit_error(data, "ERROR:\n parse_map, error setting map!"), false);
+	if (!set_map(&data->map, i))
+		return (exit_error(data, "ERROR:\n parse_map, error setting map!"),
+			false);
 	data->map.height = ft_stralen(data->map.map);
 	return (true);
 }
@@ -42,7 +45,7 @@ bool	set_map(t_map *map, int i)
 {
 	int	len;
 	int	mapp;
-	int temp;
+	int	temp;
 
 	if (!map || i < 0)
 		return (false);
@@ -55,7 +58,7 @@ bool	set_map(t_map *map, int i)
 	while (map->buffer[i + len + temp])
 		len++;
 	mapp = (i + temp);
-	if (alloc_map(map, &mapp) == false)
+	if (!alloc_map(map, &mapp))
 		return (false);
 	return (true);
 }

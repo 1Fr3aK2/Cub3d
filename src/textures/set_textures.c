@@ -6,13 +6,13 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 02:32:49 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/11 12:07:51 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:25:38 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
 
-bool check_load_textures(char *floor, char *ceiling, t_map *map)
+bool	check_load_textures(char *floor, char *ceiling, t_map *map)
 {
 	if (!map || !floor || !ceiling)
 		return (false);
@@ -23,10 +23,9 @@ bool check_load_textures(char *floor, char *ceiling, t_map *map)
 	return (true);
 }
 
-
 bool	set_texture(char *line, char **floor, char **ceiling, t_map *map)
 {
-	char **split;
+	char	**split;
 
 	split = ft_split(line, ' ');
 	if (!split)
