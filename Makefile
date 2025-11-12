@@ -6,11 +6,13 @@ SRCS = src/errors/errors.c\
 		src/parsing/file/check_file.c\
 		src/parsing/map/check_map/check_map.c\
 		src/parsing/map/check_map/check_map_utils.c\
+		src/parsing/map/check_map/checks_utils.c\
 		src/parsing/map/get_map/get_map.c\
 		src/parsing/map/get_map/parse_map.c\
 		src/parsing/map/init_map.c\
 		src/parsing/player/init_player.c\
 		src/utils/utils.c\
+		src/utils/frees.c\
 		src/textures/set_textures.c\
 		src/mlx/init_mlx.c\
 		src/player/move.c\

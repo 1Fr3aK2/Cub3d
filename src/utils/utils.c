@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:42:01 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/11 11:52:47 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:28:01 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,39 +22,22 @@ void	close_fds(int i)
 	}
 }
 
-size_t ft_stralen(char **arr)
+size_t	ft_stralen(char **arr)
 {
-    size_t i;
-    
+	size_t	i;
+
 	if (!arr)
-        return (0);
-    i = 0;
-    while (arr[i])
-        i++;
-    return (i);
+		return (0);
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
 }
 
-void	free_arr(char **arr)
+char	*replace_tabs(char *line)
 {
 	int	i;
 
-	if (!arr)
-		return ;
-	i = 0;
-	while (arr[i])
-	{
-		free(arr[i]);
-		arr[i] = NULL;
-		i++;
-	}
-	free(arr);
-	arr = NULL;
-}
-
-char *replace_tabs(char *line)
-{
-	int i;
-	
 	if (!line)
 		return (NULL);
 	i = -1;
@@ -64,77 +47,9 @@ char *replace_tabs(char *line)
 			line[i] = ' ';
 	}
 	return (line);
-	
 }
 
-void free_map(t_map *map)
-{
-	if (!map)
-		return ;
-	if (map->buffer)
-	{
-		free_arr(map->buffer);
-		map->buffer = NULL;
-	}
-	if (map->north)
-	{
-		free(map->north);
-		map->north = NULL;
-	}
-	if (map->south)
-	{
-		free(map->south);
-		map->south = NULL;
-	}
-	if (map->east)
-	{
-		free(map->east);
-		map->east = NULL;
-	}
-	if (map->west)
-	{
-		free(map->west);
-		map->west = NULL;
-	}
-	if (map->temp_map)
-	{
-		free_arr(map->temp_map);
-		map->temp_map = NULL;
-	}
-}
-
-void free_file(t_file *file)
-{
-	if (!file)
-		return ;
-	if (file->fd >= 0)
-		close(file->fd);
-	file->fd = -1;
-}
-
-void free_mlx(t_mlx *mlx)
-{
-	if (!mlx)
-		return ;
-	if (mlx->img.img)
-	{
-		mlx_destroy_image(mlx->mlx, mlx->img.img);
-		mlx->img.img = NULL;	
-	}
-	if (mlx->win)
-	{
-		mlx_destroy_window(mlx->mlx, mlx->win);
-		mlx->win = NULL;
-	}
-	if (mlx->mlx)
-	{
-		mlx_destroy_display(mlx->mlx);
-		free(mlx->mlx);
-		mlx->mlx = NULL;
-	}
-}
-
-uint32_t ft_rgb(uint8_t r, uint8_t g, uint8_t b)
+uint32_t	ft_rgb(uint8_t r, uint8_t g, uint8_t b)
 {
 	return (r << 16 | g << 8 | b);
 }

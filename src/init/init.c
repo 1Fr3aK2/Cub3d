@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:22:33 by raamorim          #+#    #+#             */
-/*   Updated: 2025/10/23 02:04:44 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/11 13:23:28 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
 
-void init_struct(t_data *data)
+void	init_struct(t_data *data)
 {
-    if (!data)
-        return ;
-    ft_bzero(data, sizeof(t_data));
+	if (!data)
+		return ;
+	ft_bzero(data, sizeof(t_data));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 00:07:28 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/10 17:34:57 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/11 15:06:55 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	set_player_direction(t_player *player, char dir)
 		player->plane_y = -0.66;
 	}
 }
-
 
 void	init_player(t_data *data)
 {

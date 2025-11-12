@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 00:21:42 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/07 18:12:38 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:23:11 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	handle_keypress(int key, t_data *data)
 {
 	if (!data)
 		return (0);
-	
 	if (key == XK_w)
 		move_forward(data);
 	else if (key == XK_s)
@@ -26,7 +25,7 @@ int	handle_keypress(int key, t_data *data)
 	else if (key == XK_d)
 		move_right(data);
 	else if (key == XK_Escape)
-        exit_error(data, "GAME OVER!");
+		exit_error(data, "GAME OVER!");
 	return (0);
 }
 
