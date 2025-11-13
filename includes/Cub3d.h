@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/13 15:34:06 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/13 15:51:07 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@
 # define PLAYER "NSWE"
 # define PI 3.1415926535
 
-#define mapS 64
+# define MAPS 64
 
 typedef uint32_t	t_rgb;
 
@@ -98,7 +98,6 @@ typedef struct s_player
 	float			dir_x;
 	float			dir_y;
 	float			plane_x;
-	float			plane_y;
 }					t_player;
 
 typedef struct s_data
@@ -163,8 +162,7 @@ bool				set_map(t_map *map, int i);
 bool				alloc_map(t_map *map, int *i);
 
 // src/parsing/player/init_player.c
-void				set_directions(float dir_x, float dir_y, float plane_x,
-						float plane_y);
+void				set_directions(float dir_x, float dir_y, float plane_x);
 void				init_player(t_data *data);
 void				set_player_direction(t_player *p, char dir);
 
