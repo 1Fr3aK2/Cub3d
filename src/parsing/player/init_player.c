@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 00:07:28 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/13 15:29:54 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/13 15:51:50 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,22 @@ void	set_player_direction(t_player *player, char dir)
 {
 	(void)player;
 	if (dir == 'N')
-		set_directions(0, -1, 0.66, 0);
+		set_directions(0, -1, 0.66);
 	else if (dir == 'S')
-		set_directions(0, 1, -0.66, 0);
+		set_directions(0, 1, -0.66);
 	else if (dir == 'E')
-		set_directions(1, 0, 0, 0.66);
+		set_directions(1, 0, 0);
 	else if (dir == 'W')
-		set_directions(-1, 0, 0, -0.66);
+		set_directions(-1, 0, 0);
 }
 
-void	set_directions(float dir_x, float dir_y, float plane_x, float plane_y)
+void	set_directions(float dir_x, float dir_y, float plane_x)
 {
 	t_player	player;
 
 	player.dir_x = dir_x;
 	player.dir_y = dir_y;
 	player.plane_x = plane_x;
-	player.plane_y = plane_y;
 	data_s()->player = player;
 }
 
