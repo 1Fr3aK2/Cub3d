@@ -6,17 +6,24 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:38:38 by htrindad          #+#    #+#             */
-/*   Updated: 2025/11/11 13:25:22 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/13 17:50:41 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
 
+void	set_color(t_img *img, size_t y, size_t x, t_rgb cc)
+{
+	int	offset;
+
+	offset = (img->line_len * y) + (x * (img->bits_pixel / 8));
+	*((unsigned int *)(offset + img->pixel_ptr)) = cc;
+}
+
 static inline void	paint_bg(t_rgb floor, t_rgb ceiling, t_img *img)
 {
 	size_t	y;
 	size_t	x;
-	int		offset;
 	t_rgb	cc;
 
 	x = 0;
@@ -26,8 +33,7 @@ static inline void	paint_bg(t_rgb floor, t_rgb ceiling, t_img *img)
 		cc = ceiling;
 		while (y < WIN_H)
 		{
-			offset = (img->line_len * y) + (x * (img->bits_pixel / 8));
-			*((unsigned int *)(offset + img->pixel_ptr)) = cc;
+			set_color(img, y, x, cc);
 			if (++y > (WIN_H / 2) && cc == ceiling)
 				cc = floor;
 		}

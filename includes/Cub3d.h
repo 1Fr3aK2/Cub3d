@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/13 15:51:07 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/13 17:51:37 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@
 # define PLAYER "NSWE"
 # define PI 3.1415926535
 
-# define MAPS 64
+# define MAP_S 64
 
 typedef uint32_t	t_rgb;
 
@@ -200,5 +200,6 @@ t_rgb				set_rgb(char *strrgb, t_data *data);
 
 // src/render/render.c
 int					render(t_data *data);
+void				set_color(t_img *img, size_t y, size_t x, t_rgb cc);
 
 #endif
