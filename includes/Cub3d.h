@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/13 15:27:21 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/13 15:34:06 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@
 # define EAST 'E'
 # define PLAYER "NSWE"
 # define PI 3.1415926535
+
+#define mapS 64
 
 typedef uint32_t	t_rgb;
 
