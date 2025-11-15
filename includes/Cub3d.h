@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/13 17:51:37 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/15 17:15:40 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,9 @@ void				free_all(t_data *data);
 
 // src/render/color.c
 t_rgb				set_rgb(char *strrgb, t_data *data);
+
+// src/render/minimap.c
+void				draw_minimap(t_data *data);
 
 // src/render/render.c
 int					render(t_data *data);
