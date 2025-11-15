@@ -6,11 +6,39 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:11:03 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/11 15:26:08 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/15 19:09:32 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
+
+static inline size_t	get_max_w(char **map)
+{
+	size_t	len;
+	size_t	max;
+	size_t	i;
+
+	i = 0;
+	max = ft_strlen(map[i++]);
+	len = max;
+	while (map[i])
+	{
+		len = ft_strlen(map[i++]);
+		if (len > max)
+			max = len;
+	}
+	return (max);
+}
+
+static inline size_t	get_max_h(char **map)
+{
+	size_t	height;
+
+	height = 0;
+	while (map[height])
+		height++;
+	return (height);
+}
 
 int	init_map(char *file, t_data *data)
 {
@@ -35,6 +63,8 @@ int	init_map(char *file, t_data *data)
 	if (!set_fc_rgb(floor, ceiling, data))
 		exit_error(data, "ERROR:\nset_fc_rgb");
 	init_player(data);
+	data->map.max_w = get_max_w(data->map.map);
+	data->map.max_h = get_max_h(data->map.map);
 	return (1);
 }
 

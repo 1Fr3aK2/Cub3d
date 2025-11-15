@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/15 17:15:40 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/15 19:03:04 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ typedef struct s_map
 	int				height;
 	t_rgb			rgb_floor;
 	t_rgb			rgb_ceiling;
+	size_t			max_w;
+	size_t			max_h;
 }					t_map;
 
 typedef struct s_player
@@ -199,7 +201,7 @@ void				free_all(t_data *data);
 t_rgb				set_rgb(char *strrgb, t_data *data);
 
 // src/render/minimap.c
-void				draw_minimap(t_data *data);
+void				draw_minimap(t_data *data, t_img *img);
 
 // src/render/render.c
 int					render(t_data *data);
