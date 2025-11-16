@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:38:38 by htrindad          #+#    #+#             */
-/*   Updated: 2025/11/15 18:34:08 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/16 15:40:37 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	render(t_data *data)
 			&img->line_len, &img->end);
 	set_fc(data, img);
 	draw_minimap(data, img);
+	draw_player_pos(&data->player, img);
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.win, data->mlx.img.img, 0,
 		0);
 	return (0);

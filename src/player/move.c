@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 20:23:37 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/11 13:24:52 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/16 17:17:19 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	move_backward(t_data *data)
 
 	if (!data)
 		return ;
-	new_x = data->player.x + data->player.dir_x * MOVE_SPEED;
-	new_y = data->player.y + data->player.dir_y * MOVE_SPEED;
+	new_x = data->player.x - data->player.dir_x * MOVE_SPEED;
+	new_y = data->player.y - data->player.dir_y * MOVE_SPEED;
 	if (!is_wall(&data->map, data->player.y, new_x))
 		data->player.x = new_x;
 	if (!is_wall(&data->map, new_y, data->player.x))
