@@ -17,6 +17,7 @@ SRCS = src/errors/errors.c\
 		src/mlx/init_mlx.c\
 		src/player/move.c\
 		src/hooks/keys.c\
+		src/render/paint.c\
 		src/render/colors.c\
 		src/render/minimap.c\
 		src/render/render.c\

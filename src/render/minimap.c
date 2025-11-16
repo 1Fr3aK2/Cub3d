@@ -6,53 +6,65 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:11:21 by htrindad          #+#    #+#             */
-/*   Updated: 2025/11/15 19:24:09 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/16 14:07:59 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
 
-static inline void	draw_sq(size_t y, size_t x, t_rgb color, t_img *img)
+static inline void	draw_sq(t_paint paint, t_img *img)
 {
-	const size_t	ly = y * MAP_S + MAP_S;
-	const size_t	lx = x * MAP_S + MAP_S;
-	size_t		py;
-	size_t		px;
+	const size_t	reset = paint.begin.y;
+	t_limits	begin;
+	t_limits	end;
 
-	px = x * MAP_S;
-	while (px < lx && px < WIN_W)
+	begin = paint.begin;
+	end = paint.end;
+	while (begin.x < end.x && begin.x < WIN_W)
 	{
-		py = y * MAP_S;
-		while (py < ly && py < WIN_H)
-			set_color(img, py++, px, color);
-		px++;
+		begin.y = reset;
+		while (begin.y < end.y && begin.y < WIN_H)
+			set_color(img, begin.y++, begin.x, paint.color);
+		begin.x++;
 	}
+}
+
+static inline t_paint	condition(char **map, t_paint paint, t_img *img)
+{
+	if (paint.x < ft_strlen(map[paint.y]))
+	{
+		if (map[paint.y][paint.x] == '1')
+			draw_sq(set_dimensions(0xFFFFFF, paint,
+					set_limits(paint.x * SQ_SIZE, paint.y * SQ_SIZE),
+					set_limits(paint.x * SQ_SIZE + SQ_SIZE, paint.y * SQ_SIZE + SQ_SIZE))
+					, img);
+		else
+			draw_sq(set_dimensions(0, paint,
+					set_limits(paint.x * SQ_SIZE, paint.y * SQ_SIZE),
+					set_limits(paint.x * SQ_SIZE + SQ_SIZE, paint.y * SQ_SIZE + SQ_SIZE))
+					, img);
+	}
+	paint.y++;
+	return (paint);
 }
 
 void	draw_minimap(t_data *data, t_img *img)
 {
 	const size_t	max_w = data->map.max_w;
 	const size_t	max_h = data->map.max_h;
-	size_t		y;
-	size_t		x;
+	t_paint			paint;
 
-	y = 0;
-	x = 0;
-	while (y < max_h - 1)
+	paint = paint_init();
+	while (paint.y < max_h)
 	{
-		while (x < max_w)
+		if (paint.x > ft_strlen(data->map.map[paint.y]))
 		{
-			if (x > ft_strlen(data->map.map[y]))
-			{
-				y++;
-				continue;
-			}
-			else if (data->map.map[y][x] == '1')
-				draw_sq(y++, x, 0xFFFFFF, img);
-			else
-				draw_sq(y++, x, 0, img);
+			paint.y++;
+			continue;
 		}
-		x++;
-		y = 0;
+		while (data->map.map[paint.y] && paint.x < max_w)
+			paint = condition(data->map.map, paint, img);
+		paint.x++;
+		paint.y = 0;
 	}
 }
