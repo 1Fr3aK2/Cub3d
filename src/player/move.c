@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 20:23:37 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/17 13:14:25 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/17 14:37:24 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	move_left(t_data *data)
 	if (!is_wall(&data->map, new_y, data->player.x))
 		data->player.y = new_y;
 }
+
 void	move_right(t_data *data)
 {
 	float	new_x;
@@ -81,28 +82,4 @@ void	move_right(t_data *data)
 		data->player.x = new_x;
 	if (!is_wall(&data->map, new_y, data->player.x))
 		data->player.y = new_y;
-}
-
-void	movemnts(t_data *data)
-{
-	if (data->keys & FORWARD)
-		move_forward(data);
-	if (data->keys & BACKWARDS)
-		move_backward(data);
-	if (data->keys & LEFT_S)
-		move_left(data);
-	if (data->keys & RIGHT_S)
-		move_right(data);
-	if (data->keys & TURN_L)
-		move_left(data);
-	if (data->keys & TURN_R)
-		move_right(data);
-}
-
-void	set_bit(uint8_t *var, int bit, bool value)
-{
-	if (value)
-		*var |= (1 << bit);
-	else
-		*var &= ~(1 << bit);
 }

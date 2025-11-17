@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 02:16:26 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/17 12:55:04 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/17 14:34:06 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	init_mlx(t_data *data)
 	if (!data->mlx.img.img)
 		exit_error(data, "Error creating the image with mlx");
 	mlx_hook(data->mlx.win, KeyPress, KeyPressMask, handle_keypress, data);
-	mlx_hook(data->mlx.win, KeyRelease, KeyReleaseMask, handle_keyrelease, data);
+	mlx_hook(data->mlx.win, KeyRelease, KeyReleaseMask, handle_keyrelease,
+		data);
 	mlx_hook(data->mlx.win, DestroyNotify, StructureNotifyMask, press_x, data);
 	mlx_loop_hook(data->mlx.mlx, render, data);
 }

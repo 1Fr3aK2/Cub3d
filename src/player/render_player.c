@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: htrindad <htrindad@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 15:24:16 by htrindad          #+#    #+#             */
-/*   Updated: 2025/11/16 17:37:03 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/17 14:36:55 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,31 @@ void	draw_player_pos(t_player *player, t_img *img)
 
 	x = player->x;
 	y = player->y;
-	draw_sq(set_dimensions(ft_rgb(0, 255, 0), paint_init(),
-			set_limits(x * SQ_SIZE, y * SQ_SIZE),
-			set_limits(x * SQ_SIZE + (SQ_SIZE / 4), y * SQ_SIZE + (SQ_SIZE / 4)))
-			, img);
+	draw_sq(set_dimensions(ft_rgb(0, 255, 0), paint_init(), set_limits(x
+				* SQ_SIZE, y * SQ_SIZE), set_limits(x * SQ_SIZE + (SQ_SIZE / 4),
+				y * SQ_SIZE + (SQ_SIZE / 4))), img);
+}
+
+void	set_bit(uint8_t *var, int bit, bool value)
+{
+	if (value)
+		*var |= bit;
+	else
+		*var &= ~bit;
+}
+
+void	movements(t_data *data)
+{
+	if (data->keys & FORWARD)
+		move_forward(data);
+	if (data->keys & BACKWARDS)
+		move_backward(data);
+	if (data->keys & LEFT_S)
+		move_left(data);
+	if (data->keys & RIGHT_S)
+		move_right(data);
+	if (data->keys & TURN_L)
+		move_left(data);
+	if (data->keys & TURN_R)
+		move_right(data);
 }
