@@ -71,13 +71,15 @@ typedef uint32_t	t_rgb;
 // 	TURN_R = 1 << 5
 // }t_keys;
 
-typedef enum e_keys {
-    FORWARD = 0,
-    BACKWARDS = 1,
-    LEFT_S = 2,
-    RIGHT_S = 4,
-    TURN_L = 8,
-    TURN_R = 16
+typedef enum e_keys
+{
+	NONE = 0,
+	FORWARD = 1,
+    BACKWARDS = 2,
+    LEFT_S = 4,
+    RIGHT_S = 8,
+    TURN_L = 16,
+    TURN_R = 32
 } t_keys;
 
 
