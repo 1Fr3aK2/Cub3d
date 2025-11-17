@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 15:24:16 by htrindad          #+#    #+#             */
-/*   Updated: 2025/11/17 14:36:55 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/17 17:42:45 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,21 @@ void	movements(t_data *data)
 	if (data->keys & RIGHT_S)
 		move_right(data);
 	if (data->keys & TURN_L)
-		move_left(data);
+		rotate_left(data);
 	if (data->keys & TURN_R)
-		move_right(data);
+		rotate_right(data);
+}
+
+void	rotate_left(t_data *data)
+{
+	data->player.plane_x -= ROT;
+	data->player.dir_x = cos(data->player.plane_x);
+	data->player.dir_y = sin(data->player.plane_x);
+}
+
+void	rotate_right(t_data *data)
+{
+	data->player.plane_x += ROT;
+	data->player.dir_x = cos(data->player.plane_x);
+	data->player.dir_y = sin(data->player.plane_x);
 }
