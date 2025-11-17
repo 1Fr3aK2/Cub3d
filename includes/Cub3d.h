@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/16 17:39:12 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/17 12:02:30 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,17 @@
 # define MAP_S 64
 
 typedef uint32_t	t_rgb;
+
+typedef enum e_keys
+{
+	NONE = 0;
+	FORWARD = 1 << 0;
+	BACKWARDS = 1 << 1;
+	LEFT_S = 1 << 2;
+	RIGHT_S = 1 << 3;
+	TURN_L = 1 << 4;
+	TURN_R = 1 << 5;
+};
 
 typedef struct s_limits
 {

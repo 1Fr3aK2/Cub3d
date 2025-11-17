@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 02:16:26 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/16 17:48:56 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/17 11:59:05 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,4 @@ void	init_mlx(t_data *data)
 	mlx_hook(data->mlx.win, KeyPress, KeyPressMask, handle_keypress, data);
 	mlx_hook(data->mlx.win, DestroyNotify, StructureNotifyMask, press_x, data);
 	mlx_loop_hook(data->mlx.mlx, render, data);
-	mlx_loop(data->mlx.mlx);
 }
