@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:11:03 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/15 19:09:32 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/17 12:06:31 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,6 @@ static inline size_t	get_max_w(char **map)
 			max = len;
 	}
 	return (max);
-}
-
-static inline size_t	get_max_h(char **map)
-{
-	size_t	height;
-
-	height = 0;
-	while (map[height])
-		height++;
-	return (height);
 }
 
 int	init_map(char *file, t_data *data)
@@ -63,7 +53,7 @@ int	init_map(char *file, t_data *data)
 	if (!set_fc_rgb(floor, ceiling, data))
 		exit_error(data, "ERROR:\nset_fc_rgb");
 	init_player(data);
-	data->map.max_w = get_max_w(data->map.map);
+	data->map.max_w = ft_stralen(data->map.map);
 	data->map.max_h = get_max_h(data->map.map);
 	return (1);
 }
