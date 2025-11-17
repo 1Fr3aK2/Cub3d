@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:38:38 by htrindad          #+#    #+#             */
-/*   Updated: 2025/11/16 15:40:37 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/17 12:56:26 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	render(t_data *data)
 {
 	t_img	*img;
 
+	movemnts(data);
 	img = &data->mlx.img;
 	img->pixel_ptr = mlx_get_data_addr(img->img, &img->bits_pixel,
 			&img->line_len, &img->end);
