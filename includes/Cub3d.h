@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/16 14:04:42 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/17 12:02:30 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,17 @@
 # define MAP_S 64
 
 typedef uint32_t	t_rgb;
+
+typedef enum e_keys
+{
+	NONE = 0;
+	FORWARD = 1 << 0;
+	BACKWARDS = 1 << 1;
+	LEFT_S = 1 << 2;
+	RIGHT_S = 1 << 3;
+	TURN_L = 1 << 4;
+	TURN_R = 1 << 5;
+};
 
 typedef struct s_limits
 {
@@ -183,7 +194,7 @@ bool					set_map(t_map *map, int i);
 bool					alloc_map(t_map *map, int *i);
 
 // src/parsing/player/init_player.c
-void					set_directions(float dir_x, float dir_y, float plane_x);
+void					set_directions(float dir_x, float dir_y, float plane_x, t_player *player);
 void					init_player(t_data *data);
 void					set_player_direction(t_player *p, char dir);
 
@@ -201,6 +212,9 @@ void					move_forward(t_data *data);
 void					move_backward(t_data *data);
 void					move_left(t_data *data);
 void					move_right(t_data *data);
+
+// src/player/render_player.c
+void					draw_player_pos(t_player *player, t_img *img);
 
 // src/utils/utils.c
 void					close_fds(int i);
@@ -221,6 +235,7 @@ t_rgb					set_rgb(char *strrgb, t_data *data);
 
 // src/render/minimap.c
 void					draw_minimap(t_data *data, t_img *img);
+void					draw_sq(t_paint paint, t_img *img);
 
 // src/render/render.c
 int						render(t_data *data);

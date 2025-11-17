@@ -6,13 +6,13 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:11:21 by htrindad          #+#    #+#             */
-/*   Updated: 2025/11/16 14:07:59 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/16 15:27:54 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
 
-static inline void	draw_sq(t_paint paint, t_img *img)
+void	draw_sq(t_paint paint, t_img *img)
 {
 	const size_t	reset = paint.begin.y;
 	t_limits	begin;
