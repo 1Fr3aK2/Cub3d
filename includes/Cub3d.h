@@ -75,9 +75,9 @@ typedef enum e_keys {
     FORWARD = 0,
     BACKWARDS = 1,
     LEFT_S = 2,
-    RIGHT_S = 3,
-    TURN_L = 4,
-    TURN_R = 5
+    RIGHT_S = 4,
+    TURN_L = 8,
+    TURN_R = 16
 } t_keys;
 
 
