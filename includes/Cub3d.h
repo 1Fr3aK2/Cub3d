@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/17 12:02:30 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/17 13:10:44 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,27 @@
 
 typedef uint32_t	t_rgb;
 
-typedef enum e_keys
-{
-	NONE = 0;
-	FORWARD = 1 << 0;
-	BACKWARDS = 1 << 1;
-	LEFT_S = 1 << 2;
-	RIGHT_S = 1 << 3;
-	TURN_L = 1 << 4;
-	TURN_R = 1 << 5;
-};
+// typedef enum e_keys
+// {
+// 	NONE = 0,
+// 	FORWARD = 1 << 0,
+// 	BACKWARDS = 1 << 1,
+// 	LEFT_S = 1 << 2,
+// 	RIGHT_S = 1 << 3,
+// 	TURN_L = 1 << 4,
+// 	TURN_R = 1 << 5
+// }t_keys;
+
+typedef enum e_keys {
+    FORWARD = 0,
+    BACKWARDS = 1,
+    LEFT_S = 2,
+    RIGHT_S = 3,
+    TURN_L = 4,
+    TURN_R = 5
+} t_keys;
+
+
 
 typedef struct s_limits
 {
@@ -139,8 +150,14 @@ typedef struct s_data
 	t_player		player;
 	t_map			map;
 	t_file			file;
+	 uint8_t keys;
 }					t_data;
 
+
+
+void	set_bit(uint8_t *var, int bit, bool value);
+void	movemnts(t_data *data);
+int handle_keyrelease(int key, t_data *data);
 // src/textures/set_textures.c
 bool					check_load_textures(char *floor, char *ceiling, t_map *map);
 bool					set_texture(char *line, char **floor, char **ceiling,

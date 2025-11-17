@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 20:23:37 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/16 17:17:19 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/17 13:14:25 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,30 +60,49 @@ void	move_backward(t_data *data)
 
 void	move_left(t_data *data)
 {
-	float	new_y;
 	float	new_x;
+	float	new_y;
 
-	if (!data)
-		return ;
-	new_x = data->player.x + data->player.dir_x * MOVE_SPEED;
-	new_y = data->player.y + data->player.dir_y * MOVE_SPEED;
+	new_x = data->player.x + data->player.dir_y * MOVE_SPEED;
+	new_y = data->player.y - data->player.dir_x * MOVE_SPEED;
+	if (!is_wall(&data->map, data->player.y, new_x))
+		data->player.x = new_x;
+	if (!is_wall(&data->map, new_y, data->player.x))
+		data->player.y = new_y;
+}
+void	move_right(t_data *data)
+{
+	float	new_x;
+	float	new_y;
+
+	new_x = data->player.x - data->player.dir_y * MOVE_SPEED;
+	new_y = data->player.y + data->player.dir_x * MOVE_SPEED;
 	if (!is_wall(&data->map, data->player.y, new_x))
 		data->player.x = new_x;
 	if (!is_wall(&data->map, new_y, data->player.x))
 		data->player.y = new_y;
 }
 
-void	move_right(t_data *data)
+void	movemnts(t_data *data)
 {
-	float	new_y;
-	float	new_x;
+	if (data->keys & (1 << FORWARD))
+		move_forward(data);
+	if (data->keys & (1 << BACKWARDS))
+		move_backward(data);
+	if (data->keys & (1 << LEFT_S))
+		move_left(data);
+	if (data->keys & (1 << RIGHT_S))
+		move_right(data);
+	if (data->keys & (1 << TURN_L))
+		move_left(data);
+	if (data->keys & (1 << TURN_R))
+		move_right(data);
+}
 
-	if (!data)
-		return ;
-	new_x = data->player.x + data->player.dir_x * MOVE_SPEED;
-	new_y = data->player.y + data->player.dir_y * MOVE_SPEED;
-	if (!is_wall(&data->map, data->player.y, new_x))
-		data->player.x = new_x;
-	if (!is_wall(&data->map, new_y, data->player.x))
-		data->player.y = new_y;
+void	set_bit(uint8_t *var, int bit, bool value)
+{
+	if (value)
+		*var |= (1 << bit);
+	else
+		*var &= ~(1 << bit);
 }
