@@ -85,17 +85,17 @@ void	move_right(t_data *data)
 
 void	movemnts(t_data *data)
 {
-	if (data->keys & (1 << FORWARD))
+	if (data->keys & FORWARD)
 		move_forward(data);
-	if (data->keys & (1 << BACKWARDS))
+	if (data->keys & BACKWARDS)
 		move_backward(data);
-	if (data->keys & (1 << LEFT_S))
+	if (data->keys & LEFT_S)
 		move_left(data);
-	if (data->keys & (1 << RIGHT_S))
+	if (data->keys & RIGHT_S)
 		move_right(data);
-	if (data->keys & (1 << TURN_L))
+	if (data->keys & TURN_L)
 		move_left(data);
-	if (data->keys & (1 << TURN_R))
+	if (data->keys & TURN_R)
 		move_right(data);
 }
 
