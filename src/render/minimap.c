@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 17:11:21 by htrindad          #+#    #+#             */
-/*   Updated: 2025/11/16 15:27:54 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/17 14:35:31 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	draw_sq(t_paint paint, t_img *img)
 {
 	const size_t	reset = paint.begin.y;
-	t_limits	begin;
-	t_limits	end;
+	t_limits		begin;
+	t_limits		end;
 
 	begin = paint.begin;
 	end = paint.end;
@@ -34,15 +34,14 @@ static inline t_paint	condition(char **map, t_paint paint, t_img *img)
 	if (paint.x < ft_strlen(map[paint.y]))
 	{
 		if (map[paint.y][paint.x] == '1')
-			draw_sq(set_dimensions(0xFFFFFF, paint,
-					set_limits(paint.x * SQ_SIZE, paint.y * SQ_SIZE),
-					set_limits(paint.x * SQ_SIZE + SQ_SIZE, paint.y * SQ_SIZE + SQ_SIZE))
-					, img);
+			draw_sq(set_dimensions(0xFFFFFF, paint, set_limits(paint.x
+						* SQ_SIZE, paint.y * SQ_SIZE), set_limits(paint.x
+						* SQ_SIZE + SQ_SIZE, paint.y * SQ_SIZE + SQ_SIZE)),
+				img);
 		else
-			draw_sq(set_dimensions(0, paint,
-					set_limits(paint.x * SQ_SIZE, paint.y * SQ_SIZE),
-					set_limits(paint.x * SQ_SIZE + SQ_SIZE, paint.y * SQ_SIZE + SQ_SIZE))
-					, img);
+			draw_sq(set_dimensions(0, paint, set_limits(paint.x * SQ_SIZE,
+						paint.y * SQ_SIZE), set_limits(paint.x * SQ_SIZE
+						+ SQ_SIZE, paint.y * SQ_SIZE + SQ_SIZE)), img);
 	}
 	paint.y++;
 	return (paint);
@@ -60,7 +59,7 @@ void	draw_minimap(t_data *data, t_img *img)
 		if (paint.x > ft_strlen(data->map.map[paint.y]))
 		{
 			paint.y++;
-			continue;
+			continue ;
 		}
 		while (data->map.map[paint.y] && paint.x < max_w)
 			paint = condition(data->map.map, paint, img);

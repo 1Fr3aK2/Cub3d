@@ -6,6 +6,7 @@
         "get_next_line_bonus.h": "c",
         "keysym.h": "c",
         "stdlib.h": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "mlx.h": "c"
     }
 }

@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/17 13:10:44 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/17 14:37:41 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # endif
 
 # ifndef MOVE_SPEED
-#  define MOVE_SPEED 0.1
+#  define MOVE_SPEED 0.03125
 # endif
 
 # ifndef ROT_SPEED
@@ -65,26 +65,26 @@ typedef enum e_keys
 	NONE = 0,
 	FORWARD = 1 << 0,
 	BACKWARDS = 1 << 1,
- 	LEFT_S = 1 << 2,
+	LEFT_S = 1 << 2,
 	RIGHT_S = 1 << 3,
- 	TURN_L = 1 << 4,
- 	TURN_R = 1 << 5
-}t_keys;
+	TURN_L = 1 << 4,
+	TURN_R = 1 << 5
+}					t_keys;
 
 typedef struct s_limits
 {
-	size_t	x;
-	size_t	y;
-}		t_limits;
+	size_t			x;
+	size_t			y;
+}					t_limits;
 
 typedef struct s_paint
 {
 	t_rgb			color;
 	size_t			x;
 	size_t			y;
-	t_limits	begin;
-	t_limits	end;
-}		t_paint;
+	t_limits		begin;
+	t_limits		end;
+}					t_paint;
 
 typedef struct s_file
 {
@@ -139,117 +139,117 @@ typedef struct s_data
 	t_player		player;
 	t_map			map;
 	t_file			file;
-	 uint8_t keys;
+	uint8_t			keys;
 }					t_data;
 
-
-
-void	set_bit(uint8_t *var, int bit, bool value);
-void	movemnts(t_data *data);
-int handle_keyrelease(int key, t_data *data);
 // src/textures/set_textures.c
-bool					check_load_textures(char *floor, char *ceiling, t_map *map);
-bool					set_texture(char *line, char **floor, char **ceiling,
+bool				check_load_textures(char *floor, char *ceiling, t_map *map);
+bool				set_texture(char *line, char **floor, char **ceiling,
 						t_map *map);
 
 // src/init/init.c
-void					init_struct(t_data *data);
-t_data					*data_s(void);
+void				init_struct(t_data *data);
+t_data				*data_s(void);
 
 // src/mlx/init_mlx.c
-void					init_mlx(t_data *data);
+void				init_mlx(t_data *data);
 
 // src/erros/errors.c
-void					exit_error(t_data *data, char *str);
+void				exit_error(t_data *data, char *str);
 
 // src//hooks/keys.c
-int						handle_keypress(int key, t_data *data);
-int						press_x(t_data *data);
+int					handle_keypress(int key, t_data *data);
+int					press_x(t_data *data);
+int					handle_keyrelease(int key, t_data *data);
 
 // src/parsing/file/check_file.c
-void					check_map_name(char *file_name);
+void				check_map_name(char *file_name);
 
 // src//parsing/map/check_map/check_map.c
-bool					check_map(char *floor, char *ceiling, t_map *map);
-bool					check_valid_chars(t_map *map);
-bool					check_player(t_map *map);
-void					set_bool(t_map *map);
-bool					alloc_temp_map(t_map *map);
+bool				check_map(char *floor, char *ceiling, t_map *map);
+bool				check_valid_chars(t_map *map);
+bool				check_player(t_map *map);
+void				set_bool(t_map *map);
+bool				alloc_temp_map(t_map *map);
 
 // src//parsing/map/check_map/check_map_utils.c
-bool					check_surroundings(t_map *map);
-bool					flood_fill_map(t_map *map, int i, int j);
-bool					is_valid(char *arr, char c);
-bool					verify_texture(char *path);
+bool				check_surroundings(t_map *map);
+bool				flood_fill_map(t_map *map, int i, int j);
+bool				is_valid(char *arr, char c);
+bool				verify_texture(char *path);
 
 // src//parsing/map/check_map/checks_utils.c
-bool					check_textures(char *floor, char *ceiling, t_map *map);
-bool					check_rgb(char *rgb);
-bool					check_range(int nb);
-bool					is_player_char(char c);
+bool				check_textures(char *floor, char *ceiling, t_map *map);
+bool				check_rgb(char *rgb);
+bool				check_range(int nb);
+bool				is_player_char(char c);
 // src/parsing/map/get_map/get_map.c
-void					get_lines(t_data *data, char *file_name);
-void					start_buffer(t_data *data);
-int						alloc_buffer(t_data *data, int *i);
-void					get_map(char *file_name, char **floor, char **ceiling,
+void				get_lines(t_data *data, char *file_name);
+void				start_buffer(t_data *data);
+int					alloc_buffer(t_data *data, int *i);
+void				get_map(char *file_name, char **floor, char **ceiling,
 						t_data *data);
 
 // src/parsing/get_map/parse_map.c
-bool					parse_map(t_data *data, char **floor, char **ceiling);
-bool					set_map(t_map *map, int i);
-bool					alloc_map(t_map *map, int *i);
+bool				parse_map(t_data *data, char **floor, char **ceiling);
+bool				set_map(t_map *map, int i);
+bool				alloc_map(t_map *map, int *i);
 
 // src/parsing/player/init_player.c
-void					set_directions(float dir_x, float dir_y, float plane_x, t_player *player);
-void					init_player(t_data *data);
-void					set_player_direction(t_player *p, char dir);
+void				set_directions(float dir_x, float dir_y, float plane_x,
+						t_player *player);
+void				init_player(t_data *data);
+void				set_player_direction(t_player *p, char dir);
 
 // src/parsing/map/init_map.c
-int						init_map(char *file, t_data *data);
-bool					set_fc_rgb(char *floor, char *ceiling, t_data *data);
+int					init_map(char *file, t_data *data);
+bool				set_fc_rgb(char *floor, char *ceiling, t_data *data);
 
 // src/parsing/player/init_player.c
-void					init_player(t_data *data);
-void					set_player_direction(t_player *player, char dir);
+void				init_player(t_data *data);
+void				set_player_direction(t_player *player, char dir);
 
 // src/player/move.c
-bool					is_wall(t_map *map, float y, float x);
-void					move_forward(t_data *data);
-void					move_backward(t_data *data);
-void					move_left(t_data *data);
-void					move_right(t_data *data);
+bool				is_wall(t_map *map, float y, float x);
+void				move_forward(t_data *data);
+void				move_backward(t_data *data);
+void				move_left(t_data *data);
+void				move_right(t_data *data);
 
 // src/player/render_player.c
-void					draw_player_pos(t_player *player, t_img *img);
+void				draw_player_pos(t_player *player, t_img *img);
+void				set_bit(uint8_t *var, int bit, bool value);
+void				movements(t_data *data);
 
 // src/utils/utils.c
-void					close_fds(int i);
-size_t					ft_stralen(char **arr);
-char					*replace_tabs(char *line);
-t_rgb					ft_rgb(uint8_t r, uint8_t g, uint8_t b);
-uint8_t					ft_atob(char *str);
+void				close_fds(int i);
+size_t				ft_stralen(char **arr);
+char				*replace_tabs(char *line);
+t_rgb				ft_rgb(uint8_t r, uint8_t g, uint8_t b);
+uint8_t				ft_atob(char *str);
 
 // src/utils/frees.c
-void					free_arr(char **arr);
-void					free_map(t_map *map);
-void					free_file(t_file *file);
-void					free_mlx(t_mlx *mlx);
-void					free_all(t_data *data);
+void				free_arr(char **arr);
+void				free_map(t_map *map);
+void				free_file(t_file *file);
+void				free_mlx(t_mlx *mlx);
+void				free_all(t_data *data);
 
 // src/render/color.c
-t_rgb					set_rgb(char *strrgb, t_data *data);
+t_rgb				set_rgb(char *strrgb, t_data *data);
 
 // src/render/minimap.c
-void					draw_minimap(t_data *data, t_img *img);
-void					draw_sq(t_paint paint, t_img *img);
+void				draw_minimap(t_data *data, t_img *img);
+void				draw_sq(t_paint paint, t_img *img);
 
 // src/render/render.c
-int						render(t_data *data);
-void					set_color(t_img *img, size_t y, size_t x, t_rgb cc);
+int					render(t_data *data);
+void				set_color(t_img *img, size_t y, size_t x, t_rgb cc);
 
 // src/render/paint.c
-t_paint					paint_init(void);
-t_paint					set_dimensions(t_rgb color, t_paint paint, t_limits begin, t_limits end);
+t_paint				paint_init(void);
+t_paint				set_dimensions(t_rgb color, t_paint paint, t_limits begin,
+						t_limits end);
 t_limits			set_limits(size_t x, size_t y);
 
 #endif
