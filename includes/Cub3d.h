@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/17 14:37:41 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/17 17:43:28 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@
 #  define MOVE_SPEED 0.03125
 # endif
 
-# ifndef ROT_SPEED
-#  define ROT_SPEED 0.05
-# endif
-
 # ifndef SQ_SIZE
 #  define SQ_SIZE 13
+# endif
+
+# ifndef ROT
+#  define ROT 0.03125
 # endif
 
 # define VALID_CHARS "01NSEW "
@@ -142,6 +142,8 @@ typedef struct s_data
 	uint8_t			keys;
 }					t_data;
 
+void				rotate_right(t_data *data);
+void				rotate_left(t_data *data);
 // src/textures/set_textures.c
 bool				check_load_textures(char *floor, char *ceiling, t_map *map);
 bool				set_texture(char *line, char **floor, char **ceiling,
