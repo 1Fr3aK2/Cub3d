@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/17 17:43:28 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/19 13:41:03 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@
 #  define ROT 0.03125
 # endif
 
+# ifndef C_SIZE
+#  define C_SIZE 10
+# endif
+
 # define VALID_CHARS "01NSEW "
 # define WALL '1'
 # define SPACE '0'
@@ -70,6 +74,14 @@ typedef enum e_keys
 	TURN_L = 1 << 4,
 	TURN_R = 1 << 5
 }					t_keys;
+
+typedef struct s_compass
+{
+	float	y;
+	float	x;
+	float	ey;
+	float	ex;
+}
 
 typedef struct s_limits
 {
@@ -253,5 +265,8 @@ t_paint				paint_init(void);
 t_paint				set_dimensions(t_rgb color, t_paint paint, t_limits begin,
 						t_limits end);
 t_limits			set_limits(size_t x, size_t y);
+
+// src/render/vertice.c
+void				compass_setter(t_player *player, t_img *img);
 
 #endif

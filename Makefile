@@ -21,6 +21,7 @@ SRCS = src/errors/errors.c\
 		src/render/paint.c\
 		src/render/colors.c\
 		src/render/minimap.c\
+		src/render/vertice.c\
 		src/render/render.c\
 		src/main.c
 

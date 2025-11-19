@@ -1,0 +1,70 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vertice.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: htrindad <htrindad@student.42lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/19 11:56:19 by htrindad          #+#    #+#             */
+/*   Updated: 2025/11/19 13:35:28 by htrindad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <Cub3d.h>
+
+static inline void	draw_vertice(t_paint paint, t_img *img, float dir_y, float dir_x)
+{
+	bool	up_y;
+	bool	up_x;
+	uint8_t	condition;
+	float	b[2];
+	float	e[2];
+
+	condition = 0;
+	b[0] = paint.begin.y;
+	b[1] = paint.begin.x;
+	e[0] = paint.end.y;
+	e[1] = paint.end.x;
+	if (b[0] < b[1])
+		up_y = false;
+	else
+		up_y = true;
+	if (b[1] < e[1])
+		up_x = false;
+	else
+		up_x = true;
+	while (condition != 3)
+	{
+		set_color(img, b[0], b[1], paint.color);
+		if (!(condition & (1 << 0)))
+			b[0] += dir_y;
+		if (!(condition & (1 << 1)))
+			b[1] += dir_x;
+		if (up_y)
+		{
+			if (b[0] <= e[0])
+				condition |= 1 << 0;
+		}
+		else
+			if (b[0] >= e[0])
+				condition |= 1 << 0;
+		if (up_x)
+		{
+			if (b[1] <= e[1])
+				condition |= 1 << 1;
+		}
+		else
+			if (b[1] >= e[1])
+				condition |= 1 << 1;
+		}
+}
+
+void	compass_setter(t_player *player, t_img *img)
+{
+	t_paint	paint;
+
+	paint = set_dimensions(ft_rgb(255, 255, 0), paint_init(),
+			set_limits(player->x, player->y),
+			set_limits(player->x + player->dir_x * C_SIZE, player->y + player->dir_y * C_SIZE));
+	draw_vertice(paint, img, player->dir_y, player->dir_x);
+}
