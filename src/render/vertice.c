@@ -6,7 +6,7 @@
 /*   By: htrindad <htrindad@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 11:56:19 by htrindad          #+#    #+#             */
-/*   Updated: 2025/11/19 13:35:28 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/20 12:22:16 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,10 @@ static inline void	draw_vertice(t_paint paint, t_img *img, float dir_y, float di
 	b[1] = paint.begin.x;
 	e[0] = paint.end.y;
 	e[1] = paint.end.x;
-	if (b[0] < b[1])
-		up_y = false;
-	else
-		up_y = true;
-	if (b[1] < e[1])
-		up_x = false;
-	else
-		up_x = true;
+	up_y = (b[0] > e[0]);
+	up_x = (b[1] > e[1]);
 	while (condition != 3)
 	{
-		set_color(img, b[0], b[1], paint.color);
-		if (!(condition & (1 << 0)))
-			b[0] += dir_y;
-		if (!(condition & (1 << 1)))
-			b[1] += dir_x;
 		if (up_y)
 		{
 			if (b[0] <= e[0])
@@ -56,7 +45,12 @@ static inline void	draw_vertice(t_paint paint, t_img *img, float dir_y, float di
 		else
 			if (b[1] >= e[1])
 				condition |= 1 << 1;
-		}
+		set_color(img, b[0], b[1], paint.color);
+		if (!(condition & (1 << 0)))
+			b[0] += dir_y;
+		if (!(condition & (1 << 1)))
+			b[1] += dir_x;
+	}
 }
 
 void	compass_setter(t_player *player, t_img *img)
@@ -64,7 +58,7 @@ void	compass_setter(t_player *player, t_img *img)
 	t_paint	paint;
 
 	paint = set_dimensions(ft_rgb(255, 255, 0), paint_init(),
-			set_limits(player->x, player->y),
-			set_limits(player->x + player->dir_x * C_SIZE, player->y + player->dir_y * C_SIZE));
+			set_limits(player->x * SQ_SIZE, player->y * SQ_SIZE),
+			set_limits(player->x * SQ_SIZE + player->dir_x * C_SIZE, player->y * SQ_SIZE + player->dir_y * C_SIZE));
 	draw_vertice(paint, img, player->dir_y, player->dir_x);
 }

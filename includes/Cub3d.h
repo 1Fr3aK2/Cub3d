@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/19 13:41:03 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/20 11:54:22 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,13 @@ typedef enum e_keys
 	TURN_R = 1 << 5
 }					t_keys;
 
-typedef struct s_compass
-{
-	float	y;
-	float	x;
-	float	ey;
-	float	ex;
-}
+//typedef struct s_compass
+//{
+//	float	y;
+//	float	x;
+//	float	ey;
+//	float	ex;
+//}
 
 typedef struct s_limits
 {

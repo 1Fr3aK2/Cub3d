@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 15:24:16 by htrindad          #+#    #+#             */
-/*   Updated: 2025/11/17 17:42:45 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/20 12:24:05 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	draw_player_pos(t_player *player, t_img *img)
 	x = player->x;
 	y = player->y;
 	draw_sq(set_dimensions(ft_rgb(0, 255, 0), paint_init(), set_limits(x
-				* SQ_SIZE, y * SQ_SIZE), set_limits(x * SQ_SIZE + (SQ_SIZE / 4),
+				* SQ_SIZE - (SQ_SIZE / 4), y * SQ_SIZE - (SQ_SIZE / 4)), set_limits(x * SQ_SIZE + (SQ_SIZE / 4),
 				y * SQ_SIZE + (SQ_SIZE / 4))), img);
 }
 
