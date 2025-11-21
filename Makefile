@@ -18,6 +18,8 @@ SRCS = src/errors/errors.c\
 		src/player/move.c\
 		src/player/render_player.c\
 		src/hooks/keys.c\
+		src/math/manipulate_rays.c\
+		src/math/rays.c\
 		src/render/paint.c\
 		src/render/colors.c\
 		src/render/minimap.c\
@@ -106,16 +108,16 @@ $(MLX):
 # -------------------
 clean:
 	@$(RM) -r $(OBJ_DIR)
-	@$(MAKE) -C $(LIBFT_DIR) clean --no-print-directory >/dev/null 2>&1
-	@$(MAKE) -C $(GNL_DIR) clean --no-print-directory >/dev/null 2>&1
-	@$(MAKE) -C $(MLX_DIR) clean >/dev/null 2>&1
+	@$(MAKE) clean -C $(LIBFT_DIR) --no-print-directory >/dev/null 2>&1
+	@$(MAKE) clean -C $(GNL_DIR) --no-print-directory >/dev/null 2>&1
+	@$(MAKE) clean -C $(MLX_DIR) >/dev/null 2>&1
 	@echo "$(RED)Objects and libraries cleaned!$(RESET)"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@$(MAKE) -C $(LIBFT_DIR) fclean --no-print-directory >/dev/null 2>&1
-	@$(MAKE) -C $(GNL_DIR) fclean --no-print-directory >/dev/null 2>&1
-	@$(MAKE) -C $(MLX_DIR) clean >/dev/null 2>&1
+	@$(MAKE) fclean -C $(LIBFT_DIR) --no-print-directory >/dev/null 2>&1
+	@$(MAKE) fclean -C $(GNL_DIR) --no-print-directory >/dev/null 2>&1
+	@$(MAKE) clean -C $(MLX_DIR) >/dev/null 2>&1
 	@echo "$(RED)$(NAME) removed!$(RESET)"
 
 re: fclean all

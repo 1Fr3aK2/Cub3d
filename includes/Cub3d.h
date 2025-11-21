@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/20 11:54:22 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/21 17:28:48 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # endif
 
 # ifndef SQ_SIZE
-#  define SQ_SIZE 13
+#  define SQ_SIZE 16
 # endif
 
 # ifndef ROT
@@ -82,6 +82,19 @@ typedef enum e_keys
 //	float	ey;
 //	float	ex;
 //}
+
+typedef struct s_rays
+{
+	float	y;
+	float	x;
+	float	a_tan;
+	float	plane;
+	float	off_y;
+	float	off_x;
+	size_t	map_y;
+	size_t	map_x;
+	size_t	dof;
+}		t_rays;
 
 typedef struct s_limits
 {
@@ -268,5 +281,13 @@ t_limits			set_limits(size_t x, size_t y);
 
 // src/render/vertice.c
 void				compass_setter(t_player *player, t_img *img);
+void				draw_vertice(t_paint paint, t_img *img, float dir_y, float dir_x);
+
+// src/math/manipulate_rays.c
+void				ray_cases(t_rays *rays, t_player *player);
+
+// src/math/rays.c
+t_rays				init_rays(t_player *player);
+void				ray_process(t_player *player, t_img *img, t_map *map);
 
 #endif
