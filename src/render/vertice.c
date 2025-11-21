@@ -6,11 +6,33 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 11:56:19 by htrindad          #+#    #+#             */
-/*   Updated: 2025/11/21 11:42:04 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/21 12:12:01 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
+
+static inline uint8_t	get_arr(float b[2], float e[2], bool up_y, bool up_x)
+{
+	uint8_t	condition;
+
+	condition = 0;
+	if (up_y)
+	{
+		if (b[0] <= e[0])
+			condition |= 1 << 0;
+	}
+	else if (b[0] >= e[0])
+		condition |= 1 << 0;
+	if (up_x)
+	{
+		if (b[1] <= e[1])
+			condition |= 1 << 1;
+	}
+	else if (b[1] >= e[1])
+		condition |= 1 << 1;
+	return (condition);
+}
 
 static inline void	draw_vertice(t_paint paint, t_img *img, float dir_y,
 		float dir_x)
@@ -30,20 +52,7 @@ static inline void	draw_vertice(t_paint paint, t_img *img, float dir_y,
 	up_x = (b[1] > e[1]);
 	while (condition != 3)
 	{
-		if (up_y)
-		{
-			if (b[0] <= e[0])
-				condition |= 1 << 0;
-		}
-		else if (b[0] >= e[0])
-			condition |= 1 << 0;
-		if (up_x)
-		{
-			if (b[1] <= e[1])
-				condition |= 1 << 1;
-		}
-		else if (b[1] >= e[1])
-			condition |= 1 << 1;
+		condition = get_arr(b, e, up_y, up_x);
 		set_color(img, b[0], b[1], paint.color);
 		if (!(condition & (1 << 0)))
 			b[0] += dir_y;
