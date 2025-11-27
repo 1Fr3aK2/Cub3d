@@ -18,6 +18,8 @@ SRCS = src/errors/errors.c\
 		src/player/move.c\
 		src/player/render_player.c\
 		src/hooks/keys.c\
+		src/math/init.c\
+		src/math/dda.c\
 		src/render/paint.c\
 		src/render/colors.c\
 		src/render/minimap.c\

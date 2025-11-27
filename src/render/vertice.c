@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 11:56:19 by htrindad          #+#    #+#             */
-/*   Updated: 2025/11/21 12:12:01 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/27 20:34:22 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static inline uint8_t	get_arr(float b[2], float e[2], bool up_y, bool up_x)
 	return (condition);
 }
 
-static inline void	draw_vertice(t_paint paint, t_img *img, float dir_y,
+void	draw_vertice(t_paint paint, t_img *img, float dir_y,
 		float dir_x)
 {
 	bool	up_y;
@@ -54,10 +54,8 @@ static inline void	draw_vertice(t_paint paint, t_img *img, float dir_y,
 	{
 		condition = get_arr(b, e, up_y, up_x);
 		set_color(img, b[0], b[1], paint.color);
-		if (!(condition & (1 << 0)))
-			b[0] += dir_y;
-		if (!(condition & (1 << 1)))
-			b[1] += dir_x;
+		b[0] += dir_y;
+		b[1] += dir_x;
 	}
 }
 
