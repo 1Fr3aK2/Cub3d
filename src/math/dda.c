@@ -6,7 +6,7 @@
 /*   By: htrindad <htrindad@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:58:21 by htrindad          #+#    #+#             */
-/*   Updated: 2025/11/28 14:42:59 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:07:14 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	dda(t_player *player, t_map *map, t_img *img)
 	t_rays	rays;
 	size_t	w;
 
-	rays = dda_init(player, FOV * (PI / 180) / 2);
+	rays = dda_init(player, player->plane_x - FOV * (PI / 180.0f) / 2.0f);
 	w = -1;
 	while (++w < WIN_W)
 	{
@@ -51,6 +51,6 @@ void	dda(t_player *player, t_map *map, t_img *img)
 			}
 			paint_ray(img, map, set_limits(player->x, player->y), rays.theta);
 		}
-		rays = dda_init(player, rays.theta + (float)FOV / (float)WIN_W);
+		rays = dda_init(player, rays.theta + FOV * PI / 180.0f / WIN_W);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/28 14:42:06 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:07:32 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@
 # define EAST 'E'
 # define PLAYER "NSWE"
 # define PI 3.1415926535
-# define TRACE 0.03125
+# define TRACE 0.1
 
 # define MAP_S 64
 
