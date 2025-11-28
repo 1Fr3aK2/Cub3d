@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/20 11:54:22 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/28 15:07:32 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 # endif
 # ifndef WIN_H
 #  define WIN_H 600
+# endif
+# ifndef FOV
+#  define FOV 90
 # endif
 
 # ifndef MOVE_SPEED
@@ -59,6 +62,7 @@
 # define EAST 'E'
 # define PLAYER "NSWE"
 # define PI 3.1415926535
+# define TRACE 0.1
 
 # define MAP_S 64
 
@@ -75,19 +79,28 @@ typedef enum e_keys
 	TURN_R = 1 << 5
 }					t_keys;
 
-//typedef struct s_compass
-//{
-//	float	y;
-//	float	x;
-//	float	ey;
-//	float	ex;
-//}
+typedef struct s_rays
+{
+	float	y;
+	float	x;
+	float	dir_y;
+	float	dir_x;
+	float	dy;
+	float	dx;
+	float	dist_y;
+	float	dist_x;
+	float	theta;
+	int		sy;
+	int		sx;
+	int		map_y;
+	int		map_x;
+}		t_rays;
 
 typedef struct s_limits
 {
-	size_t			x;
-	size_t			y;
-}					t_limits;
+	float	x;
+	float	y;
+}			t_limits;
 
 typedef struct s_paint
 {
@@ -264,9 +277,15 @@ void				set_color(t_img *img, size_t y, size_t x, t_rgb cc);
 t_paint				paint_init(void);
 t_paint				set_dimensions(t_rgb color, t_paint paint, t_limits begin,
 						t_limits end);
-t_limits			set_limits(size_t x, size_t y);
+t_limits			set_limits(float x, float y);
 
 // src/render/vertice.c
 void				compass_setter(t_player *player, t_img *img);
+
+// src/math/init.c
+t_rays				dda_init(t_player *player, float angle);
+
+// src/math/dda.c
+void				dda(t_player *player, t_map *map, t_img *img);
 
 #endif

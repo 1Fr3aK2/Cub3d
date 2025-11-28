@@ -6,13 +6,13 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 12:47:57 by htrindad          #+#    #+#             */
-/*   Updated: 2025/11/17 14:35:47 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/27 18:57:34 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
 
-t_limits	set_limits(size_t x, size_t y)
+t_limits	set_limits(float x, float y)
 {
 	t_limits	limit;
 

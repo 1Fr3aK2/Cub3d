@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:38:38 by htrindad          #+#    #+#             */
-/*   Updated: 2025/11/19 12:57:41 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/11/28 14:05:57 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ int	render(t_data *data)
 	set_fc(data, img);
 	draw_minimap(data, img);
 	draw_player_pos(&data->player, img);
+	dda(&data->player, &data->map, img);
 	compass_setter(&data->player, img);
+	dda(&data->player, &data->map, img);
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.win, data->mlx.img.img, 0,
 		0);
 	return (0);
