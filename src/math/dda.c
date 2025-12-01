@@ -6,7 +6,7 @@
 /*   By: htrindad <htrindad@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:58:21 by htrindad          #+#    #+#             */
-/*   Updated: 2025/12/01 17:03:53 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/01 17:05:33 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static inline void	paint_ray(t_img *img, t_map *map, t_limits start, float angle
 		start.x += inc[1] * TRACE;
 		if (is_wall(map, start.y, checker.x)
 			|| is_wall(map, checker.y, start.x)
-			|| is_wall(map, start.y, start.x))
+			|| is_wall(map, start.y, checker.x))
 			break ;
 	}
 }
