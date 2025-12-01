@@ -6,7 +6,7 @@
 /*   By: htrindad <htrindad@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:58:21 by htrindad          #+#    #+#             */
-/*   Updated: 2025/12/01 16:45:15 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/01 17:01:53 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,16 @@ static inline void	paint_ray(t_img *img, t_map *map, t_limits start, float angle
 
 	inc[0] = sin(angle);
 	inc[1] = cos(angle);
-	while (!is_wall(map, start.y, start.x))
+	while (1)
 	{
 		checker = start;
 		set_color(img, start.y * SQ_SIZE, start.x * SQ_SIZE, 255);
-		if (is_wall(map, checker.y + inc[0] * TRACE, checker.x)
-			|| is_wall(map, checker.y, checker.x + inc[0] * TRACE))
-			break ;
 		start.y += inc[0] * TRACE;
 		start.x += inc[1] * TRACE;
+		if (is_wall(map, checker.y + inc[0] * TRACE, checker.x)
+			|| is_wall(map, checker.y, checker.x + inc[0] * TRACE)
+			|| is_wall(map, start.y, start.x))
+			break ;
 	}
 }
 
