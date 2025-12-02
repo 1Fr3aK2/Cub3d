@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/01 16:37:00 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/02 16:13:32 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,16 @@
 # define MAP_S 64
 
 typedef uint32_t	t_rgb;
+
+typedef enum e_assets
+{
+	FLOOR,
+	CEILLING,
+	E,
+	W,
+	N,
+	S
+}			t_assets;
 
 typedef enum e_keys
 {
@@ -159,6 +169,7 @@ typedef struct s_player
 
 typedef struct s_data
 {
+	t_assets		assets;
 	t_img			img;
 	t_mlx			mlx;
 	t_player		player;
@@ -167,8 +178,7 @@ typedef struct s_data
 	uint8_t			keys;
 }					t_data;
 
-void				rotate_right(t_data *data);
-void				rotate_left(t_data *data);
+
 // src/textures/set_textures.c
 bool				check_load_textures(char *floor, char *ceiling, t_map *map);
 bool				set_texture(char *line, char **floor, char **ceiling,
@@ -210,6 +220,7 @@ bool				check_textures(char *floor, char *ceiling, t_map *map);
 bool				check_rgb(char *rgb);
 bool				check_range(int nb);
 bool				is_player_char(char c);
+
 // src/parsing/map/get_map/get_map.c
 void				get_lines(t_data *data, char *file_name);
 void				start_buffer(t_data *data);
@@ -247,6 +258,8 @@ void				move_right(t_data *data);
 void				draw_player_pos(t_player *player, t_img *img);
 void				set_bit(uint8_t *var, int bit, bool value);
 void				movements(t_data *data);
+void				rotate_right(t_data *data);
+void				rotate_left(t_data *data);
 
 // src/utils/utils.c
 void				close_fds(int i);
