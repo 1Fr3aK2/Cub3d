@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/02 16:13:32 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/02 17:01:53 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,10 @@ typedef uint32_t	t_rgb;
 
 typedef enum e_assets
 {
-	FLOOR,
-	CEILLING,
-	E,
-	W,
-	N,
-	S
+	EA,
+	WE,
+	NO,
+	SO
 }			t_assets;
 
 typedef enum e_keys
@@ -142,21 +140,26 @@ typedef struct s_mlx
 	t_img			img;
 }					t_mlx;
 
+typedef struct s_direction
+{
+	char *id;
+	char *path;
+}   t_direction;
+
 typedef struct s_map
 {
 	char			**buffer;
 	char			**map;
 	char			**temp_map;
-	char			*north;
-	char			*south;
-	char			*west;
-	char			*east;
 	int				height;
+	t_direction textures[4];
 	t_rgb			rgb_floor;
 	t_rgb			rgb_ceiling;
 	size_t			max_w;
 	size_t			max_h;
 }					t_map;
+
+
 
 typedef struct s_player
 {
@@ -181,8 +184,7 @@ typedef struct s_data
 
 // src/textures/set_textures.c
 bool				check_load_textures(char *floor, char *ceiling, t_map *map);
-bool				set_texture(char *line, char **floor, char **ceiling,
-						t_map *map);
+bool set_texture(char *line, t_map *map);
 
 // src/init/init.c
 void				init_struct(t_data *data);
