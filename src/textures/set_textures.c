@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 02:32:49 by rafael            #+#    #+#             */
-/*   Updated: 2025/12/03 17:04:13 by rafael           ###   ########.fr       */
+/*   Updated: 2025/12/03 17:30:12 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,36 +41,55 @@ static int	get_asset_type(char *id)
 	return (-1);
 }
 
+static int	handle_fc(char **split, char **floor, char **ceiling)
+{
+	if (ft_strncmp(split[0], "F", 2) == 0)
+	{
+		if (*floor != NULL)
+			return (0);
+		*floor = ft_strdup(split[1]);
+		if (*floor != NULL)
+			return (1);
+		return (0);
+	}
+	if (ft_strncmp(split[0], "C", 2) == 0)
+	{
+		if (*ceiling != NULL)
+			return (0);
+		*ceiling = ft_strdup(split[1]);
+		if (*ceiling != NULL)
+			return (1);
+		return (0);
+	}
+	return (-1);
+}
+
+static bool	handle_texture(t_map *map, char **split)
+{
+	int	type;
+
+	type = get_asset_type(split[0]);
+	if (type < 0 || map->textures[type].path != NULL)
+		return (false);
+	map->textures[type].id = ft_strdup(split[0]);
+	map->textures[type].path = ft_strdup(split[1]);
+	return (map->textures[type].path != NULL);
+}
+
 bool	set_texture(char *line, char **floor, char **ceiling, t_map *map)
 {
 	char	**split;
-	int		type;
+	int		fc;
 
 	if (!line || !map)
 		return (false);
 	split = ft_split(line, ' ');
 	if (!split || !split[0] || !split[1] || ft_stralen(split) != 2)
 		return (free_arr(split), false);
-	if (ft_strncmp(split[0], "F", 2) == 0)
-	{
-		if (*floor != NULL)
-			return (free_arr(split), false);
-		*floor = ft_strdup(split[1]);
-		return (free_arr(split), *floor != NULL);
-	}
-	if (ft_strncmp(split[0], "C", 2) == 0)
-	{
-		if (*ceiling != NULL)
-			return (free_arr(split), false);
-		*ceiling = ft_strdup(split[1]);
-		return (free_arr(split), *ceiling != NULL);
-	}
-	type = get_asset_type(split[0]);
-	if (type < 0)
+	fc = handle_fc(split, floor, ceiling);
+	if (fc != -1)
+		return (free_arr(split), fc);
+	if (!handle_texture(map, split))
 		return (free_arr(split), false);
-	if (map->textures[type].path != NULL)
-		return (free_arr(split), false);
-	map->textures[type].id = ft_strdup(split[0]);
-	map->textures[type].path = ft_strdup(split[1]);
-	return (free_arr(split), map->textures[type].path != NULL);
+	return (free_arr(split), true);
 }
