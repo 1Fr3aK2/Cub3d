@@ -3,40 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:54:45 by rafael            #+#    #+#             */
-/*   Updated: 2025/12/02 17:04:31 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/03 00:35:52 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
 
-bool	parse_map(t_data *data, char **floor, char **ceiling)
-{
-	int	i;
 
-	if (!data)
-		return (exit_error(data, "ERROR:\nparse_map, invalid data pointer"), false);
+bool parse_map(t_data *data, char **floor, char **ceiling)
+{
+    int i;
+	char **split;
+	
+	split = NULL;
 	i = 0;
-	while (!check_load_textures(*floor, *ceiling, &data->map))
-	{
-		if (!data->map.buffer[i])
-			exit_error(data, "ERROR:\nparse_map, reading texture!");
-		if (data->map.buffer[i][0] == '\0')
-		{
-			i++;
-			continue ;
-		}
-		if (!set_texture(replace_tabs(data->map.buffer[i]), &data->map))
-			exit_error(data, "ERROR:\nparse_map, reading textures!");
-		i++;
-	}
-	if (!set_map(&data->map, i))
-		return (exit_error(data, "ERROR:\nparse_map, error setting map!"), false);
-	data->map.height = ft_stralen(data->map.map);
-	return (true);
+    if (!data)
+        return (exit_error(data, "ERROR:\nparse_map, invalid data pointer"), false);
+    while (!check_load_textures(*floor, *ceiling, &data->map))
+    {
+        if (!data->map.buffer[i])
+            exit_error(data, "ERROR:\nparse_map, reading texture!");
+        if (data->map.buffer[i][0] == '\0')
+        {
+            i++;
+            continue;
+        }
+        if (data->map.buffer[i][0] == 'F' && !*floor)
+        {
+            char **sp = ft_split(data->map.buffer[i], ' ');
+            if (sp && sp[1])
+                *floor = ft_strdup(sp[1]);
+            free_arr(sp);
+            i++;
+            continue;
+        }
+        if (data->map.buffer[i][0] == 'C' && !*ceiling)
+        {
+            split = ft_split(data->map.buffer[i], ' ');
+            if (split && split[1])
+                *ceiling = ft_strdup(split[1]);
+            free_arr(split);
+            i++;
+            continue;
+        }
+        if (!set_texture(replace_tabs(data->map.buffer[i]), &data->map))
+            exit_error(data, "ERROR:\nparse_map, reading textures!");
+        i++;
+    }
+    if (!set_map(&data->map, i))
+        return (exit_error(data, "ERROR:\nparse_map, error setting map!"), false);
+    data->map.height = ft_stralen(data->map.map);
+    return (true);
 }
+
 
 
 bool	set_map(t_map *map, int i)
