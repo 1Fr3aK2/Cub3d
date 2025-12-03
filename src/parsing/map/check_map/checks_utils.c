@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 13:37:35 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/02 16:57:35 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:05:46 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	check_textures(char *floor, char *ceiling, t_map *map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 4)
@@ -31,7 +31,6 @@ bool	check_textures(char *floor, char *ceiling, t_map *map)
 		return (false);
 	return (true);
 }
-
 
 bool	check_rgb(char *rgb)
 {

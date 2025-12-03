@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/02 17:01:53 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:06:38 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef enum e_assets
 	WE,
 	NO,
 	SO
-}			t_assets;
+}					t_assets;
 
 typedef enum e_keys
 {
@@ -89,26 +89,26 @@ typedef enum e_keys
 
 typedef struct s_rays
 {
-	float	y;
-	float	x;
-	float	dir_y;
-	float	dir_x;
-	float	dy;
-	float	dx;
-	float	dist_y;
-	float	dist_x;
-	float	theta;
-	int		sy;
-	int		sx;
-	int		map_y;
-	int		map_x;
-}		t_rays;
+	float			y;
+	float			x;
+	float			dir_y;
+	float			dir_x;
+	float			dy;
+	float			dx;
+	float			dist_y;
+	float			dist_x;
+	float			theta;
+	int				sy;
+	int				sx;
+	int				map_y;
+	int				map_x;
+}					t_rays;
 
 typedef struct s_limits
 {
-	float	x;
-	float	y;
-}			t_limits;
+	float			x;
+	float			y;
+}					t_limits;
 
 typedef struct s_paint
 {
@@ -142,9 +142,9 @@ typedef struct s_mlx
 
 typedef struct s_direction
 {
-	char *id;
-	char *path;
-}   t_direction;
+	char			*id;
+	char			*path;
+}					t_direction;
 
 typedef struct s_map
 {
@@ -152,14 +152,12 @@ typedef struct s_map
 	char			**map;
 	char			**temp_map;
 	int				height;
-	t_direction textures[4];
+	t_direction		textures[4];
 	t_rgb			rgb_floor;
 	t_rgb			rgb_ceiling;
 	size_t			max_w;
 	size_t			max_h;
 }					t_map;
-
-
 
 typedef struct s_player
 {
@@ -181,10 +179,10 @@ typedef struct s_data
 	uint8_t			keys;
 }					t_data;
 
-
 // src/textures/set_textures.c
 bool				check_load_textures(char *floor, char *ceiling, t_map *map);
-bool set_texture(char *line, t_map *map);
+bool				set_texture(char *line, char **floor, char **ceiling,
+						t_map *map);
 
 // src/init/init.c
 void				init_struct(t_data *data);

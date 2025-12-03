@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 13:26:56 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/02 16:59:34 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:04:57 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	free_arr(char **arr)
 
 void	free_map(t_map *map)
 {
-	int i;
+	int	i;
 
 	if (!map)
 		return ;
@@ -49,7 +49,6 @@ void	free_map(t_map *map)
 	if (map->temp_map)
 		free_arr(map->temp_map);
 }
-
 
 void	free_file(t_file *file)
 {
