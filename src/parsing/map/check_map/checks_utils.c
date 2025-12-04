@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 13:37:35 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/11 15:19:32 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:05:46 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 bool	check_textures(char *floor, char *ceiling, t_map *map)
 {
-	if (!verify_texture(map->east))
-		return (false);
-	if (!verify_texture(map->north))
-		return (false);
-	if (!verify_texture(map->south))
-		return (false);
-	if (!verify_texture(map->west))
-		return (false);
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (!map->textures[i].path)
+			return (false);
+		if (!verify_texture(map->textures[i].path))
+			return (false);
+		i++;
+	}
 	if (!check_rgb(floor))
 		return (false);
 	if (!check_rgb(ceiling))

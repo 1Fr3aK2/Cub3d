@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 13:26:56 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/11 13:34:42 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:04:57 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,21 @@ void	free_arr(char **arr)
 
 void	free_map(t_map *map)
 {
+	int	i;
+
 	if (!map)
 		return ;
 	if (map->buffer)
 		free_arr(map->buffer);
-	if (map->north)
-		free(map->north);
-	if (map->south)
-		free(map->south);
-	if (map->east)
-		free(map->east);
-	if (map->west)
-		free(map->west);
+	i = 0;
+	while (i < 4)
+	{
+		if (map->textures[i].id)
+			free(map->textures[i].id);
+		if (map->textures[i].path)
+			free(map->textures[i].path);
+		i++;
+	}
 	if (map->temp_map)
 		free_arr(map->temp_map);
 }
