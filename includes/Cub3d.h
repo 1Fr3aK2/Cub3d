@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/03 17:06:38 by rafael           ###   ########.fr       */
+/*   Updated: 2025/12/01 16:37:00 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,6 @@
 
 typedef uint32_t	t_rgb;
 
-typedef enum e_assets
-{
-	EA,
-	WE,
-	NO,
-	SO
-}					t_assets;
-
 typedef enum e_keys
 {
 	NONE = 0,
@@ -89,26 +81,26 @@ typedef enum e_keys
 
 typedef struct s_rays
 {
-	float			y;
-	float			x;
-	float			dir_y;
-	float			dir_x;
-	float			dy;
-	float			dx;
-	float			dist_y;
-	float			dist_x;
-	float			theta;
-	int				sy;
-	int				sx;
-	int				map_y;
-	int				map_x;
-}					t_rays;
+	float	y;
+	float	x;
+	float	dir_y;
+	float	dir_x;
+	float	dy;
+	float	dx;
+	float	dist_y;
+	float	dist_x;
+	float	theta;
+	int		sy;
+	int		sx;
+	int		map_y;
+	int		map_x;
+}		t_rays;
 
 typedef struct s_limits
 {
-	float			x;
-	float			y;
-}					t_limits;
+	float	x;
+	float	y;
+}			t_limits;
 
 typedef struct s_paint
 {
@@ -140,19 +132,16 @@ typedef struct s_mlx
 	t_img			img;
 }					t_mlx;
 
-typedef struct s_direction
-{
-	char			*id;
-	char			*path;
-}					t_direction;
-
 typedef struct s_map
 {
 	char			**buffer;
 	char			**map;
 	char			**temp_map;
+	char			*north;
+	char			*south;
+	char			*west;
+	char			*east;
 	int				height;
-	t_direction		textures[4];
 	t_rgb			rgb_floor;
 	t_rgb			rgb_ceiling;
 	size_t			max_w;
@@ -170,7 +159,6 @@ typedef struct s_player
 
 typedef struct s_data
 {
-	t_assets		assets;
 	t_img			img;
 	t_mlx			mlx;
 	t_player		player;
@@ -179,6 +167,8 @@ typedef struct s_data
 	uint8_t			keys;
 }					t_data;
 
+void				rotate_right(t_data *data);
+void				rotate_left(t_data *data);
 // src/textures/set_textures.c
 bool				check_load_textures(char *floor, char *ceiling, t_map *map);
 bool				set_texture(char *line, char **floor, char **ceiling,
@@ -220,7 +210,6 @@ bool				check_textures(char *floor, char *ceiling, t_map *map);
 bool				check_rgb(char *rgb);
 bool				check_range(int nb);
 bool				is_player_char(char c);
-
 // src/parsing/map/get_map/get_map.c
 void				get_lines(t_data *data, char *file_name);
 void				start_buffer(t_data *data);
@@ -258,8 +247,6 @@ void				move_right(t_data *data);
 void				draw_player_pos(t_player *player, t_img *img);
 void				set_bit(uint8_t *var, int bit, bool value);
 void				movements(t_data *data);
-void				rotate_right(t_data *data);
-void				rotate_left(t_data *data);
 
 // src/utils/utils.c
 void				close_fds(int i);
