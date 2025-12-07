@@ -3,93 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   set_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 02:32:49 by rafael            #+#    #+#             */
-/*   Updated: 2025/12/03 17:30:12 by rafael           ###   ########.fr       */
+/*   Updated: 2025/11/11 13:25:38 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cub3d.h"
+#include <Cub3d.h>
 
 bool	check_load_textures(char *floor, char *ceiling, t_map *map)
 {
-	int	i;
-
 	if (!map || !floor || !ceiling)
 		return (false);
-	i = 0;
-	while (i < 4)
-	{
-		if (!map->textures[i].path)
-			return (false);
-		i++;
-	}
-	return (true);
-}
-
-static int	get_asset_type(char *id)
-{
-	if (!ft_strncmp(id, "EA", 2))
-		return (EA);
-	if (!ft_strncmp(id, "WE", 2))
-		return (WE);
-	if (!ft_strncmp(id, "NO", 2))
-		return (NO);
-	if (!ft_strncmp(id, "SO", 2))
-		return (SO);
-	return (-1);
-}
-
-static int	handle_fc(char **split, char **floor, char **ceiling)
-{
-	if (ft_strncmp(split[0], "F", 2) == 0)
-	{
-		if (*floor != NULL)
-			return (0);
-		*floor = ft_strdup(split[1]);
-		if (*floor != NULL)
-			return (1);
-		return (0);
-	}
-	if (ft_strncmp(split[0], "C", 2) == 0)
-	{
-		if (*ceiling != NULL)
-			return (0);
-		*ceiling = ft_strdup(split[1]);
-		if (*ceiling != NULL)
-			return (1);
-		return (0);
-	}
-	return (-1);
-}
-
-static bool	handle_texture(t_map *map, char **split)
-{
-	int	type;
-
-	type = get_asset_type(split[0]);
-	if (type < 0 || map->textures[type].path != NULL)
+	if (!map->north || !map->south || !map->east || !map->east)
 		return (false);
-	map->textures[type].id = ft_strdup(split[0]);
-	map->textures[type].path = ft_strdup(split[1]);
-	return (map->textures[type].path != NULL);
+	if (!ceiling || !floor)
+		return (false);
+	return (true);
 }
 
 bool	set_texture(char *line, char **floor, char **ceiling, t_map *map)
 {
 	char	**split;
-	int		fc;
 
-	if (!line || !map)
-		return (false);
 	split = ft_split(line, ' ');
-	if (!split || !split[0] || !split[1] || ft_stralen(split) != 2)
-		return (free_arr(split), false);
-	fc = handle_fc(split, floor, ceiling);
-	if (fc != -1)
-		return (free_arr(split), fc);
-	if (!handle_texture(map, split))
-		return (free_arr(split), false);
+	if (!split)
+		return (ft_putendl_fd("ALLOC ERROR", 2), false);
+	if (split[0])
+	{
+		if (split[1] == NULL || ft_stralen(split) != 2)
+			return (free_arr(split), false);
+		if (map->north == NULL && ft_strncmp(split[0], "NO", 3) == 0)
+			map->north = ft_strdup(split[1]);
+		else if (map->south == NULL && ft_strncmp(split[0], "SO", 3) == 0)
+			map->south = ft_strdup(split[1]);
+		else if (map->west == NULL && ft_strncmp(split[0], "WE", 3) == 0)
+			map->west = ft_strdup(split[1]);
+		else if (map->east == NULL && ft_strncmp(split[0], "EA", 3) == 0)
+			map->east = ft_strdup(split[1]);
+		else if (*floor == NULL && ft_strncmp(split[0], "F", 2) == 0)
+			*floor = ft_strdup(split[1]);
+		else if (*ceiling == NULL && ft_strncmp(split[0], "C", 2) == 0)
+			*ceiling = ft_strdup(split[1]);
+		else
+			return (free_arr(split), false);
+	}
 	return (free_arr(split), true);
 }

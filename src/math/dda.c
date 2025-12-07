@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: htrindad <htrindad@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:58:21 by htrindad          #+#    #+#             */
-/*   Updated: 2025/12/02 15:37:28 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/01 17:06:54 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
 
-static inline void	paint_ray(t_img *img, t_map *map, t_limits start,
-		float angle)
+static inline void	paint_ray(t_img *img, t_map *map, t_limits start, float angle)
 {
-	float		inc[2];
+	float			inc[2];
 	t_limits	checker;
 
 	inc[0] = sin(angle);
@@ -26,7 +25,8 @@ static inline void	paint_ray(t_img *img, t_map *map, t_limits start,
 		set_color(img, start.y * SQ_SIZE, start.x * SQ_SIZE, 255);
 		start.y += inc[0] * TRACE;
 		start.x += inc[1] * TRACE;
-		if (is_wall(map, start.y, start.x) || is_wall(map, checker.y, start.x)
+		if (is_wall(map, start.y, start.x)
+			|| is_wall(map, checker.y, start.x)
 			|| is_wall(map, start.y, checker.x))
 			break ;
 	}
