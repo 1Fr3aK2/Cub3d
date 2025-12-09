@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 02:32:49 by rafael            #+#    #+#             */
-/*   Updated: 2025/12/09 18:20:08 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/09 23:33:01 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,8 @@ static bool	load_texture(t_img *img, char *path)
 	img->img = mlx_xpm_file_to_image(&data_s()->mlx.mlx, img->path, &img->width,
 			&img->height);
 	if (!img->img)
-	{
 		return (false);
-	}
-	img->img_adr = mlx_get_data_addr(img->img, &img->bits_pixel,
+	img->pixel_ptr = mlx_get_data_addr(img->img, &img->bits_pixel,
 			&img->line_len, &img->end);
 	if (!img->pixel_ptr)
 		return (false);
