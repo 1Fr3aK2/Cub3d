@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/09 16:47:05 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/09 18:05:38 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef enum e_texture_type
 	EA = 2,
 	WE = 3,
 	TEXTURE_COUNT = 4
-}	t_texture_type;
+}					t_texture_type;
 
 typedef enum e_keys
 {
@@ -88,29 +88,28 @@ typedef enum e_keys
 	TURN_R = 1 << 5
 }					t_keys;
 
-
 typedef struct s_rays
 {
-	float	y;
-	float	x;
-	float	dir_y;
-	float	dir_x;
-	float	dy;
-	float	dx;
-	float	dist_y;
-	float	dist_x;
-	float	theta;
-	int		sy;
-	int		sx;
-	int		map_y;
-	int		map_x;
-}		t_rays;
+	float			y;
+	float			x;
+	float			dir_y;
+	float			dir_x;
+	float			dy;
+	float			dx;
+	float			dist_y;
+	float			dist_x;
+	float			theta;
+	int				sy;
+	int				sx;
+	int				map_y;
+	int				map_x;
+}					t_rays;
 
 typedef struct s_limits
 {
-	float	x;
-	float	y;
-}			t_limits;
+	float			x;
+	float			y;
+}					t_limits;
 
 typedef struct s_paint
 {
@@ -133,9 +132,10 @@ typedef struct s_img
 	int				bits_pixel;
 	int				end;
 	int				line_len;
-	int		width;
-	int		height; 
-	char *path;
+	int				width;
+	int				height;
+	char			*path;
+	void			*img_adr;
 }					t_img;
 
 typedef struct s_mlx
@@ -147,8 +147,8 @@ typedef struct s_mlx
 
 typedef struct s_assets
 {
-	t_img	textures[4];
-}	t_assets;
+	t_img			textures[TEXTURE_COUNT];
+}					t_assets;
 
 typedef struct s_map
 {
@@ -156,10 +156,6 @@ typedef struct s_map
 	char			**buffer;
 	char			**map;
 	char			**temp_map;
-	/* char			*north;
-	char			*south;
-	char			*west;
-	char			*east; */
 	int				height;
 	t_rgb			rgb_floor;
 	t_rgb			rgb_ceiling;
@@ -176,7 +172,6 @@ typedef struct s_player
 	float			dir_y;
 	float			plane_x;
 }					t_player;
-
 
 typedef struct s_data
 {

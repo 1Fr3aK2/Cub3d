@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:39:30 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/09 17:30:16 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/09 18:09:44 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ bool	check_valid_chars(t_map *map)
 		j = 0;
 		while (map->map[i][j])
 		{
-			printf("%c", map->map[i][j]);
 			k = 0;
 			while (VALID_CHARS[k] && map->map[i][j] != VALID_CHARS[k])
 				k++;
@@ -51,7 +50,6 @@ bool	check_valid_chars(t_map *map)
 				return (false);
 			j++;
 		}
-		printf("\n");
 		i++;
 	}
 	return (true);
