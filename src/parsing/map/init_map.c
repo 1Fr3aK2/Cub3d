@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:11:03 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/09 17:00:32 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/09 17:29:57 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	init_map(char *file, t_data *data)
 	get_map(file, &floor, &ceiling, data);
 	if (!check_map(floor, ceiling, &data->map))
 	{
-		printf("aqui\n");
 		if (floor)
 			free(floor);
 		if (ceiling)

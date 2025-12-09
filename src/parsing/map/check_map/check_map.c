@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:39:30 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/09 17:06:04 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/09 17:30:16 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ bool	check_map(char *floor, char *ceiling, t_map *map)
 	if (!floor || !ceiling || !map)
 		return (false);
 	if (!check_valid_chars(map))
-	{
-		printf("lol\n");
 		return (false);
-	}
 	if (!check_player(map))
 		return (false);
 	if (!alloc_temp_map(map))
