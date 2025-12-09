@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:39:30 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/11 15:19:49 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/09 17:06:04 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ bool	check_map(char *floor, char *ceiling, t_map *map)
 	if (!floor || !ceiling || !map)
 		return (false);
 	if (!check_valid_chars(map))
+	{
+		printf("lol\n");
 		return (false);
+	}
 	if (!check_player(map))
 		return (false);
 	if (!alloc_temp_map(map))
@@ -43,6 +46,7 @@ bool	check_valid_chars(t_map *map)
 		j = 0;
 		while (map->map[i][j])
 		{
+			printf("%c", map->map[i][j]);
 			k = 0;
 			while (VALID_CHARS[k] && map->map[i][j] != VALID_CHARS[k])
 				k++;
@@ -50,6 +54,7 @@ bool	check_valid_chars(t_map *map)
 				return (false);
 			j++;
 		}
+		printf("\n");
 		i++;
 	}
 	return (true);

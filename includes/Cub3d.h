@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/08 12:41:53 by rafael           ###   ########.fr       */
+/*   Updated: 2025/12/09 16:47:05 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,15 @@
 
 typedef uint32_t	t_rgb;
 
+typedef enum e_texture_type
+{
+	N = 0,
+	S = 1,
+	EA = 2,
+	WE = 3,
+	TEXTURE_COUNT = 4
+}	t_texture_type;
+
 typedef enum e_keys
 {
 	NONE = 0,
@@ -78,16 +87,6 @@ typedef enum e_keys
 	TURN_L = 1 << 4,
 	TURN_R = 1 << 5
 }					t_keys;
-
-
-typedef enum e_texture_type
-{
-	N = 0,
-	S = 1,
-	EA = 2,
-	WE = 3,
-	TEXTURE_COUNT = 4
-}	t_texture_type;
 
 
 typedef struct s_rays
@@ -146,8 +145,14 @@ typedef struct s_mlx
 	t_img			img;
 }					t_mlx;
 
+typedef struct s_assets
+{
+	t_img	textures[4];
+}	t_assets;
+
 typedef struct s_map
 {
+	t_assets		assets;
 	char			**buffer;
 	char			**map;
 	char			**temp_map;
@@ -172,10 +177,6 @@ typedef struct s_player
 	float			plane_x;
 }					t_player;
 
-typedef struct s_assets
-{
-	t_img	textures[4];
-}	t_assets;
 
 typedef struct s_data
 {
