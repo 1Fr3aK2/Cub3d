@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 02:32:49 by rafael            #+#    #+#             */
-/*   Updated: 2025/12/09 18:12:49 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/09 18:20:08 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static bool	load_texture(t_img *img, char *path)
 	{
 		return (false);
 	}
-	img->pixel_ptr = mlx_get_data_addr(img->img, &img->bits_pixel,
+	img->img_adr = mlx_get_data_addr(img->img, &img->bits_pixel,
 			&img->line_len, &img->end);
 	if (!img->pixel_ptr)
 		return (false);
