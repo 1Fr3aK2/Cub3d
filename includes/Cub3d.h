@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/09 23:33:17 by rafael           ###   ########.fr       */
+/*   Updated: 2025/12/10 16:16:50 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,12 +129,12 @@ typedef struct s_img
 {
 	void			*img;
 	char			*pixel_ptr;
+	char			*path;
 	int				bits_pixel;
 	int				end;
 	int				line_len;
 	int				width;
 	int				height;
-	char			*path;
 }					t_img;
 
 typedef struct s_mlx
@@ -183,8 +183,7 @@ typedef struct s_data
 	uint8_t			keys;
 }					t_data;
 
-void				rotate_right(t_data *data);
-void				rotate_left(t_data *data);
+
 // src/textures/set_textures.c
 bool				check_load_textures(char *floor, char *ceiling, t_map *map);
 bool				set_texture(char *line, char **floor, char **ceiling,
@@ -263,6 +262,8 @@ void				move_right(t_data *data);
 void				draw_player_pos(t_player *player, t_img *img);
 void				set_bit(uint8_t *var, int bit, bool value);
 void				movements(t_data *data);
+void				rotate_right(t_data *data);
+void				rotate_left(t_data *data);
 
 // src/utils/utils.c
 void				close_fds(int i);
