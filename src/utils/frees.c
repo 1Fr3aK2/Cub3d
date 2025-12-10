@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 13:26:56 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/11 13:34:42 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/09 16:59:27 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ void	free_map(t_map *map)
 		return ;
 	if (map->buffer)
 		free_arr(map->buffer);
-	if (map->north)
-		free(map->north);
-	if (map->south)
-		free(map->south);
-	if (map->east)
-		free(map->east);
-	if (map->west)
-		free(map->west);
+	if (map->assets.textures[N].path)
+		free(map->assets.textures[N].path);
+	if (map->assets.textures[S].path)
+		free(map->assets.textures[S].path);
+	if (map->assets.textures[EA].path)
+		free(map->assets.textures[EA].path);
+	if (map->assets.textures[WE].path)
+		free(map->assets.textures[WE].path);
 	if (map->temp_map)
 		free_arr(map->temp_map);
 }

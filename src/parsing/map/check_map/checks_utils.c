@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 13:37:35 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/11 15:19:32 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/09 16:57:41 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 bool	check_textures(char *floor, char *ceiling, t_map *map)
 {
-	if (!verify_texture(map->east))
+	if (!verify_texture(map->assets.textures[EA].path))
 		return (false);
-	if (!verify_texture(map->north))
+	if (!verify_texture(map->assets.textures[WE].path))
 		return (false);
-	if (!verify_texture(map->south))
+	if (!verify_texture(map->assets.textures[S].path))
 		return (false);
-	if (!verify_texture(map->west))
+	if (!verify_texture(map->assets.textures[N].path))
 		return (false);
 	if (!check_rgb(floor))
 		return (false);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/01 16:37:00 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/09 23:33:17 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,15 @@
 
 typedef uint32_t	t_rgb;
 
+typedef enum e_texture_type
+{
+	N = 0,
+	S = 1,
+	EA = 2,
+	WE = 3,
+	TEXTURE_COUNT = 4
+}					t_texture_type;
+
 typedef enum e_keys
 {
 	NONE = 0,
@@ -81,26 +90,26 @@ typedef enum e_keys
 
 typedef struct s_rays
 {
-	float	y;
-	float	x;
-	float	dir_y;
-	float	dir_x;
-	float	dy;
-	float	dx;
-	float	dist_y;
-	float	dist_x;
-	float	theta;
-	int		sy;
-	int		sx;
-	int		map_y;
-	int		map_x;
-}		t_rays;
+	float			y;
+	float			x;
+	float			dir_y;
+	float			dir_x;
+	float			dy;
+	float			dx;
+	float			dist_y;
+	float			dist_x;
+	float			theta;
+	int				sy;
+	int				sx;
+	int				map_y;
+	int				map_x;
+}					t_rays;
 
 typedef struct s_limits
 {
-	float	x;
-	float	y;
-}			t_limits;
+	float			x;
+	float			y;
+}					t_limits;
 
 typedef struct s_paint
 {
@@ -123,6 +132,9 @@ typedef struct s_img
 	int				bits_pixel;
 	int				end;
 	int				line_len;
+	int				width;
+	int				height;
+	char			*path;
 }					t_img;
 
 typedef struct s_mlx
@@ -132,20 +144,23 @@ typedef struct s_mlx
 	t_img			img;
 }					t_mlx;
 
+typedef struct s_assets
+{
+	t_img			textures[TEXTURE_COUNT];
+}					t_assets;
+
 typedef struct s_map
 {
+	t_assets		assets;
 	char			**buffer;
 	char			**map;
 	char			**temp_map;
-	char			*north;
-	char			*south;
-	char			*west;
-	char			*east;
 	int				height;
 	t_rgb			rgb_floor;
 	t_rgb			rgb_ceiling;
 	size_t			max_w;
 	size_t			max_h;
+	t_img			img;
 }					t_map;
 
 typedef struct s_player
@@ -159,6 +174,7 @@ typedef struct s_player
 
 typedef struct s_data
 {
+	t_assets		assets;
 	t_img			img;
 	t_mlx			mlx;
 	t_player		player;
