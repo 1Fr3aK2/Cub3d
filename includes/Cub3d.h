@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/09 23:33:17 by rafael           ###   ########.fr       */
+/*   Updated: 2025/12/10 16:42:58 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef enum e_keys
 
 typedef struct s_rays
 {
+	size_t			w;
 	float			y;
 	float			x;
 	float			dir_y;
@@ -278,8 +279,9 @@ void				free_file(t_file *file);
 void				free_mlx(t_mlx *mlx);
 void				free_all(t_data *data);
 
-// src/render/color.c
+// src/render/colors.c
 t_rgb				set_rgb(char *strrgb, t_data *data);
+t_rgb				get_rgb(t_img *img, size_t y, size_t x);
 
 // src/render/minimap.c
 void				draw_minimap(t_data *data, t_img *img);
@@ -288,6 +290,7 @@ void				draw_sq(t_paint paint, t_img *img);
 // src/render/render.c
 int					render(t_data *data);
 void				set_color(t_img *img, size_t y, size_t x, t_rgb cc);
+void				cpy_line(t_img *img, t_img asset, t_rays ray, int d[3]);
 
 // src/render/paint.c
 t_paint				paint_init(void);
@@ -299,7 +302,8 @@ t_limits			set_limits(float x, float y);
 void				compass_setter(t_player *player, t_img *img);
 
 // src/math/init.c
-t_rays				dda_init(t_player *player, float angle);
+t_rays				dda_init(t_player *player, float angle, size_t w);
+float				get_dist(t_rays rays);
 
 // src/math/dda.c
 void				dda(t_player *player, t_map *map, t_img *img);
