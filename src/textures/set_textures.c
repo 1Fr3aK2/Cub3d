@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 02:32:49 by rafael            #+#    #+#             */
-/*   Updated: 2025/12/09 23:33:01 by rafael           ###   ########.fr       */
+/*   Updated: 2025/12/10 19:12:18 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,52 @@ static bool	load_texture(t_img *img, char *path)
 	img->path = ft_strdup(path);
 	if (!img->path)
 		return (false);
-	img->img = mlx_xpm_file_to_image(&data_s()->mlx.mlx, img->path, &img->width,
+	img->img = mlx_xpm_file_to_image(data_s()->mlx.mlx, img->path, &img->width,
 			&img->height);
 	if (!img->img)
+	{
+		printf("hugo\n");
 		return (false);
+	}
 	img->pixel_ptr = mlx_get_data_addr(img->img, &img->bits_pixel,
 			&img->line_len, &img->end);
 	if (!img->pixel_ptr)
 		return (false);
+	if (img->width != img->height)
+		return (false);
 	return (true);
 }
-
+bool	set_assets_texture(t_assets *assets, char **path, char **floor, char **ceiling)
+{
+	if (!assets || !path || !*path)
+		return (false);
+	if (!assets->textures[N].path && ft_strncmp(path[0], "NO", 3) == 0)
+		return (load_texture(&assets->textures[N], path[1]));
+	else if (!assets->textures[S].path && ft_strncmp(path[0], "SO",
+			3) == 0)
+		return (load_texture(&assets->textures[S], path[1]));
+	else if (!assets->textures[WE].path && ft_strncmp(path[0], "WE",
+			3) == 0)
+		return (load_texture(&assets->textures[WE], path[1]));
+	else if (!assets->textures[EA].path && ft_strncmp(path[0], "EA",
+			3) == 0)
+		return (load_texture(&assets->textures[EA], path[1]));
+	else if (!*floor && ft_strncmp(path[0], "F", 2) == 0)
+	{
+		*floor = ft_strdup(path[1]);
+		if (!*floor)
+			return (false);
+		return (true);
+	}
+	else if (!*ceiling && ft_strncmp(path[0], "C", 2) == 0)
+	{
+		*ceiling = ft_strdup(path[1]);
+		if (!*ceiling)
+			return (false);
+		return (true);
+	}
+	return (false);
+}
 bool	set_texture(char *line, char **floor, char **ceiling, t_map *map)
 {
 	char	**split;
@@ -53,22 +88,7 @@ bool	set_texture(char *line, char **floor, char **ceiling, t_map *map)
 	{
 		if (!split[1] || ft_stralen(split) != 2)
 			return (free_arr(split), false);
-		if (!map->assets.textures[N].path && ft_strncmp(split[0], "NO", 3) == 0)
-			load_texture(&map->assets.textures[N], split[1]);
-		else if (!map->assets.textures[S].path && ft_strncmp(split[0], "SO",
-				3) == 0)
-			load_texture(&map->assets.textures[S], split[1]);
-		else if (!map->assets.textures[WE].path && ft_strncmp(split[0], "WE",
-				3) == 0)
-			load_texture(&map->assets.textures[WE], split[1]);
-		else if (!map->assets.textures[EA].path && ft_strncmp(split[0], "EA",
-				3) == 0)
-			load_texture(&map->assets.textures[EA], split[1]);
-		else if (!*floor && ft_strncmp(split[0], "F", 2) == 0)
-			*floor = ft_strdup(split[1]);
-		else if (!*ceiling && ft_strncmp(split[0], "C", 2) == 0)
-			*ceiling = ft_strdup(split[1]);
-		else
+		if (!set_assets_texture(&map->assets, split, floor, ceiling))
 			return (free_arr(split), false);
 	}
 	return (free_arr(split), true);

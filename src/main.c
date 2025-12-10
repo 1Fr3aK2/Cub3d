@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 00:49:25 by rafael            #+#    #+#             */
-/*   Updated: 2025/12/10 18:37:01 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/10 19:11:55 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int argc, char *argv[])
 		return (-1);
 	}
 	init_struct(data_s());
+	init_mlx(data_s());
 	if (init_map(argv[1], data_s()) == -1)
 		return (-1);
 	mlx_loop(data_s()->mlx.mlx);
