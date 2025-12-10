@@ -1,10 +1,9 @@
+F 220,100,0
+C 225,30,0
 NO ./includes/assets/north.xpm
 SO ./includes/assets/south.xpm
 WE ./includes/assets/west.xpm
 EA ./includes/assets/east.xpm
-
-F 220,100,0
-C 225,30,0
 
 1111111111111111111111111
 1000000000110000000000001
