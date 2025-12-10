@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 02:32:49 by rafael            #+#    #+#             */
-/*   Updated: 2025/12/10 17:29:00 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/10 19:12:18 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static bool	load_texture(t_img *img, char *path)
 	img->path = ft_strdup(path);
 	if (!img->path)
 		return (false);
-	img->img = mlx_xpm_file_to_image(&data_s()->mlx.mlx, img->path, &img->width,
+	img->img = mlx_xpm_file_to_image(data_s()->mlx.mlx, img->path, &img->width,
 			&img->height);
 	if (!img->img)
 	{
