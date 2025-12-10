@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/10 19:54:50 by rafael           ###   ########.fr       */
+/*   Updated: 2025/12/10 20:25:54 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,6 @@ typedef struct s_data
 	t_file			file;
 	uint8_t			keys;
 }					t_data;
-
 
 // src/textures/set_textures.c
 bool				check_load_textures(char *floor, char *ceiling, t_map *map);

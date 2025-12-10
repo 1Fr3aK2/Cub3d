@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:11:03 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/10 18:37:44 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/10 20:25:29 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,7 @@ int	init_map(char *file, t_data *data)
 	get_lines(data, file);
 	get_map(file, &floor, &ceiling, data);
 	if (!check_map(floor, ceiling, &data->map))
-	{
-		if (floor)
-			free(floor);
-		if (ceiling)
-			free(ceiling);
 		exit_error(data, "ERROR:\ncheck_map");
-	}
 	if (!set_fc_rgb(floor, ceiling, data))
 		exit_error(data, "ERROR:\nset_fc_rgb");
 	init_player(data);
