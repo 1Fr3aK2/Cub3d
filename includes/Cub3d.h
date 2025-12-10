@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/10 16:42:58 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/10 19:54:50 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,11 +152,11 @@ typedef struct s_assets
 
 typedef struct s_map
 {
-	t_assets		assets;
 	char			**buffer;
 	char			**map;
 	char			**temp_map;
 	int				height;
+	t_assets		assets;
 	t_rgb			rgb_floor;
 	t_rgb			rgb_ceiling;
 	size_t			max_w;
