@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:58:21 by htrindad          #+#    #+#             */
-/*   Updated: 2025/12/09 18:10:32 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/10 17:00:06 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,41 @@ static inline void	paint_ray(t_img *img, t_map *map, t_limits start,
 	}
 }
 
+static inline t_img	chose_asset(t_rays rays, t_assets *assets, t_player *player)
+{
+	if (rays.dist_x < rays.dist_y)
+	{
+		if (player->x < rays.x)
+			return (assets->textures[EA]);
+		return (assets->textures[WE]);
+	}
+	if (player->y > rays.y)
+		return (assets->textures[N]);
+	return (assets->textures[S]);
+}
+
+static inline void	paint_wall(t_rays rays, t_player *player, t_map *map, t_img *img)
+{
+	int		d[3];
+	t_img	asset;
+
+	d[0] = (int)(WIN_H / get_dist(rays));
+	d[1] = -d[0] / 2 + WIN_H / 2;
+	if (d[1] < 0)
+		d[1] = 0;
+	d[2] = d[0] / 2 + WIN_H / 2;
+	if (d[2] >= WIN_H)
+		d[2] = WIN_H - 1;
+	asset = chose_asset(rays, &map->assets, player);
+	cpy_line(img, asset, rays, d);
+}
+
 void	dda(t_player *player, t_map *map, t_img *img)
 {
 	t_rays	rays;
-	size_t	w;
 
-	rays = dda_init(player, player->plane_x - FOV * (PI / 180.0f) / 2.0f);
-	w = -1;
-	while (++w < WIN_W)
+	rays = dda_init(player, player->plane_x - FOV * (PI / 180.0f) / 2.0f, -1);
+	while (++rays.w < WIN_W)
 	{
 		while (!is_wall(map, rays.map_y, rays.map_x))
 		{
@@ -56,7 +83,8 @@ void	dda(t_player *player, t_map *map, t_img *img)
 				rays.y += rays.sy;
 			}
 		}
+		paint_wall(rays, player, map, img);
 		paint_ray(img, map, set_limits(player->x, player->y), rays.theta);
-		rays = dda_init(player, rays.theta + FOV * PI / 180.0f / WIN_W);
+		rays = dda_init(player, rays.theta + FOV * PI / 180.0f / WIN_W, rays.w);
 	}
 }
