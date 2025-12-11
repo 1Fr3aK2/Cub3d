@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:11:03 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/11 02:43:30 by rafael           ###   ########.fr       */
+/*   Updated: 2025/12/11 03:25:36 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,13 @@ int	init_map(char *file, t_data *data)
 	get_lines(data, file);
 	get_map(file, &floor, &ceiling, data);
 	if (!check_map(floor, ceiling, &data->map))
+	{
+		if (floor)
+			free(floor);
+		if (ceiling)
+			free(ceiling);
 		exit_error(data, "ERROR:\ncheck_map");
+	}
 	if (!set_fc_rgb(floor, ceiling, data))
 		exit_error(data, "ERROR:\nset_fc_rgb");
 	init_player(data);
