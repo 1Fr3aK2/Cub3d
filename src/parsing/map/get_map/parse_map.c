@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:54:45 by rafael            #+#    #+#             */
-/*   Updated: 2025/12/09 17:23:33 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/11 04:00:36 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
+
+static void	clean(char **floor, char **ceiling, char *str, t_data *data)
+{
+	if (*floor)
+		free(*floor);
+	if (*ceiling)
+		free(*ceiling);
+	exit_error(data, str);
+}
 
 bool	parse_map(t_data *data, char **floor, char **ceiling)
 {
@@ -18,12 +27,12 @@ bool	parse_map(t_data *data, char **floor, char **ceiling)
 
 	i = 0;
 	if (!data)
-		return (exit_error(data, "ERROR:\n parse_map, invalid data pointer"),
-			false);
+		return (clean(floor, ceiling, "ERROR:\n parse_map,"
+				"invalid data pointer", data), false);
 	while (!check_load_textures(*floor, *ceiling, &data->map))
 	{
 		if (!data->map.buffer[i])
-			exit_error(data, "ERROR:\n parse_map,reading texture!");
+			clean(floor, ceiling, "ERROR:\n parse_map,reading texture!", data);
 		if (data->map.buffer[i][0] == '\0')
 		{
 			i++;
@@ -31,12 +40,12 @@ bool	parse_map(t_data *data, char **floor, char **ceiling)
 		}
 		if (!set_texture(replace_tabs(data->map.buffer[i]), floor, ceiling,
 				&data->map))
-			exit_error(data, "ERROR:\n parse_map,reading textures!");
+			clean(floor, ceiling, "ERROR:\n parse_map,reading textures!", data);
 		i++;
 	}
 	if (!set_map(&data->map, i))
-		return (exit_error(data, "ERROR:\n parse_map, error setting map!"),
-			false);
+		return (clean(floor, ceiling, "ERROR:\n parse_map, error setting map!",
+				data), false);
 	data->map.height = ft_stralen(data->map.map);
 	return (true);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/10 16:42:58 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/11 02:43:02 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,11 +152,11 @@ typedef struct s_assets
 
 typedef struct s_map
 {
-	t_assets		assets;
 	char			**buffer;
 	char			**map;
 	char			**temp_map;
 	int				height;
+	t_assets		assets;
 	t_rgb			rgb_floor;
 	t_rgb			rgb_ceiling;
 	size_t			max_w;
@@ -183,7 +183,6 @@ typedef struct s_data
 	t_file			file;
 	uint8_t			keys;
 }					t_data;
-
 
 // src/textures/set_textures.c
 bool				check_load_textures(char *floor, char *ceiling, t_map *map);
@@ -279,6 +278,9 @@ void				free_map(t_map *map);
 void				free_file(t_file *file);
 void				free_mlx(t_mlx *mlx);
 void				free_all(t_data *data);
+
+// src/utils/utils_frees.c
+void				free_textures(t_assets *assets);
 
 // src/render/colors.c
 t_rgb				set_rgb(char *strrgb, t_data *data);

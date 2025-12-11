@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 13:37:35 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/09 16:57:41 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/11 04:06:47 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,17 @@ bool	check_rgb(char *rgb)
 		return (false);
 	arr = ft_split(rgb, ',');
 	if (!arr)
-		return (free(rgb), false);
+		return (false);
 	if (ft_stralen(arr) != 3)
 	{
 		free_arr(arr);
-		return (free(rgb), false);
+		return (false);
 	}
 	if (!ft_isnumber(arr[0]) || !ft_isnumber(arr[1]) || !ft_isnumber(arr[2]))
+	{
+		free_arr(arr);
 		return (false);
+	}
 	if (!check_range(ft_atoi(arr[0])) || !check_range(ft_atoi(arr[1]))
 		|| !check_range(ft_atoi(arr[2])))
 	{
