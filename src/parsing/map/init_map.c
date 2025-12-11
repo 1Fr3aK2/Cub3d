@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:11:03 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/10 20:25:29 by rafael           ###   ########.fr       */
+/*   Updated: 2025/12/11 02:43:30 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	init_map(char *file, t_data *data)
 		return (-1);
 	floor = NULL;
 	ceiling = NULL;
-	init_mlx(data);
 	check_map_name(file);
 	get_lines(data, file);
 	get_map(file, &floor, &ceiling, data);

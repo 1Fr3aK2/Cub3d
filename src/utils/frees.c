@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 13:26:56 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/09 16:59:27 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/11 02:41:49 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,9 @@ void	free_map(t_map *map)
 		return ;
 	if (map->buffer)
 		free_arr(map->buffer);
-	if (map->assets.textures[N].path)
-		free(map->assets.textures[N].path);
-	if (map->assets.textures[S].path)
-		free(map->assets.textures[S].path);
-	if (map->assets.textures[EA].path)
-		free(map->assets.textures[EA].path);
-	if (map->assets.textures[WE].path)
-		free(map->assets.textures[WE].path);
 	if (map->temp_map)
 		free_arr(map->temp_map);
+	free_textures(&map->assets);
 }
 
 void	free_file(t_file *file)
@@ -82,7 +75,7 @@ void	free_all(t_data *data)
 {
 	if (!data)
 		return ;
-	free_mlx(&data->mlx);
 	free_map(&data->map);
+	free_mlx(&data->mlx);
 	free_file(&data->file);
 }

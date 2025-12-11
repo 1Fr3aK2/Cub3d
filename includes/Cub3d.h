@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/10 20:25:54 by rafael           ###   ########.fr       */
+/*   Updated: 2025/12/11 02:43:02 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,6 +278,9 @@ void				free_map(t_map *map);
 void				free_file(t_file *file);
 void				free_mlx(t_mlx *mlx);
 void				free_all(t_data *data);
+
+// src/utils/utils_frees.c
+void				free_textures(t_assets *assets);
 
 // src/render/colors.c
 t_rgb				set_rgb(char *strrgb, t_data *data);
