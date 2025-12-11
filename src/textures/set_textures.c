@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 02:32:49 by rafael            #+#    #+#             */
-/*   Updated: 2025/12/11 00:32:56 by rafael           ###   ########.fr       */
+/*   Updated: 2025/12/11 03:43:53 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,10 @@ bool	set_texture(char *line, char **floor, char **ceiling, t_map *map)
 		if (!split[1] || ft_stralen(split) != 2)
 			return (free_arr(split), false);
 		if (!set_assets_texture(&map->assets, split, floor, ceiling))
-			return (free_arr(split), false);
+		{
+			free_arr(split);
+			return (false);
+		}
 	}
 	return (free_arr(split), true);
 }
