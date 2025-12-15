@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:58:21 by htrindad          #+#    #+#             */
-/*   Updated: 2025/12/10 17:00:06 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/11 00:31:50 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ static inline t_img	chose_asset(t_rays rays, t_assets *assets, t_player *player)
 	return (assets->textures[S]);
 }
 
-static inline void	paint_wall(t_rays rays, t_player *player, t_map *map, t_img *img)
+static inline void	paint_wall(t_rays rays, t_player *player, t_map *map,
+		t_img *img)
 {
 	int		d[3];
 	t_img	asset;

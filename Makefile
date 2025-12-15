@@ -13,6 +13,7 @@ SRCS = src/errors/errors.c\
 		src/parsing/player/init_player.c\
 		src/utils/utils.c\
 		src/utils/frees.c\
+		src/utils/utils_frees.c\
 		src/textures/set_textures.c\
 		src/mlx/init_mlx.c\
 		src/player/move.c\
