@@ -6,13 +6,13 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:58:21 by htrindad          #+#    #+#             */
-/*   Updated: 2025/12/11 00:31:50 by rafael           ###   ########.fr       */
+/*   Updated: 2025/12/15 20:17:23 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
 
-static inline void	paint_ray(t_img *img, t_map *map, t_limits start,
+void	paint_ray(t_img *img, t_map *map, t_limits start,
 		float angle)
 {
 	float		inc[2];
@@ -51,7 +51,11 @@ static inline void	paint_wall(t_rays rays, t_player *player, t_map *map,
 	int		d[3];
 	t_img	asset;
 
-	d[0] = (int)(WIN_H / get_dist(rays));
+	if (!rays.side)
+		rays.pwd = rays.dist_x - rays.dx;
+	else
+		rays.pwd = rays.dist_x - rays.dy;
+	d[0] = (int)(WIN_H / rays.pwd);
 	d[1] = -d[0] / 2 + WIN_H / 2;
 	if (d[1] < 0)
 		d[1] = 0;
@@ -70,22 +74,9 @@ void	dda(t_player *player, t_map *map, t_img *img)
 	while (++rays.w < WIN_W)
 	{
 		while (!is_wall(map, rays.map_y, rays.map_x))
-		{
-			if (rays.dist_x < rays.dist_y)
-			{
-				rays.dist_x += rays.dx;
-				rays.map_x += rays.sx;
-				rays.x += rays.sx;
-			}
-			else
-			{
-				rays.dist_y += rays.dy;
-				rays.map_y += rays.sy;
-				rays.y += rays.sy;
-			}
-		}
-		paint_wall(rays, player, map, img);
+			set_vals(&rays, rays.dist_x < rays.dist_y);
 		paint_ray(img, map, set_limits(player->x, player->y), rays.theta);
+		paint_wall(rays, player, map, img);
 		rays = dda_init(player, rays.theta + FOV * PI / 180.0f / WIN_W, rays.w);
 	}
 }

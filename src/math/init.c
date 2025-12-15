@@ -6,7 +6,7 @@
 /*   By: htrindad <htrindad@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 19:04:17 by htrindad          #+#    #+#             */
-/*   Updated: 2025/12/10 16:58:10 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/15 20:15:49 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ t_rays	dda_init(t_player *player, float angle, size_t w)
 	rays.x = player->x;
 	rays.map_y = (int)player->y;
 	rays.map_x = (int)player->x;
-	rays.dir_y = player->dir_y;
-	rays.dir_x = player->dir_x;
+	rays.dir_y = sin(angle);
+	rays.dir_x = cos(angle);
 	rays.theta = angle;
 	rays.w = w;
 	if (!rays.dir_y)
@@ -62,7 +62,45 @@ t_rays	dda_init(t_player *player, float angle, size_t w)
 
 float	get_dist(t_rays rays)
 {
-	if (rays.dist_x < rays.dist_y)
+	if (!rays.side)
 		return (rays.dist_x - rays.dx);
 	return (rays.dist_y - rays.dy);
+}
+
+void	set_vals(t_rays *rays, bool hor)
+{
+	if (hor)
+	{
+		rays->dist_x += rays->dx;
+		rays->map_x += rays->sx;
+		rays->x += rays->sx;
+		rays->side = 0;
+	}
+	else
+	{
+		rays->dist_y += rays->dy;
+		rays->map_y += rays->sy;
+		rays->y += rays->sy;
+		rays->side = 1;
+	}
+}
+
+size_t	get_wall(t_rays rays)
+{
+	float			wall_x;
+	size_t			tex_x;
+	t_player	player;
+
+	player = data_s()->player;
+	if (!rays.side)
+		wall_x = player.y + rays.pwd * rays.dir_y;
+	else
+		wall_x = player.x + rays.pwd * rays.dir_x;
+	wall_x -= floor(wall_x);
+	tex_x = (int)wall_x * 64; // This value must change
+	if (!rays.side && rays.dir_x > 0)
+		tex_x = 64 - tex_x - 1;
+	if (rays.side && rays.dir_y < 0)
+		tex_x = 64 - tex_x - 1;
+	return (tex_x);
 }

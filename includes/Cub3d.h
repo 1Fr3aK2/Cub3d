@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/11 02:43:02 by rafael           ###   ########.fr       */
+/*   Updated: 2025/12/15 20:19:19 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,12 @@ typedef struct s_rays
 	float			dist_y;
 	float			dist_x;
 	float			theta;
+	float			pwd;
 	int				sy;
 	int				sx;
 	int				map_y;
 	int				map_x;
+	int				side;
 }					t_rays;
 
 typedef struct s_limits
@@ -307,6 +309,8 @@ void				compass_setter(t_player *player, t_img *img);
 // src/math/init.c
 t_rays				dda_init(t_player *player, float angle, size_t w);
 float				get_dist(t_rays rays);
+void				set_vals(t_rays *rays, bool hor);
+size_t				get_wall(t_rays rays);
 
 // src/math/dda.c
 void				dda(t_player *player, t_map *map, t_img *img);
