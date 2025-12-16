@@ -6,7 +6,7 @@
 /*   By: htrindad <htrindad@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 19:04:17 by htrindad          #+#    #+#             */
-/*   Updated: 2025/12/15 20:15:49 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/16 18:56:54 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ size_t	get_wall(t_rays rays)
 	else
 		wall_x = player.x + rays.pwd * rays.dir_x;
 	wall_x -= floor(wall_x);
-	tex_x = (int)wall_x * 64; // This value must change
+	tex_x = (int)(wall_x * 64); // This value must change
 	if (!rays.side && rays.dir_x > 0)
 		tex_x = 64 - tex_x - 1;
 	if (rays.side && rays.dir_y < 0)
