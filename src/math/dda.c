@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:58:21 by htrindad          #+#    #+#             */
-/*   Updated: 2025/12/16 18:22:35 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/16 18:53:06 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,23 @@ void	paint_ray(t_img *img, t_map *map, t_limits start,
 	}
 }
 
-static inline t_img	chose_asset(t_rays rays, t_assets *assets, t_player *player)
+static inline t_img	chose_asset(t_rays rays, t_assets *assets)
 {
 	if (!rays.side)
 	{
-		if (player->x < rays.x)
+		if (rays.dir_x > 0)
 			return (assets->textures[EA]);
 		return (assets->textures[WE]);
 	}
 	else
-		return (assets->textures[N]);
-	return (assets->textures[S]);
+	{
+		if (rays.dir_y > 0)
+			return (assets->textures[S]);
+	}
+	return (assets->textures[N]);
 }
 
-static inline void	paint_wall(t_rays rays, t_player *player, t_map *map,
-		t_img *img)
+static inline void	paint_wall(t_rays rays, t_map *map, t_img *img)
 {
 	int		d[3];
 	t_img	asset;
@@ -62,9 +64,8 @@ static inline void	paint_wall(t_rays rays, t_player *player, t_map *map,
 	d[2] = d[0] / 2 + WIN_H / 2;
 	if (d[2] >= WIN_H)
 		d[2] = WIN_H - 1;
-	asset = chose_asset(rays, &map->assets, player);
+	asset = chose_asset(rays, &map->assets);
 	cpy_line(img, asset, rays, d);
-	//mlx_put_image_to_window(data_s()->mlx.mlx, data_s()->mlx.win, img->img, 0, 0);
 }
 
 void	dda(t_player *player, t_map *map, t_img *img)
@@ -77,7 +78,7 @@ void	dda(t_player *player, t_map *map, t_img *img)
 		while (!is_wall(map, rays.map_y, rays.map_x))
 			set_vals(&rays, rays.dist_x < rays.dist_y);
 		paint_ray(img, map, set_limits(player->x, player->y), rays.theta);
-		paint_wall(rays, player, map, img);
+		paint_wall(rays, map, img);
 		rays = dda_init(player, rays.theta + FOV * PI / 180.0f / WIN_W, rays.w);
 	}
 }
