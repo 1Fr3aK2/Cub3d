@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:58:21 by htrindad          #+#    #+#             */
-/*   Updated: 2025/12/15 20:17:23 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/16 18:22:35 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ void	paint_ray(t_img *img, t_map *map, t_limits start,
 
 static inline t_img	chose_asset(t_rays rays, t_assets *assets, t_player *player)
 {
-	if (rays.dist_x < rays.dist_y)
+	if (!rays.side)
 	{
 		if (player->x < rays.x)
 			return (assets->textures[EA]);
 		return (assets->textures[WE]);
 	}
-	if (player->y > rays.y)
+	else
 		return (assets->textures[N]);
 	return (assets->textures[S]);
 }
@@ -54,7 +54,7 @@ static inline void	paint_wall(t_rays rays, t_player *player, t_map *map,
 	if (!rays.side)
 		rays.pwd = rays.dist_x - rays.dx;
 	else
-		rays.pwd = rays.dist_x - rays.dy;
+		rays.pwd = rays.dist_y - rays.dy;
 	d[0] = (int)(WIN_H / rays.pwd);
 	d[1] = -d[0] / 2 + WIN_H / 2;
 	if (d[1] < 0)
@@ -64,6 +64,7 @@ static inline void	paint_wall(t_rays rays, t_player *player, t_map *map,
 		d[2] = WIN_H - 1;
 	asset = chose_asset(rays, &map->assets, player);
 	cpy_line(img, asset, rays, d);
+	//mlx_put_image_to_window(data_s()->mlx.mlx, data_s()->mlx.win, img->img, 0, 0);
 }
 
 void	dda(t_player *player, t_map *map, t_img *img)
