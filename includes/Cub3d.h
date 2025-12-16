@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/15 20:19:19 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/16 19:23:38 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 #  define WIN_H 600
 # endif
 # ifndef FOV
-#  define FOV 66
+#  define FOV 50
 # endif
 
 # ifndef MOVE_SPEED
@@ -261,7 +261,6 @@ void				move_left(t_data *data);
 void				move_right(t_data *data);
 
 // src/player/render_player.c
-void				draw_player_pos(t_player *player, t_img *img);
 void				set_bit(uint8_t *var, int bit, bool value);
 void				movements(t_data *data);
 void				rotate_right(t_data *data);
@@ -287,10 +286,6 @@ void				free_textures(t_assets *assets);
 // src/render/colors.c
 t_rgb				set_rgb(char *strrgb, t_data *data);
 t_rgb				get_rgb(t_img *img, size_t y, size_t x);
-
-// src/render/minimap.c
-void				draw_minimap(t_data *data, t_img *img);
-void				draw_sq(t_paint paint, t_img *img);
 
 // src/render/render.c
 int					render(t_data *data);
