@@ -6,24 +6,11 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 15:24:16 by htrindad          #+#    #+#             */
-/*   Updated: 2025/11/21 11:41:50 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/16 19:17:46 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
-
-void	draw_player_pos(t_player *player, t_img *img)
-{
-	float	x;
-	float	y;
-
-	x = player->x;
-	y = player->y;
-	draw_sq(set_dimensions(ft_rgb(0, 255, 0), paint_init(), set_limits(x
-				* SQ_SIZE - (SQ_SIZE / 4), y * SQ_SIZE - (SQ_SIZE / 4)),
-			set_limits(x * SQ_SIZE + (SQ_SIZE / 4), y * SQ_SIZE + (SQ_SIZE
-					/ 4))), img);
-}
 
 void	set_bit(uint8_t *var, int bit, bool value)
 {

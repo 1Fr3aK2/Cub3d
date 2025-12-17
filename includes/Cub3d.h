@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/11 02:43:02 by rafael           ###   ########.fr       */
+/*   Updated: 2025/12/16 19:23:38 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 #  define WIN_H 600
 # endif
 # ifndef FOV
-#  define FOV 66
+#  define FOV 50
 # endif
 
 # ifndef MOVE_SPEED
@@ -100,10 +100,12 @@ typedef struct s_rays
 	float			dist_y;
 	float			dist_x;
 	float			theta;
+	float			pwd;
 	int				sy;
 	int				sx;
 	int				map_y;
 	int				map_x;
+	int				side;
 }					t_rays;
 
 typedef struct s_limits
@@ -259,7 +261,6 @@ void				move_left(t_data *data);
 void				move_right(t_data *data);
 
 // src/player/render_player.c
-void				draw_player_pos(t_player *player, t_img *img);
 void				set_bit(uint8_t *var, int bit, bool value);
 void				movements(t_data *data);
 void				rotate_right(t_data *data);
@@ -286,10 +287,6 @@ void				free_textures(t_assets *assets);
 t_rgb				set_rgb(char *strrgb, t_data *data);
 t_rgb				get_rgb(t_img *img, size_t y, size_t x);
 
-// src/render/minimap.c
-void				draw_minimap(t_data *data, t_img *img);
-void				draw_sq(t_paint paint, t_img *img);
-
 // src/render/render.c
 int					render(t_data *data);
 void				set_color(t_img *img, size_t y, size_t x, t_rgb cc);
@@ -307,6 +304,8 @@ void				compass_setter(t_player *player, t_img *img);
 // src/math/init.c
 t_rays				dda_init(t_player *player, float angle, size_t w);
 float				get_dist(t_rays rays);
+void				set_vals(t_rays *rays, bool hor);
+size_t				get_wall(t_rays rays);
 
 // src/math/dda.c
 void				dda(t_player *player, t_map *map, t_img *img);

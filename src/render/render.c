@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:38:38 by htrindad          #+#    #+#             */
-/*   Updated: 2025/12/11 00:31:30 by rafael           ###   ########.fr       */
+/*   Updated: 2025/12/16 19:19:09 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,16 @@ void	cpy_line(t_img *img, t_img asset, t_rays ray, int d[3])
 	double		ts;
 	double		tp;
 	int			ty;
+	size_t		tex_x;
 
+	tex_x = get_wall(ray);
 	ts = (double)tex_h / d[0];
 	tp = (d[1] - WIN_H / 2 + d[0] / 2) * ts;
 	while (d[1] < d[2])
 	{
 		ty = (int)tp;
 		tp += ts;
-		set_color(img, d[1], ray.w, get_rgb(&asset, ty, ray.w));
+		set_color(img, d[1], ray.w, get_rgb(&asset, ty, tex_x));
 		d[1]++;
 	}
 }
@@ -78,10 +80,6 @@ int	render(t_data *data)
 	img->pixel_ptr = mlx_get_data_addr(img->img, &img->bits_pixel,
 			&img->line_len, &img->end);
 	set_fc(data, img);
-	draw_minimap(data, img);
-	draw_player_pos(&data->player, img);
-	dda(&data->player, &data->map, img);
-	compass_setter(&data->player, img);
 	dda(&data->player, &data->map, img);
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.win, data->mlx.img.img, 0,
 		0);
