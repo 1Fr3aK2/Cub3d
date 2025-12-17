@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 00:49:25 by rafael            #+#    #+#             */
-/*   Updated: 2025/12/10 19:11:55 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/17 16:21:33 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char *argv[])
 {
 	if (argc != 2)
 	{
-		ft_putendl_fd("Invalid nmber of arguments", 2);
+		ft_putendl_fd("Invalid number of arguments", 2);
 		return (-1);
 	}
 	init_struct(data_s());
