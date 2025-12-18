@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:58:21 by htrindad          #+#    #+#             */
-/*   Updated: 2025/12/18 01:16:40 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/18 11:48:18 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static inline void	paint_wall(t_rays rays, t_map *map, t_player *player,
 		d[2] = WIN_H - 1;
 	asset = chose_asset(rays, &map->assets);
 	cpy_line(img, asset, rays, d);
-	printf("pwd: %d db: %d de: %d\n", d[0], d[1], d[2]);
 }
 
 void	dda(t_player *player, t_map *map, t_img *img)
