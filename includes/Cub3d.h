@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/18 01:17:32 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/18 14:58:33 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -279,7 +279,7 @@ t_rgb				get_rgb(t_img *img, size_t y, size_t x);
 // src/render/render.c
 int					render(t_data *data);
 void				set_color(t_img *img, size_t y, size_t x, t_rgb cc);
-void				cpy_line(t_img *img, t_img asset, t_rays ray, int d[3]);
+void				cpy_line(t_img *img, t_img asset, t_rays ray, int d[4]);
 
 // src/render/paint.c
 t_paint				paint_init(void);

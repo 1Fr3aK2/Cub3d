@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:58:21 by htrindad          #+#    #+#             */
-/*   Updated: 2025/12/18 11:48:18 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/18 15:00:16 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,15 @@ static inline t_img	chose_asset(t_rays rays, t_assets *assets)
 static inline void	paint_wall(t_rays rays, t_map *map, t_player *player,
 		t_img *img)
 {
-	int		d[3];
+	int		d[4];
 	t_img	asset;
 
+	asset = chose_asset(rays, &map->assets);
 	if (!rays.side)
 		rays.pwd = rays.dist_x - rays.dx;
 	else
 		rays.pwd = rays.dist_y - rays.dy;
+	d[3] = get_wall(rays, asset);
 	rays.pwd *= cos(rays.theta - player->plane_x);
 	d[0] = (int)(WIN_H / rays.pwd);
 	d[1] = -d[0] / 2 + WIN_H / 2;
@@ -46,7 +48,6 @@ static inline void	paint_wall(t_rays rays, t_map *map, t_player *player,
 	d[2] = d[0] / 2 + WIN_H / 2;
 	if (d[2] >= WIN_H || d[2] < 0)
 		d[2] = WIN_H - 1;
-	asset = chose_asset(rays, &map->assets);
 	cpy_line(img, asset, rays, d);
 }
 

@@ -6,7 +6,7 @@
 /*   By: htrindad <htrindad@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 19:04:17 by htrindad          #+#    #+#             */
-/*   Updated: 2025/12/18 00:02:49 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/18 14:59:05 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ size_t	get_wall(t_rays rays, t_img asset)
 	wall_x -= floor(wall_x);
 	tex_x = (int)(wall_x * asset.height);
 	if (!rays.side && rays.dir_x > 0)
-		tex_x = 64 - tex_x - 1;
+		tex_x = asset.width - tex_x - 1;
 	if (rays.side && rays.dir_y < 0)
-		tex_x = 64 - tex_x - 1;
+		tex_x = asset.width - tex_x - 1;
 	return (tex_x);
 }

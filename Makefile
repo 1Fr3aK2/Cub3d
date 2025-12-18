@@ -26,7 +26,7 @@ SRCS = src/errors/errors.c\
 		src/render/render.c\
 		src/main.c
 
-NAME = Cub3d
+NAME = cub3D
 
 # -------------------
 # COMPILADOR E FLAGS
