@@ -6,25 +6,25 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:39:30 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/05 15:35:57 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/09 18:09:44 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
 
-bool	check_map(t_map *map)
+bool	check_map(char *floor, char *ceiling, t_map *map)
 {
-	if (!map)
+	if (!floor || !ceiling || !map)
 		return (false);
-	if (check_valid_chars(map) == false)
+	if (!check_valid_chars(map))
 		return (false);
-	if (check_player(map) == false)
+	if (!check_player(map))
 		return (false);
-	if (alloc_temp_map(map) == false)
+	if (!alloc_temp_map(map))
 		return (false);
-	if (check_surroundings(map) == false)
+	if (!check_surroundings(map))
 		return (false);
-	if (check_textures(map) == false)
+	if (!check_textures(floor, ceiling, map))
 		return (false);
 	return (true);
 }
@@ -57,27 +57,20 @@ bool	check_valid_chars(t_map *map)
 
 bool	check_player(t_map *map)
 {
-    int i;
-	int player;
-	int j;
-	int k;
-    
-	if (!map)
+	int	i;
+	int	j;
+	int	player;
+
+	if (!map || !check_valid_chars(map))
 		return (false);
-	i = 0;
-	j = 0;
 	player = 0;
-	if (check_valid_chars(map) == false)
-		return (false);
+	i = 0;
 	while (map->map[i] && i < map->height)
 	{
 		j = 0;
 		while (map->map[i][j])
 		{
-			k = 0;
-			while (PLAYER[k] && map->map[i][j] != PLAYER[k])
-				k++;
-			if (PLAYER[k] == map->map[i][j])
+			if (is_player_char(map->map[i][j]))
 			{
 				player++;
 				if (player > 1)
@@ -87,29 +80,27 @@ bool	check_player(t_map *map)
 		}
 		i++;
 	}
-	if (player <= 0)
-		return (false);
-	return (true);
+	return (player == 1);
 }
 
-bool alloc_temp_map(t_map *map)
+bool	alloc_temp_map(t_map *map)
 {
-	int i;
-	int j;
-	
+	int	i;
+	int	j;
+
 	if (!map)
 		return (false);
 	i = 0;
-	while(map->map[i])
+	while (map->map[i])
 		i++;
 	map->temp_map = ft_calloc(sizeof(bool *), i + 1);
 	if (!map->temp_map)
 		return (false);
 	i--;
-	while(i >= 0)
+	while (i >= 0)
 	{
 		j = 0;
-		while(map->map[i][j])
+		while (map->map[i][j])
 			j++;
 		map->temp_map[i] = malloc(j * sizeof(bool));
 		if (!map->temp_map[i])
@@ -120,18 +111,18 @@ bool alloc_temp_map(t_map *map)
 	return (true);
 }
 
-void set_bool(t_map *map)
+void	set_bool(t_map *map)
 {
-	int i;
-	int j;
-	
+	int		i;
+	int		j;
+
 	if (!map)
 		return ;
 	i = 0;
 	while (map->map[i])
 	{
 		j = 0;
-		while(map->map[i][j])
+		while (map->map[i][j])
 		{
 			map->temp_map[i][j] = false;
 			j++;

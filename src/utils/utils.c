@@ -6,12 +6,11 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 15:42:01 by raamorim          #+#    #+#             */
-/*   Updated: 2025/11/05 16:31:36 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:28:01 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Cub3d.h>
-// #include <cstdint>
 
 void	close_fds(int i)
 {
@@ -23,39 +22,22 @@ void	close_fds(int i)
 	}
 }
 
-int ft_stralen(char **arr)
+size_t	ft_stralen(char **arr)
 {
-    int i;
-    
+	size_t	i;
+
 	if (!arr)
-        return (0);
-    i = 0;
-    while (arr[i])
-        i++;
-    return (i);
+		return (0);
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
 }
 
-void	free_arr(char **arr, int height)
+char	*replace_tabs(char *line)
 {
 	int	i;
 
-	if (!arr)
-		return ;
-	i = 0;
-	while (i < height && arr[i])
-	{
-		free(arr[i]);
-		arr[i] = NULL;
-		i++;
-	}
-	free(arr);
-	arr = NULL;
-}
-
-char *replace_tabs(char *line)
-{
-	int i;
-	
 	if (!line)
 		return (NULL);
 	i = -1;
@@ -65,87 +47,35 @@ char *replace_tabs(char *line)
 			line[i] = ' ';
 	}
 	return (line);
-	
 }
 
-void free_map(t_map *map)
+uint32_t	ft_rgb(uint8_t r, uint8_t g, uint8_t b)
 {
-	if (!map)
-		return ;
-	if (map->buffer)
-	{
-		free_arr(map->buffer, ft_stralen(map->buffer));
-		map->buffer = NULL;
-	}
-	if (map->north)
-	{
-		free(map->north);
-		map->north = NULL;
-	}
-	if (map->south)
-	{
-		free(map->south);
-		map->south = NULL;
-	}
-	if (map->east)
-	{
-		free(map->east);
-		map->east = NULL;
-	}
-	if (map->west)
-	{
-		free(map->west);
-		map->west = NULL;
-	}
-	if (map->floor)
-	{
-		free(map->floor);
-		map->floor = NULL;
-	}
-	if (map->ceiling)
-	{
-		free(map->ceiling);
-		map->ceiling = NULL;
-	}
-	if (map->temp_map)
-	{
-		free_arr(map->temp_map, ft_stralen(map->temp_map));
-		map->temp_map = NULL;
-	}
+	return (r << 16 | g << 8 | b);
 }
 
-void free_file(t_file *file)
+uint8_t	ft_atob(char *str)
 {
-	if (!file)
-		return ;
-	if (file->fd >= 0)
-		close(file->fd);
-	file->fd = -1;
-}
+	uint8_t	n;
+	uint8_t	b;
+	size_t	i;
+	size_t	l;
 
-void free_mlx(t_mlx *mlx)
-{
-	if (!mlx)
-		return ;
-	if (mlx->img.img)
+	n = 0;
+	i = 0;
+	l = 0;
+	while (str[i] && !ft_isdigit(str[i]))
+		i++;
+	while (ft_isdigit((int)str[i]) && l < 4)
 	{
-		mlx_destroy_image(mlx->mlx, mlx->img.img);
-		mlx->img.img = NULL;	
+		l++;
+		b = n * 10 + (str[i] - '0');
+		if (b < n)
+			return (0);
+		n = b;
+		i++;
 	}
-	if (mlx->win)
-	{
-		mlx_destroy_window(mlx->mlx, mlx->win);
-		mlx->win = NULL;
-	}
-	if (mlx->mlx)
-	{
-		mlx_destroy_display(mlx->mlx);
-		free(mlx->mlx);
-		mlx->mlx = NULL;
-	}
+	if (l > 3)
+		return (0);
+	return (n);
 }
-
-// uint32_t ft_rgb(uint8_t r, uint8_t g, uint8_t b)
-// {
-// 	return (r << 16 | g << 8 | b);
-// }

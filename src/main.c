@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 00:49:25 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/05 01:19:55 by rafael           ###   ########.fr       */
+/*   Updated: 2025/12/17 16:21:33 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 
 int	main(int argc, char *argv[])
 {
-	t_data	data;
-
 	if (argc != 2)
 	{
-		ft_putendl_fd("Invalid nmber of arguments", 2);
+		ft_putendl_fd("Invalid number of arguments", 2);
 		return (-1);
 	}
-	init_struct(&data);
-	if (init_map(argv[1], &data) == -1)
+	init_struct(data_s());
+	init_mlx(data_s());
+	if (init_map(argv[1], data_s()) == -1)
 		return (-1);
-	init_mlx(&data);
-	mlx_loop(data.mlx.mlx);
-	free_all(&data);
+	mlx_loop(data_s()->mlx.mlx);
+	free_all(data_s());
 	return (0);
 }

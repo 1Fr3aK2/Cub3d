@@ -6,15 +6,24 @@ SRCS = src/errors/errors.c\
 		src/parsing/file/check_file.c\
 		src/parsing/map/check_map/check_map.c\
 		src/parsing/map/check_map/check_map_utils.c\
+		src/parsing/map/check_map/checks_utils.c\
 		src/parsing/map/get_map/get_map.c\
 		src/parsing/map/get_map/parse_map.c\
 		src/parsing/map/init_map.c\
 		src/parsing/player/init_player.c\
 		src/utils/utils.c\
+		src/utils/frees.c\
+		src/utils/utils_frees.c\
 		src/textures/set_textures.c\
 		src/mlx/init_mlx.c\
 		src/player/move.c\
+		src/player/render_player.c\
 		src/hooks/keys.c\
+		src/math/init.c\
+		src/math/dda.c\
+		src/render/paint.c\
+		src/render/colors.c\
+		src/render/render.c\
 		src/main.c
 
 NAME = Cub3d
@@ -23,7 +32,7 @@ NAME = Cub3d
 # COMPILADOR E FLAGS
 # -------------------
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -I./includes
+CFLAGS = -Wall -Wextra -Werror -O3 -I./includes
 RM = rm -f
 
 OBJ_DIR = obj

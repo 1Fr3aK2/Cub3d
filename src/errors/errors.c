@@ -25,16 +25,3 @@ void	exit_error(t_data *data, char *str)
 	close_fds(0);
 	exit(1);
 }
-
-void	free_all(t_data *data)
-{
-	if (!data)
-		return ;
-	free_map(&data->map);
-	free_file(&data->file);
-	free_mlx(&data->mlx);
-	// free_animations(data);
-	// free_images(data);
-	// free_player(data);
-	// free_enemy(data);
-}
