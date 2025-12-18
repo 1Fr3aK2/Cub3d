@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/18 00:42:47 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/18 01:17:32 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@
 # endif
 
 # ifndef MOVE_SPEED
-#  define MOVE_SPEED 0.0078125
+#  define MOVE_SPEED 0.015625
 # endif
 
 # ifndef ROT
-#  define ROT 0.0078125
+#  define ROT 0.015625
 # endif
 
 # define VALID_CHARS "01NSEW "
