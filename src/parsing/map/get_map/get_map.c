@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:13:21 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/09 17:18:12 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/18 15:00:58 by raamorim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	get_lines(t_data *data, char *file_name)
 	static char	*line;
 
 	if (!data || !file_name)
-		exit_error(NULL, "ERROR:\nGET_LINES: Invalid pointer to file/struct");
+		exit_error(data, "ERROR:\nGET_LINES: Invalid pointer to file/struct");
 	data->file.fd = open(file_name, O_RDONLY);
 	if (data->file.fd < 0)
-		exit_error(NULL, "ERROR:\nGET_LINES : Error opening the file");
+		exit_error(data, "ERROR:\nGET_LINES : Error opening the file");
 	line = get_next_line(data->file.fd);
 	if (!line)
 		exit_error(data, "ERROR:\nGET_LINES: READING 1st LINE OF MAP");
