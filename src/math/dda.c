@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:58:21 by htrindad          #+#    #+#             */
-/*   Updated: 2025/12/18 00:03:36 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/18 01:16:40 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,14 @@ static inline void	paint_wall(t_rays rays, t_map *map, t_player *player,
 	rays.pwd *= cos(rays.theta - player->plane_x);
 	d[0] = (int)(WIN_H / rays.pwd);
 	d[1] = -d[0] / 2 + WIN_H / 2;
-	if (d[1] < 0)
+	if (d[1] < 0 || d[1] >= WIN_H)
 		d[1] = 0;
 	d[2] = d[0] / 2 + WIN_H / 2;
-	if (d[2] >= WIN_H)
+	if (d[2] >= WIN_H || d[2] < 0)
 		d[2] = WIN_H - 1;
 	asset = chose_asset(rays, &map->assets);
 	cpy_line(img, asset, rays, d);
+	printf("pwd: %d db: %d de: %d\n", d[0], d[1], d[2]);
 }
 
 void	dda(t_player *player, t_map *map, t_img *img)

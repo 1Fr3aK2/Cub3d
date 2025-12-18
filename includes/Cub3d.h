@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/18 00:02:25 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/18 01:17:32 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,15 @@
 #  define WIN_H 600
 # endif
 # ifndef FOV
-#  define FOV 50
+#  define FOV 55
 # endif
 
 # ifndef MOVE_SPEED
-#  define MOVE_SPEED 0.03125
-# endif
-
-# ifndef SQ_SIZE
-#  define SQ_SIZE 13
+#  define MOVE_SPEED 0.015625
 # endif
 
 # ifndef ROT
-#  define ROT 0.03125
-# endif
-
-# ifndef C_SIZE
-#  define C_SIZE 10
+#  define ROT 0.015625
 # endif
 
 # define VALID_CHARS "01NSEW "
@@ -62,9 +54,6 @@
 # define EAST 'E'
 # define PLAYER "NSWE"
 # define PI 3.1415926535
-# define TRACE 0.5
-
-# define MAP_S 64
 
 typedef uint32_t	t_rgb;
 
@@ -255,10 +244,10 @@ void				set_player_direction(t_player *player, char dir);
 
 // src/player/move.c
 bool				is_wall(t_map *map, float y, float x);
-void				move_forward(t_data *data);
-void				move_backward(t_data *data);
-void				move_left(t_data *data);
-void				move_right(t_data *data);
+void				move_forward(t_data *data, bool sides);
+void				move_backward(t_data *data, bool sides);
+void				move_left(t_data *data, bool sides);
+void				move_right(t_data *data, bool sides);
 
 // src/player/render_player.c
 void				set_bit(uint8_t *var, int bit, bool value);
