@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 15:24:16 by htrindad          #+#    #+#             */
-/*   Updated: 2025/12/16 19:17:46 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/18 00:38:07 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,26 @@ void	set_bit(uint8_t *var, int bit, bool value)
 		*var &= ~bit;
 }
 
+static inline bool	side_check(uint8_t keys)
+{
+	if ((keys & FORWARD && keys & LEFT_S)
+		|| (keys & FORWARD && keys & RIGHT_S)
+		|| (keys & BACKWARDS && keys & LEFT_S)
+		|| (keys & BACKWARDS && keys & RIGHT_S))
+		return (true);
+	return (false);
+}
+
 void	movements(t_data *data)
 {
 	if (data->keys & FORWARD)
-		move_forward(data);
+		move_forward(data, side_check(data->keys));
 	if (data->keys & BACKWARDS)
-		move_backward(data);
+		move_backward(data, side_check(data->keys));
 	if (data->keys & LEFT_S)
-		move_left(data);
+		move_left(data, side_check(data->keys));
 	if (data->keys & RIGHT_S)
-		move_right(data);
+		move_right(data, side_check(data->keys));
 	if (data->keys & TURN_L)
 		rotate_left(data);
 	if (data->keys & TURN_R)

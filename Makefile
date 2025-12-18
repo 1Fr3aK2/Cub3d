@@ -23,7 +23,6 @@ SRCS = src/errors/errors.c\
 		src/math/dda.c\
 		src/render/paint.c\
 		src/render/colors.c\
-		src/render/vertice.c\
 		src/render/render.c\
 		src/main.c
 
@@ -33,7 +32,7 @@ NAME = Cub3d
 # COMPILADOR E FLAGS
 # -------------------
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -I./includes
+CFLAGS = -Wall -Wextra -Werror -O3 -I./includes
 RM = rm -f
 
 OBJ_DIR = obj

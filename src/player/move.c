@@ -6,7 +6,7 @@
 /*   By: raamorim <raamorim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 20:23:37 by rafael            #+#    #+#             */
-/*   Updated: 2025/11/17 17:42:39 by raamorim         ###   ########.fr       */
+/*   Updated: 2025/12/18 00:40:54 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,56 +28,76 @@ bool	is_wall(t_map *map, float y, float x)
 	return (false);
 }
 
-void	move_forward(t_data *data)
+void	move_forward(t_data *data, bool sides)
 {
 	float	new_x;
 	float	new_y;
+	float	speed;
 
+	speed = MOVE_SPEED;
+	if (sides)
+		speed /= 2;
 	if (!data)
 		return ;
-	new_x = data->player.x + data->player.dir_x * MOVE_SPEED;
-	new_y = data->player.y + data->player.dir_y * MOVE_SPEED;
+	new_x = data->player.x + data->player.dir_x * speed;
+	new_y = data->player.y + data->player.dir_y * speed;
 	if (!is_wall(&data->map, data->player.y, new_x))
 		data->player.x = new_x;
 	if (!is_wall(&data->map, new_y, data->player.x))
 		data->player.y = new_y;
 }
 
-void	move_backward(t_data *data)
+void	move_backward(t_data *data, bool sides)
 {
 	float	new_x;
 	float	new_y;
+	float	speed;
 
+	speed = MOVE_SPEED;
+	if (sides)
+		speed /= 2;
 	if (!data)
 		return ;
-	new_x = data->player.x - data->player.dir_x * MOVE_SPEED;
-	new_y = data->player.y - data->player.dir_y * MOVE_SPEED;
+	new_x = data->player.x - data->player.dir_x * speed;
+	new_y = data->player.y - data->player.dir_y * speed;
 	if (!is_wall(&data->map, data->player.y, new_x))
 		data->player.x = new_x;
 	if (!is_wall(&data->map, new_y, data->player.x))
 		data->player.y = new_y;
 }
 
-void	move_left(t_data *data)
+void	move_left(t_data *data, bool sides)
 {
 	float	new_x;
 	float	new_y;
+	float	speed;
 
-	new_x = data->player.x + data->player.dir_y * MOVE_SPEED;
-	new_y = data->player.y - data->player.dir_x * MOVE_SPEED;
+	speed = MOVE_SPEED;
+	if (sides)
+		speed /= 2;
+	if (!data)
+		return ;
+	new_x = data->player.x + data->player.dir_y * speed;
+	new_y = data->player.y - data->player.dir_x * speed;
 	if (!is_wall(&data->map, data->player.y, new_x))
 		data->player.x = new_x;
 	if (!is_wall(&data->map, new_y, data->player.x))
 		data->player.y = new_y;
 }
 
-void	move_right(t_data *data)
+void	move_right(t_data *data, bool sides)
 {
 	float	new_x;
 	float	new_y;
+	float	speed;
 
-	new_x = data->player.x - data->player.dir_y * MOVE_SPEED;
-	new_y = data->player.y + data->player.dir_x * MOVE_SPEED;
+	speed = MOVE_SPEED;
+	if (sides)
+		speed /= 2;
+	if (!data)
+		return ;
+	new_x = data->player.x - data->player.dir_y * speed;
+	new_y = data->player.y + data->player.dir_x * speed;
 	if (!is_wall(&data->map, data->player.y, new_x))
 		data->player.x = new_x;
 	if (!is_wall(&data->map, new_y, data->player.x))
