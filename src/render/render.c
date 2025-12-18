@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 17:38:38 by htrindad          #+#    #+#             */
-/*   Updated: 2025/12/16 19:19:09 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/18 00:00:17 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,13 @@ void	set_color(t_img *img, size_t y, size_t x, t_rgb cc)
 
 void	cpy_line(t_img *img, t_img asset, t_rays ray, int d[3])
 {
-	const size_t	tex_h = 64; // TODO, this is an arbitrary value. The assets need to be checked if they are squares
 	double		ts;
 	double		tp;
 	int			ty;
 	size_t		tex_x;
 
 	tex_x = get_wall(ray);
-	ts = (double)tex_h / d[0];
+	ts = (double)asset.height / d[0];
 	tp = (d[1] - WIN_H / 2 + d[0] / 2) * ts;
 	while (d[1] < d[2])
 	{
