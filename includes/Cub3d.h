@@ -37,11 +37,11 @@
 # endif
 
 # ifndef MOVE_SPEED
-#  define MOVE_SPEED 0.015625
+#  define MOVE_SPEED 0.0078125
 # endif
 
 # ifndef ROT
-#  define ROT 0.015625
+#  define ROT 0.0078125
 # endif
 
 # define VALID_CHARS "01NSEW "
