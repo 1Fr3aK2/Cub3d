@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 18:58:21 by htrindad          #+#    #+#             */
-/*   Updated: 2025/12/16 19:19:30 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/18 00:03:36 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	dda(t_player *player, t_map *map, t_img *img)
 		while (!is_wall(map, rays.map_y, rays.map_x))
 			set_vals(&rays, rays.dist_x < rays.dist_y);
 		paint_wall(rays, map, player, img);
-		rays = dda_init(player, rays.theta + FOV * PI / 180.0f / WIN_W, ++rays.w);
+		rays = dda_init(player, rays.theta + FOV * PI / 180.0f / WIN_W,
+				++rays.w);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:52:17 by raamorim          #+#    #+#             */
-/*   Updated: 2025/12/16 19:23:38 by htrindad         ###   ########.fr       */
+/*   Updated: 2025/12/18 00:02:25 by htrindad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -305,7 +305,7 @@ void				compass_setter(t_player *player, t_img *img);
 t_rays				dda_init(t_player *player, float angle, size_t w);
 float				get_dist(t_rays rays);
 void				set_vals(t_rays *rays, bool hor);
-size_t				get_wall(t_rays rays);
+size_t				get_wall(t_rays rays, t_img asset);
 
 // src/math/dda.c
 void				dda(t_player *player, t_map *map, t_img *img);
