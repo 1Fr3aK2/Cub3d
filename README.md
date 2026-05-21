@@ -180,8 +180,7 @@ Example:
 ## 👥 Authors
 
 - **[1Fr3aK2](https://github.com/1Fr3aK2)** & **[htrindad](https://github.com/htrindad)**
-- Contributors visible in the [repository graph](https://github.com/1Fr3aK2/Cub3d/graphs/contributors)
-
+  
 ---
 
 ## 📄 License
